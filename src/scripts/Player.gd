@@ -91,7 +91,13 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if Input.is_action_just_pressed("jump") and _jumps_made <= max_jumps:
+			if Input.is_action_pressed("left"):
+				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
+				_sprite.flip_h = true
+			elif Input.is_action_pressed("right"):
+				_velocity.x = lerp(_velocity.x, speed, 0.1)
+				_sprite.flip_h = false
+			if Input.is_action_pressed("jump") and _jumps_made <= max_jumps:
 				_jumps_made += 2
 				_sprite.play("JumpAll")
 				_velocity.y = double_jump_strength
