@@ -1,8 +1,8 @@
-#TODO: make the player climb up a wall when they have the gloves (x)
-#TODO: make a zone that slows the player (X) <--- instanciate for level progression
 #TODO: make a dedicated wall_jump () <--- to be replaced possibly by grapple after certain progression
 #TODO: make a ledge grab ()  <--- useful for possible future grapple, may need apply to climbable walls
 #TODO: limit player vision as they progress ()
+
+#TODO: HUGE REFACTOR FOR PLAYER STATES (in progress)
 
 
 extends KinematicBody2D
@@ -16,11 +16,11 @@ var screen_size
 
 export var speed := 450
 export var gravity := 35
-export var jump_strength := -800
+export var jump_strength := -1000
 export var double_jump_strength := -800
 export var wall_slide_speed := 75
 export var wall_slide_gravity := 1800
-export var wall_climb_speed := 100
+export var wall_climb_speed := 50
 export var wall_jump_strength := 1000
 export var wall_pushback := 500
 var wall_climb_gravity := 0
@@ -43,7 +43,6 @@ var _has_climbing_item := false
 var _can_double_jump := false
 var _wall_slide := true
 var _can_wall_jump := false
-var _wall_climb :=  false
 
 
 onready var _pivot: Node2D = $Pivot2D
@@ -53,24 +52,18 @@ onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
 onready var _start_scale: Vector2 = _pivot.scale
 
-
-
+var is_falling := _velocity.y > 0.0 and not is_on_floor()
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 
 func _physics_process(delta: float) -> void:
 	print(state)
-		# Variables for conditions
+	# Variables for conditions
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
-	var is_ledge_climbing := is_on_ledge() and Input.is_action_pressed("up")
+#	var is_ledge_climbing := is_on_ledge() and Input.is_action_pressed("up")
 	
-		# Get vertical movement from player <--- For wall climbing
-	var _vertical_direction = (
-		Input.get_action_strength("down")
-		- Input.get_action_strength("up")
-	)
-	
+	# Finite State Machine for player conditions
 	match state:
 		States.FALLING:
 			if is_on_floor():
@@ -90,15 +83,21 @@ func _physics_process(delta: float) -> void:
 			player_mov()
 			move_and_fall()
 		States.DOUBLE_JUMP:
+			if is_falling and not _has_double_jump_item:
+				state = States.FALLING
+				continue
 			if is_on_floor():
 				state = States.FLOOR
 				continue
 			if on_the_wall():
 				state = States.WALL
 				continue
-			if Input.is_action_pressed("jump") and _jumps_made < max_jumps:
+			if on_climbable_wall() and _has_climbing_item:
+				state = States.CLIMB
+				continue
+			if Input.is_action_just_pressed("jump") and _jumps_made < max_jumps:
 				_jumps_made += 1
-				_sprite.play("JumpAll")
+				_sprite.play("JumpStart")
 				_velocity.y = double_jump_strength
 				state = States.FALLING
 			player_mov()
@@ -128,52 +127,37 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if not is_on_floor() and not on_the_wall():
+			if is_falling and not on_the_wall():
 				state = States.FALLING
 				continue
 			if on_climbable_wall() and _has_climbing_item:
 				state =  States.CLIMB
 				continue
-			if on_the_wall():
-				if _raycast.is_colliding() and _velocity.y > 0.0:
-					if _raycast.get_collider().name == "wall" and not is_on_floor():
-							_velocity.y += wall_slide_gravity * delta
-							_velocity.y = min(_velocity.y, wall_slide_speed)
-					else:
-						_wall_slide = false
-			if Input.is_action_pressed("left"):
-				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
-				_sprite.flip_h = true
-			elif Input.is_action_pressed("right"):
-				_velocity.x = lerp(_velocity.x, speed, 0.1)
-				_sprite.flip_h = false
+			_jumps_made += 1
+			on_the_wall()
+			player_mov()
 			move_and_fall()
 		States.CLIMB:
+			if not on_climbable_wall() and on_the_wall():
+				state =  States.WALL
+				continue
 			if is_falling and not on_climbable_wall():
 				state = States.FALLING
 				continue
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if not on_climbable_wall() and on_the_wall():
-				state =  States.WALL
-				continue
 			# This is for climbable walls only
-			if _raycast.is_colliding():
-				if _raycast.get_collider().name == "climbableWall":
-					if Input.is_action_pressed("down"):
-						_velocity.y = _vertical_direction * wall_climb_speed
-					elif Input.is_action_pressed("up"):
-						_velocity.y = -(_vertical_direction * wall_climb_speed)
-					player_mov()
+			if _has_climbing_item:
+				_jumps_made += 1
+				on_climbable_wall()
+			player_mov()
 			move_and_fall()
-					#move_and_climb()
-
-	# Flip collsions and raycasts when facing left or right
+	
+	# Flips the raycasts of the player depending on direction
 	if not is_zero_approx(_velocity.x):
 		_pivot.scale.x = sign(_velocity.x) * _start_scale.x
-
-# Controls player movement and sprite direction
+# Controls player movement and sprite direction on x-axis
 func player_mov():
 	if Input.is_action_pressed("left"):
 		_velocity.x = lerp(_velocity.x, -speed, 0.1) 
@@ -186,7 +170,10 @@ func player_mov():
 
 # Gravity of the player over time
 func move_and_fall():
-	_velocity.y += gravity
+	if on_climbable_wall():
+		_velocity.y += wall_climb_gravity
+	else:
+		_velocity.y += gravity
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 # Gravity of player when on a climbable wall
@@ -215,29 +202,43 @@ func _on_passedSlowZone():
 		speed -= SLOW_SPEED # <--- Example to see if it works
 
 func on_the_wall():
-	if _raycast.is_colliding():
-		if _raycast.get_collider().name == "wall": #or _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+	if _raycast.is_colliding() and _velocity.y > 0.0:
+		# Player will wallside whether or not they _has_climbing_item
+		if _raycast.get_collider().name == "wall" or _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+			_velocity.y = wall_slide_gravity
+			_velocity.y = min(_velocity.y, wall_slide_speed)
 			return true
 	else:
+		_wall_slide = false
 		return false
 
 func on_climbable_wall():
-	if _raycast.is_colliding():
-		if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
-			return true
-	else:
-		return false
+	if _has_climbing_item:
+		if _raycast.is_colliding():
+			if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+				move_and_climb()
+				_wall_slide = false
+				if Input.is_action_pressed("down") and not is_falling:
+					_velocity.y = wall_climb_speed
+				elif Input.is_action_pressed("up") and not is_falling:
+					_velocity.y = -(wall_climb_speed)
+				else:
+					_velocity.y = wall_climb_gravity
+				return true
+	elif not _has_climbing_item:
+		on_the_wall()
+	return false
 
-func is_on_ledge() -> bool:
-	var is_on_ledge = false
-	var is_on_ledge_hori = false
-
-	if _ledgeRay.is_colliding():
-		var collision = _ledgeRay.get_collider()
-		var relative_position = _ledgeRay.get_collision_point() - collision.position
-		is_on_ledge = relative_position.y < 0
-
-	if _ledgeRayHori.is_colliding():
-		is_on_ledge_hori = true
-
-	return is_on_ledge && is_on_ledge_hori
+#func is_on_ledge() -> bool:
+#	var is_on_ledge = false
+#	var is_on_ledge_hori = false
+#
+#	if _ledgeRay.is_colliding():
+#		var collision = _ledgeRay.get_collider()
+#		var relative_position = _ledgeRay.get_collision_point() - collision.position
+#		is_on_ledge = relative_position.y < 0
+#
+#	if _ledgeRayHori.is_colliding():
+#		is_on_ledge_hori = true
+#
+#	return is_on_ledge && is_on_ledge_hori
