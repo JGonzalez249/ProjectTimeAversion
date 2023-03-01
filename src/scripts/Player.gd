@@ -73,6 +73,9 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
+			if is_wall_sliding:
+				state = States.WALL
+				continue
 			if is_falling:
 				_sprite.play("Falling")
 			if Input.is_action_pressed("left"):
@@ -90,6 +93,9 @@ func _physics_process(delta: float) -> void:
 		States.DOUBLE_JUMP:
 			if is_on_floor():
 				state = States.FLOOR
+				continue
+			if is_wall_sliding:
+				state = States.WALL
 				continue
 			if Input.is_action_pressed("left"):
 				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
@@ -124,6 +130,23 @@ func _physics_process(delta: float) -> void:
 				_jumps_made += 1
 				state = States.FALLING
 			move_and_fall()
+		States.WALL:
+			if is_on_floor():
+				state = States.FLOOR
+				continue
+			if not is_on_floor() and not is_wall_sliding:
+				state = States.FALLING
+				continue
+			if is_wall_sliding:
+				if _raycast.is_colliding() and _velocity.y > 0.0:
+					if _raycast.get_collider().name == "walls" and not is_on_floor():
+							print("WALL")
+							_velocity.y += wall_slide_gravity * delta
+							_velocity.y = min(_velocity.y, wall_slide_speed)
+					else:
+						_wall_slide = false
+			move_and_fall()
+			
 	# Get vertical movement from player <--- For wall climbing
 	var _vertical_direction = (
 		Input.get_action_strength("down")
@@ -132,7 +155,6 @@ func _physics_process(delta: float) -> void:
 	
 	if _raycast.is_colliding() and _velocity.y > 0.0:
 		if _raycast.get_collider().name == "walls" and not is_on_floor():
-				print("WALL")
 				_velocity.y += wall_slide_gravity * delta
 				_velocity.y = min(_velocity.y, wall_slide_speed)
 		else:
@@ -173,14 +195,14 @@ func _physics_process(delta: float) -> void:
 #		_wall_jumps_made = 0
 
 	# For walljumping
-	if is_wall_sliding:
-		_can_wall_jump = true
-		if _wall_jumps_made == 0:
-			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and _sprite.scale.x > 0) or Input.is_action_pressed("right") and _sprite.scale.x < 0):
-				#_velocity.x = wall_pushback * -_horizontal_direction
-				_velocity.y = wall_jump_strength
-				_wall_jumps_made += 1
-				is_falling
+#	if is_wall_sliding:
+#		_can_wall_jump = true
+#		if _wall_jumps_made == 0:
+#			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and _pivot.scale.x > 0) or Input.is_action_pressed("right") and _pivot.scale.x < 0):
+#				#_velocity.x = wall_pushback * -_horizontal_direction
+#				_velocity.y = wall_jump_strength
+#				_wall_jumps_made += 1
+#				is_falling
 #			elif Input.is_action_just_pressed("jump") and Input.is_action_pressed("right") and _pivot.scale.x < 0:
 #					_velocity.x = -wall_pushback * -_horizontal_direction
 #					_velocity.y -= wall_jump_strength
