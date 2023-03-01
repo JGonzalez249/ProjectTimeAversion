@@ -16,7 +16,7 @@ var screen_size
 
 export var speed := 450
 export var gravity := 35
-export var jump_strength := -1000
+export var jump_strength := -800
 export var double_jump_strength := -800
 export var wall_slide_speed := 75
 export var wall_slide_gravity := 1800
@@ -63,7 +63,6 @@ func _physics_process(delta: float) -> void:
 		# Variables for conditions
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
-	var is_wall_sliding = on_the_wall()
 	var is_ledge_climbing := is_on_ledge() and Input.is_action_pressed("up")
 	
 		# Get vertical movement from player <--- For wall climbing
@@ -77,43 +76,32 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if is_wall_sliding:
+			if on_the_wall():
 				state = States.WALL
+				continue
+			if on_climbable_wall() and _has_climbing_item:
+				state = States.CLIMB
+				continue
+			if is_falling and _has_double_jump_item:
+				state = States.DOUBLE_JUMP
 				continue
 			if is_falling:
 				_sprite.play("Falling")
-			if Input.is_action_pressed("left"):
-				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
-				_sprite.flip_h = true
-			elif Input.is_action_pressed("right"):
-				_velocity.x = lerp(_velocity.x, speed, 0.1)
-				_sprite.flip_h = false
-			elif is_falling and _has_double_jump_item:
-				state = States.DOUBLE_JUMP
-				continue
-			else:
-				_velocity.x = lerp(_velocity.x, 0, 0.5)
+			player_mov()
 			move_and_fall()
 		States.DOUBLE_JUMP:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if is_wall_sliding:
+			if on_the_wall():
 				state = States.WALL
 				continue
-			if Input.is_action_pressed("left"):
-				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
-				_sprite.flip_h = true
-			elif Input.is_action_pressed("right"):
-				_velocity.x = lerp(_velocity.x, speed, 0.1)
-				_sprite.flip_h = false
-			else:
-				_velocity.x = lerp(_velocity.x, 0, 0.5)
 			if Input.is_action_pressed("jump") and _jumps_made < max_jumps:
 				_jumps_made += 1
 				_sprite.play("JumpAll")
 				_velocity.y = double_jump_strength
 				state = States.FALLING
+			player_mov()
 			move_and_fall()
 		States.FLOOR:
 			_jumps_made = 0
@@ -140,13 +128,13 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				state = States.FLOOR
 				continue
-			if not is_on_floor() and not is_wall_sliding:
+			if not is_on_floor() and not on_the_wall():
 				state = States.FALLING
 				continue
-			if is_on_wall() and _has_climbing_item:
+			if on_climbable_wall() and _has_climbing_item:
 				state =  States.CLIMB
 				continue
-			if is_wall_sliding:
+			if on_the_wall():
 				if _raycast.is_colliding() and _velocity.y > 0.0:
 					if _raycast.get_collider().name == "wall" and not is_on_floor():
 							_velocity.y += wall_slide_gravity * delta
@@ -161,7 +149,7 @@ func _physics_process(delta: float) -> void:
 				_sprite.flip_h = false
 			move_and_fall()
 		States.CLIMB:
-			if is_falling and not on_the_wall():
+			if is_falling and not on_climbable_wall():
 				state = States.FALLING
 				continue
 			if is_on_floor():
@@ -177,36 +165,24 @@ func _physics_process(delta: float) -> void:
 						_velocity.y = _vertical_direction * wall_climb_speed
 					elif Input.is_action_pressed("up"):
 						_velocity.y = -(_vertical_direction * wall_climb_speed)
-					if Input.is_action_pressed("left"):
-						_velocity.x = lerp(_velocity.x, -speed, 0.1) 
-						_sprite.flip_h = true
-					elif Input.is_action_pressed("right"):
-						_velocity.x = lerp(_velocity.x, speed, 0.1)
-						_sprite.flip_h = false
-			move_and_climb()
-	# For wall climbing with and with out gloves
-#	if _wall_climb == true:
-#		if is_wall_sliding:
-#			_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall
-#			_velocity.y = wall_climb_gravity
-#			if Input.is_action_pressed("down"):
-#				_velocity.y += _vertical_direction * wall_climb_speed
-#			elif Input.is_action_pressed("up"):
-#				_velocity.y -= -(_vertical_direction * wall_climb_speed)
-#
-#
-#	elif _wall_climb == false:
-#		if _raycast.is_colliding():
-#			if _raycast.get_collider().name == "climbableWall":
-#				_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall with no gloves
-#				_velocity.y += wall_slide_gravity * delta
-#				_velocity.y = min(_velocity.y, wall_slide_speed)
-#	else:
-#		_can_wall_jump = false
+					player_mov()
+			move_and_fall()
+					#move_and_climb()
 
 	# Flip collsions and raycasts when facing left or right
 	if not is_zero_approx(_velocity.x):
 		_pivot.scale.x = sign(_velocity.x) * _start_scale.x
+
+# Controls player movement and sprite direction
+func player_mov():
+	if Input.is_action_pressed("left"):
+		_velocity.x = lerp(_velocity.x, -speed, 0.1) 
+		_sprite.flip_h = true
+	elif Input.is_action_pressed("right"):
+		_velocity.x = lerp(_velocity.x, speed, 0.1)
+		_sprite.flip_h = false
+	else:
+		_velocity.x = lerp(_velocity.x, 0, 0.5)
 
 # Gravity of the player over time
 func move_and_fall():
