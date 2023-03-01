@@ -39,6 +39,7 @@ var _velocity := Vector2.ZERO
 
 #  Bools for conditions
 var _has_double_jump_item := false
+var _has_climbing_item := false
 var _can_double_jump := false
 var _wall_slide := true
 var _can_wall_jump := false
@@ -62,12 +63,14 @@ func _physics_process(delta: float) -> void:
 		# Variables for conditions
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
-#	var is_double_jumping := Input.is_action_just_pressed("jump") and is_falling
-	var is_jump_cancelled := Input.is_action_just_released("jump") and _velocity.y < 0.0
-#	var is_idling := is_on_floor() #and is_zero_approx(_velocity.x)
-#	var is_running := is_on_floor() and not is_zero_approx(_velocity.x)
-	var is_wall_sliding = on_the_wall() and not is_on_floor()
+	var is_wall_sliding = on_the_wall()
 	var is_ledge_climbing := is_on_ledge() and Input.is_action_pressed("up")
+	
+		# Get vertical movement from player <--- For wall climbing
+	var _vertical_direction = (
+		Input.get_action_strength("down")
+		- Input.get_action_strength("up")
+	)
 	
 	match state:
 		States.FALLING:
@@ -85,7 +88,7 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_pressed("right"):
 				_velocity.x = lerp(_velocity.x, speed, 0.1)
 				_sprite.flip_h = false
-			elif is_falling and _has_double_jump_item == true:
+			elif is_falling and _has_double_jump_item:
 				state = States.DOUBLE_JUMP
 				continue
 			else:
@@ -104,6 +107,8 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_pressed("right"):
 				_velocity.x = lerp(_velocity.x, speed, 0.1)
 				_sprite.flip_h = false
+			else:
+				_velocity.x = lerp(_velocity.x, 0, 0.5)
 			if Input.is_action_pressed("jump") and _jumps_made < max_jumps:
 				_jumps_made += 1
 				_sprite.play("JumpAll")
@@ -138,58 +143,81 @@ func _physics_process(delta: float) -> void:
 			if not is_on_floor() and not is_wall_sliding:
 				state = States.FALLING
 				continue
+			if is_on_wall() and _has_climbing_item:
+				state =  States.CLIMB
+				continue
 			if is_wall_sliding:
 				if _raycast.is_colliding() and _velocity.y > 0.0:
-					if _raycast.get_collider().name == "walls" and not is_on_floor():
-							print("WALL")
+					if _raycast.get_collider().name == "wall" and not is_on_floor():
 							_velocity.y += wall_slide_gravity * delta
 							_velocity.y = min(_velocity.y, wall_slide_speed)
 					else:
 						_wall_slide = false
+			if Input.is_action_pressed("left"):
+				_velocity.x = lerp(_velocity.x, -speed, 0.1) 
+				_sprite.flip_h = true
+			elif Input.is_action_pressed("right"):
+				_velocity.x = lerp(_velocity.x, speed, 0.1)
+				_sprite.flip_h = false
 			move_and_fall()
-	
-	# Get vertical movement from player <--- For wall climbing
-	var _vertical_direction = (
-		Input.get_action_strength("down")
-		- Input.get_action_strength("up")
-	)
-	
-	if _raycast.is_colliding() and _velocity.y > 0.0:
-		if _raycast.get_collider().name == "walls" and not is_on_floor():
-				_velocity.y += wall_slide_gravity * delta
-				_velocity.y = min(_velocity.y, wall_slide_speed)
-		else:
-			_wall_slide = false
-	
+		States.CLIMB:
+			if is_falling and not on_the_wall():
+				state = States.FALLING
+				continue
+			if is_on_floor():
+				state = States.FLOOR
+				continue
+			if not on_climbable_wall() and on_the_wall():
+				state =  States.WALL
+				continue
+			# This is for climbable walls only
+			if _raycast.is_colliding():
+				if _raycast.get_collider().name == "climbableWall":
+					if Input.is_action_pressed("down"):
+						_velocity.y = _vertical_direction * wall_climb_speed
+					elif Input.is_action_pressed("up"):
+						_velocity.y = -(_vertical_direction * wall_climb_speed)
+					if Input.is_action_pressed("left"):
+						_velocity.x = lerp(_velocity.x, -speed, 0.1) 
+						_sprite.flip_h = true
+					elif Input.is_action_pressed("right"):
+						_velocity.x = lerp(_velocity.x, speed, 0.1)
+						_sprite.flip_h = false
+			move_and_climb()
 	# For wall climbing with and with out gloves
-	if _wall_climb == true:
-		if is_wall_sliding:
-			_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall
-			_velocity.y = wall_climb_gravity
-			if Input.is_action_pressed("down"):
-				_velocity.y += _vertical_direction * wall_climb_speed
-			elif Input.is_action_pressed("up"):
-				_velocity.y -= -(_vertical_direction * wall_climb_speed)
-		
-	elif _wall_climb == false:
-		if _raycast.is_colliding():
-			if _raycast.get_collider().name == "climbableWall":
-				_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall with no gloves
-				_velocity.y += wall_slide_gravity * delta
-				_velocity.y = min(_velocity.y, wall_slide_speed)
-	else:
-		_can_wall_jump = false
+#	if _wall_climb == true:
+#		if is_wall_sliding:
+#			_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall
+#			_velocity.y = wall_climb_gravity
+#			if Input.is_action_pressed("down"):
+#				_velocity.y += _vertical_direction * wall_climb_speed
+#			elif Input.is_action_pressed("up"):
+#				_velocity.y -= -(_vertical_direction * wall_climb_speed)
+#
+#
+#	elif _wall_climb == false:
+#		if _raycast.is_colliding():
+#			if _raycast.get_collider().name == "climbableWall":
+#				_jumps_made += 1 # <--- Makes sure to cancel double jump when on climbable wall with no gloves
+#				_velocity.y += wall_slide_gravity * delta
+#				_velocity.y = min(_velocity.y, wall_slide_speed)
+#	else:
+#		_can_wall_jump = false
 
 	# Flip collsions and raycasts when facing left or right
 	if not is_zero_approx(_velocity.x):
 		_pivot.scale.x = sign(_velocity.x) * _start_scale.x
 
-
+# Gravity of the player over time
 func move_and_fall():
-	# Gravity of the player over time
 	_velocity.y += gravity
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
-	
+
+# Gravity of player when on a climbable wall
+func move_and_climb():
+	_velocity.y += wall_climb_gravity
+	_velocity = move_and_slide(_velocity, UP_DIRECTION)
+
 # When player picks up rocketboots, increase max_jumps += 1
 func _on_Double_Jump_Pickup():
 	_has_double_jump_item = true
@@ -201,7 +229,7 @@ func _on_loseDoubleJump():
 	max_jumps -= 1
 
 func _onGlovePickup():
-	_wall_climb = true
+	_has_climbing_item = true
 	print("You can now climb certain walls!")
 
 func _on_passedSlowZone():
@@ -212,7 +240,14 @@ func _on_passedSlowZone():
 
 func on_the_wall():
 	if _raycast.is_colliding():
-		if _raycast.get_collider().name == "walls" or _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+		if _raycast.get_collider().name == "wall": #or _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+			return true
+	else:
+		return false
+
+func on_climbable_wall():
+	if _raycast.is_colliding():
+		if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
 			return true
 	else:
 		return false
