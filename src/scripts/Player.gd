@@ -1,4 +1,4 @@
-#TODO: make a dedicated wall_jump (X-O) <--- to be replaced possibly by grapple after certain progression
+#TODO: make a dedicated wall_jump (X) <--- to be replaced possibly by grapple after certain progression
 #TODO: make a ledge grab ()  <--- useful for possible future grapple, may need apply to climbable walls
 #TODO: limit player vision as they progress ()
 
@@ -49,7 +49,7 @@ var _can_wall_jump := false
 
 onready var _pivot: Node2D = $Pivot2D
 onready var _sprite: AnimatedSprite = $Sprite
-onready var _raycast: RayCast2D = $Pivot2D/WallRay/ #<--- To be used for wall climbing and sliding
+onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
 onready var _start_scale: Vector2 = _pivot.scale
@@ -136,10 +136,12 @@ func _physics_process(delta: float) -> void:
 			elif on_climbable_wall() and _has_climbing_item:
 				state =  States.CLIMB
 				continue
-			_jumps_made += 1
-			on_the_wall()
+			if Input.is_action_pressed("jump") and ((Input.is_action_pressed("right") and direction == 1) or (Input.is_action_pressed("left") and direction == -1)):
+				_velocity.x = wall_jump_strength * -direction
+				_velocity.y = jump_strength * 0.8
+				state = States.FALLING
+			#_jumps_made += 1
 			player_mov()
-			set_direction()
 			move_and_fall()
 		States.CLIMB:
 			if not on_climbable_wall() and on_the_wall():
@@ -152,11 +154,12 @@ func _physics_process(delta: float) -> void:
 				state = States.FLOOR
 				continue
 			# This is for climbable walls only
-			if _has_climbing_item:
-				_jumps_made += 1
-				on_climbable_wall()
+			if Input.is_action_pressed("jump") and ((Input.is_action_pressed("right") and direction == 1) or (Input.is_action_pressed("left") and direction == -1)):
+				_velocity.x = wall_jump_strength * -direction
+				_velocity.y = jump_strength * 0.8
+				state = States.FALLING
+			#_jumps_made += 1
 			player_mov()
-			set_direction()
 			move_and_fall()
 	
 	# Flips the raycasts of the player depending on direction
@@ -168,15 +171,6 @@ func set_direction():
 	_raycast.rotation_degrees = 90 * -direction
 	_ledgeRay.position.x = 15 * -direction
 	_ledgeRayHori.rotation_degrees = 90 * -direction
-
-
-func wall_jump():
-	if Input.is_action_just_released("jump") and (Input.is_action_pressed("left") and direction == 1):
-		_velocity.x = wall_jump_strength * direction
-		_velocity.y = jump_strength * 0.9
-	elif Input.is_action_just_pressed("jump") and (Input.is_action_pressed("right") and direction == -1):
-		_velocity.x = wall_jump_strength * -direction
-		_velocity.y = jump_strength * 0.9
 
 # Controls player movement and sprite direction on x-axis
 func player_mov():
@@ -221,7 +215,7 @@ func _on_passedSlowZone():
 		speed -= SLOW_SPEED # <--- Example to see if it works
 
 func on_the_wall():
-	if _raycast.is_colliding() and _velocity.y > 0.0:
+	if _raycast.is_colliding():
 		# Player will wallside whether or not they _has_climbing_item
 		if _raycast.get_collider().name == "wall" or (_raycast.get_collider().name == "climbableWall") and not is_on_floor():
 			_velocity.y = wall_slide_gravity
@@ -235,7 +229,7 @@ func on_climbable_wall():
 	if _has_climbing_item:
 		if _raycast.is_colliding():
 			if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
-				move_and_climb()
+				#move_and_climb()
 				_wall_slide = false
 				if Input.is_action_pressed("down") and not is_falling:
 					_velocity.y = wall_climb_speed
