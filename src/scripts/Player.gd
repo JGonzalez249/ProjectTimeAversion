@@ -1,8 +1,8 @@
-#TODO: make a dedicated wall_jump (X) <--- to be replaced possibly by grapple after certain progression
+#TODO: make a dedicated wall_jump (X) <--- can be replaced possibly by grapple after certain progression
 #TODO: make a ledge grab ()  <--- useful for possible future grapple, may need apply to climbable walls
 #TODO: limit player vision as they progress ()
 
-#TODO: HUGE REFACTOR FOR PLAYER STATES (in progress)
+#TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
 
 
 extends KinematicBody2D
@@ -22,9 +22,9 @@ export var jump_strength := -1000
 export var double_jump_strength := -800
 export var wall_slide_speed := 75
 export var wall_slide_gravity := 1800
-export var wall_climb_speed := 50
-export var wall_jump_strength := 1000
-export var wall_pushback := 500
+export var wall_climb_speed := 75
+export var wall_jump_strength := -800
+export var wall_pushback := 1000
 var wall_climb_gravity := 0
 
 const SLOW_SPEED := 75
@@ -62,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	# Variables for conditions
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
-	
 	# Finite State Machine for player conditions
 	match state:
 		States.FALLING:
@@ -82,7 +81,7 @@ func _physics_process(delta: float) -> void:
 				_sprite.play("Falling")
 			player_mov()
 			set_direction()
-			move_and_fall()
+			move_and_fall(false)
 		States.DOUBLE_JUMP:
 			if is_falling and not _has_double_jump_item:
 				state = States.FALLING
@@ -103,7 +102,7 @@ func _physics_process(delta: float) -> void:
 				state = States.FALLING
 			player_mov()
 			set_direction()
-			move_and_fall()
+			move_and_fall(false)
 		States.FLOOR:
 			_jumps_made = 0
 			if not is_on_floor():
@@ -125,7 +124,7 @@ func _physics_process(delta: float) -> void:
 				_jumps_made += 1
 				state = States.FALLING
 			set_direction()
-			move_and_fall()
+			move_and_fall(false)
 		States.WALL:
 			if is_on_floor():
 				state = States.FLOOR
@@ -136,13 +135,13 @@ func _physics_process(delta: float) -> void:
 			elif on_climbable_wall() and _has_climbing_item:
 				state =  States.CLIMB
 				continue
-			if Input.is_action_pressed("jump") and ((Input.is_action_pressed("right") and direction == 1) or (Input.is_action_pressed("left") and direction == -1)):
-				_velocity.x = wall_jump_strength * -direction
-				_velocity.y = jump_strength * 0.8
+			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
+				_velocity.x = wall_pushback * -direction
+				_velocity.y = wall_jump_strength
+				print("Wall jump: velocity.y =", _velocity.y)
 				state = States.FALLING
-			#_jumps_made += 1
 			player_mov()
-			move_and_fall()
+			move_and_fall(false)
 		States.CLIMB:
 			if not on_climbable_wall() and on_the_wall():
 				state =  States.WALL
@@ -153,20 +152,16 @@ func _physics_process(delta: float) -> void:
 			elif is_on_floor():
 				state = States.FLOOR
 				continue
-			# This is for climbable walls only
-			if Input.is_action_pressed("jump") and ((Input.is_action_pressed("right") and direction == 1) or (Input.is_action_pressed("left") and direction == -1)):
-				_velocity.x = wall_jump_strength * -direction
-				_velocity.y = jump_strength * 0.8
+			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
+				_velocity.x = wall_pushback * -direction
+				_velocity.y = wall_jump_strength
 				state = States.FALLING
-			#_jumps_made += 1
 			player_mov()
-			move_and_fall()
-	
-	# Flips the raycasts of the player depending on direction
-#	if not is_zero_approx(_velocity.x):
-#		_pivot.scale.x = sign(_velocity.x) * _start_scale.x
+			move_and_fall(true)
+	print(state)
 
 func set_direction():
+	
 	direction = 1 if not _sprite.flip_h else -1
 	_raycast.rotation_degrees = 90 * -direction
 	_ledgeRay.position.x = 15 * -direction
@@ -184,12 +179,13 @@ func player_mov():
 		_velocity.x = lerp(_velocity.x, 0, 0.5)
 
 # Gravity of the player over time
-func move_and_fall():
+func move_and_fall(_has_climbable_item: bool):
 	if on_climbable_wall():
 		_velocity.y += wall_climb_gravity
+		_velocity =  move_and_slide(_velocity, UP_DIRECTION)
 	else:
 		_velocity.y += gravity
-	_velocity = move_and_slide(_velocity, UP_DIRECTION)
+		_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 # Gravity of player when on a climbable wall
 func move_and_climb():
@@ -225,19 +221,24 @@ func on_the_wall():
 		_wall_slide = false
 		return false
 
+# TODO: Might need to fix this but it works so far.
 func on_climbable_wall():
-	if _has_climbing_item:
-		if _raycast.is_colliding():
-			if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
-				#move_and_climb()
-				_wall_slide = false
+	if _raycast.is_colliding():
+		if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
+			if _has_climbing_item:
 				if Input.is_action_pressed("down") and not is_falling:
 					_velocity.y = wall_climb_speed
 				elif Input.is_action_pressed("up") and not is_falling:
 					_velocity.y = -(wall_climb_speed)
+				elif States.CLIMB\
+				and Input.is_action_just_pressed("jump"):
+					_velocity.y = wall_jump_strength
 				else:
 					_velocity.y = wall_climb_gravity
-				return true
+			elif States.CLIMB\
+			and Input.is_action_just_pressed("jump"):
+				_velocity.y = wall_jump_strength
+		return true
 	elif not _has_climbing_item:
 		on_the_wall()
 	return false
