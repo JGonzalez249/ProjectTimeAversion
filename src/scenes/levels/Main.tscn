@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/assets/parallax/sky_lightened.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/Tiles.png" type="Texture" id=2]
@@ -83,6 +83,32 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( 0, 0, 128, 0, 128, 28.25, 0, 28.25 )
+
+[sub_resource type="TileSet" id=12]
+0/name = "tilesheet.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 448, 64, 128, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 14 )
+0/shape_one_way = true
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": true,
+"one_way_margin": 1.0,
+"shape": SubResource( 14 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -186,41 +212,6 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 } ]
 0/z_index = 0
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
-points = PoolVector2Array( 128, 0, 128, 32, 96, 64, 64, 64, 32, 64, 0, 32, 0, 0, 0, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=15]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 64, 0, 64 )
-
-[sub_resource type="TileSet" id=12]
-0/name = "tilesheet.png 0"
-0/texture = ExtResource( 3 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 448, 64, 128, 64 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 14 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 14 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 15 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
 
@@ -243,6 +234,11 @@ collision_layer = 3
 collision_mask = 5
 format = 1
 
+[node name="platforms-one-way" type="TileMap" parent="level0"]
+tile_set = SubResource( 12 )
+format = 1
+tile_data = PoolIntArray( 131080, 0, 0, 327689, 0, 0 )
+
 [node name="wall" type="TileMap" parent="level0"]
 tile_set = SubResource( 9 )
 collision_layer = 5
@@ -263,11 +259,6 @@ collision_layer = 9
 collision_mask = 9
 format = 1
 tile_data = PoolIntArray( 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0 )
-
-[node name="platforms" type="TileMap" parent="level0"]
-tile_set = SubResource( 12 )
-format = 1
-tile_data = PoolIntArray( 131080, 0, 0, 327689, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 405, 419 )
