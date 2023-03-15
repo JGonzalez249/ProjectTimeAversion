@@ -37,7 +37,7 @@ var max_wall_jumps := 1
 var _jumps_made := 0
 var _wall_jumps_made := 0
 var _velocity := Vector2.ZERO
-
+var _aim_dir := Vector2.ZERO
 
 #  Bools for conditions
 var _has_double_jump_item := false
@@ -177,6 +177,9 @@ func player_mov():
 		_sprite.flip_h = false
 	else:
 		_velocity.x = lerp(_velocity.x, 0, 0.5)
+		
+	if Input.is_action_just_pressed("aim"):
+		look_at(get_global_mouse_position())
 
 # Gravity of the player over time
 func move_and_fall(_has_climbable_item: bool):

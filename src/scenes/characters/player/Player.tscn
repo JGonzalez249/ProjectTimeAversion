@@ -255,6 +255,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
 animation = "Idle"
+frame = 3
 playing = true
 
 [node name="Pivot2D" type="Node2D" parent="."]
