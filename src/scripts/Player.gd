@@ -23,7 +23,7 @@ export var double_jump_strength := -800
 export var wall_slide_speed := 75
 export var wall_slide_gravity := 1800
 export var wall_climb_speed := 75
-export var wall_jump_strength := -800
+export var wall_jump_strength := -650
 export var wall_pushback := 1000
 var wall_climb_gravity := 0
 
