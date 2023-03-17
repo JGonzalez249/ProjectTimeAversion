@@ -1,5 +1,4 @@
-#TODO: make a dedicated wall_jump (X) <--- can be replaced possibly by grapple after certain progression
-#TODO: make a ledge grab ()  <--- useful for possible future grapple, may need apply to climbable walls
+#TODO: make a ledge grab ()  <--- priority due to story progression
 #TODO: limit player vision as they progress ()
 
 #TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
@@ -37,7 +36,6 @@ var max_wall_jumps := 1
 var _jumps_made := 0
 var _wall_jumps_made := 0
 var _velocity := Vector2.ZERO
-var _aim_dir := Vector2.ZERO
 
 #  Bools for conditions
 var _has_double_jump_item := false
@@ -47,21 +45,24 @@ var _wall_slide := true
 var _can_wall_jump := false
 
 
-onready var _pivot: Node2D = $Pivot2D
 onready var _sprite: AnimatedSprite = $Sprite
+onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
 onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
-onready var _start_scale: Vector2 = _pivot.scale
 
+
+# Global Variables for conditions
 var is_falling := _velocity.y > 0.0 and not is_on_floor()
+
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 
-func _physics_process(delta: float) -> void:
-	# Variables for conditions
-	var is_falling := _velocity.y > 0.0 and not is_on_floor()
+func _physics_process(_delta: float) -> void:
+	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
+#	var is_ledgeGrab := (_ledgeRay.is_colliding() == true and _ledgeRayHori.is_colliding() ==  false)
+
 	# Finite State Machine for player conditions
 	match state:
 		States.FALLING:
@@ -141,6 +142,7 @@ func _physics_process(delta: float) -> void:
 				print("Wall jump: velocity.y =", _velocity.y)
 				state = States.FALLING
 			player_mov()
+			set_direction()
 			move_and_fall(false)
 		States.CLIMB:
 			if not on_climbable_wall() and on_the_wall():
@@ -157,14 +159,14 @@ func _physics_process(delta: float) -> void:
 				_velocity.y = wall_jump_strength
 				state = States.FALLING
 			player_mov()
+			set_direction()
 			move_and_fall(true)
 	print(state)
 
 func set_direction():
-	
 	direction = 1 if not _sprite.flip_h else -1
 	_raycast.rotation_degrees = 90 * -direction
-	_ledgeRay.position.x = 15 * -direction
+	_ledgeRay.position.x = -25 * -direction
 	_ledgeRayHori.rotation_degrees = 90 * -direction
 
 # Controls player movement and sprite direction on x-axis
@@ -177,9 +179,7 @@ func player_mov():
 		_sprite.flip_h = false
 	else:
 		_velocity.x = lerp(_velocity.x, 0, 0.5)
-		
-	if Input.is_action_just_pressed("aim"):
-		look_at(get_global_mouse_position())
+
 
 # Gravity of the player over time
 func move_and_fall(_has_climbable_item: bool):
