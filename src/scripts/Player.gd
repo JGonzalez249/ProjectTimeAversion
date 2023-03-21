@@ -164,7 +164,7 @@ func _physics_process(_delta: float) -> void:
 			player_mov()
 			set_direction()
 			move_and_fall(true)
-	print(state)
+	print(is_falling)
 
 func set_direction():
 	direction = 1 if not _sprite.flip_h else -1
@@ -232,10 +232,9 @@ func on_climbable_wall():
 	if _raycast.is_colliding():
 		if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
 			if _has_climbing_item:
-				var is_falling := _velocity.y > 0.0 and not is_on_floor()
-				if Input.is_action_pressed("down") and not is_falling:
+				if Input.is_action_pressed("down"):
 					_velocity.y = wall_climb_speed
-				elif Input.is_action_pressed("up") and not is_falling:
+				elif Input.is_action_pressed("up"):
 					_velocity.y = -(wall_climb_speed)
 				elif States.CLIMB\
 				and Input.is_action_just_pressed("jump"):
@@ -249,3 +248,6 @@ func on_climbable_wall():
 	elif not _has_climbing_item:
 		on_the_wall()
 	return false
+
+func climb_ledge():
+	pass
