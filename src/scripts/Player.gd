@@ -7,7 +7,7 @@
 
 extends KinematicBody2D
  
-enum States {FALLING = 1, DOUBLE_JUMP, FLOOR, WALL, CLIMB} 
+enum States {FALLING = 1, DOUBLE_JUMP, FLOOR, WALL, CLIMB, LEDGE_GRAB} 
 var state = States.FALLING
 var direction = 1
 
@@ -28,6 +28,7 @@ export var wall_pushback := 1000
 var wall_climb_gravity := 0
 
 const SLOW_SPEED := 75
+const LEDGE_CLIMB_SPEED := 250
 
 # Maximum number of jumps that player can make, 
 # change value +1 when picking up rocket boots, -1 when losing rocket boots
@@ -53,8 +54,7 @@ onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
 
 
-# Global Variables for conditions
-
+# Global Variables for animation frames
 
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
@@ -137,6 +137,9 @@ func _physics_process(_delta: float) -> void:
 			elif is_falling and not on_the_wall():
 				state = States.FALLING
 				continue
+			elif ledge_grab():
+				state = States.LEDGE_GRAB
+				continue
 			elif on_climbable_wall() and _has_climbing_item:
 				state =  States.CLIMB
 				continue
@@ -157,6 +160,9 @@ func _physics_process(_delta: float) -> void:
 			elif is_on_floor():
 				state = States.FLOOR
 				continue
+			elif ledge_grab():
+				state = States.LEDGE_GRAB
+				continue
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
 				_velocity.x = wall_pushback * -direction
 				_velocity.y = wall_jump_strength
@@ -164,7 +170,18 @@ func _physics_process(_delta: float) -> void:
 			player_mov()
 			set_direction()
 			move_and_fall(true)
-	print(is_falling)
+		States.LEDGE_GRAB:
+			if Input.is_action_just_pressed("jump"):
+				state = States.FALLING
+				_velocity.y = jump_strength
+				_velocity.x = direction * speed
+				_jumps_made += 1
+			elif Input.is_action_pressed("up"):
+				ledge_climb()
+			player_mov()
+			set_direction()
+			move_and_fall(false)
+	print(state)
 
 func set_direction():
 	direction = 1 if not _sprite.flip_h else -1
@@ -182,7 +199,6 @@ func player_mov():
 		_sprite.flip_h = false
 	else:
 		_velocity.x = lerp(_velocity.x, 0, 0.5)
-
 
 # Gravity of the player over time
 func move_and_fall(_has_climbable_item: bool):
@@ -249,5 +265,20 @@ func on_climbable_wall():
 		on_the_wall()
 	return false
 
-func climb_ledge():
-	pass
+
+func ledge_grab():
+	if _ledgeRay.is_colliding() and not _ledgeRayHori.is_colliding():
+		state = States.LEDGE_GRAB
+		_anim_play.play("Falling")
+		_velocity = Vector2.ZERO
+		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+		return true
+	return false
+
+func ledge_climb():
+	_velocity = Vector2.ZERO
+	position.y -= LEDGE_CLIMB_SPEED * get_process_delta_time()
+	if position.y < _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y:
+		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+		state = States.FLOOR
+		_anim_play.play("Idle")
