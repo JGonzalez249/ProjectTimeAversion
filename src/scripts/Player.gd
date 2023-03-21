@@ -176,7 +176,7 @@ func _physics_process(_delta: float) -> void:
 				_velocity.y = jump_strength
 				_velocity.x = direction * speed
 				_jumps_made += 1
-			elif Input.is_action_pressed("up"):
+			elif Input.is_action_just_pressed("up"):
 				ledge_climb()
 			player_mov()
 			set_direction()
@@ -279,6 +279,6 @@ func ledge_climb():
 	_velocity = Vector2.ZERO
 	position.y -= LEDGE_CLIMB_SPEED * get_process_delta_time()
 	if position.y < _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y:
-		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+		position = _ledgeRay.get_collision_point()
 		state = States.FLOOR
 		_anim_play.play("Idle")
