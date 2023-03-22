@@ -376,6 +376,7 @@ anims/Run = SubResource( 62 )
 [node name="Pivot2D" type="Node2D" parent="."]
 
 [node name="WallRay" type="RayCast2D" parent="Pivot2D"]
+position = Vector2( 0, -12 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( -7.43094e-07, 17 )
