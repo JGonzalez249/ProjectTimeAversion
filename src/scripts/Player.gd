@@ -29,7 +29,7 @@ export var wall_pushback := 1000
 var wall_climb_gravity := 0
 
 const SLOW_SPEED := 75
-const LEDGE_CLIMB_SPEED := 250
+const LEDGE_CLIMB_SPEED := 75
 
 # Maximum number of jumps that player can make, 
 # change value +1 when picking up rocket boots, -1 when losing rocket boots
@@ -172,11 +172,14 @@ func _physics_process(_delta: float) -> void:
 			set_direction()
 			move_and_fall(true)
 		States.LEDGE_GRAB:
+			if is_falling:
+				state = States.FALLING
+				continue
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
 				_velocity.x = wall_pushback * -direction
 				_velocity.y = wall_jump_strength
 				state = States.FALLING
-			elif Input.is_action_just_pressed("up"):
+			elif Input.is_action_pressed("up"):
 				ledge_climb()
 			player_mov()
 			set_direction()
@@ -208,11 +211,6 @@ func move_and_fall(_has_climbable_item: bool):
 	else:
 		_velocity.y += gravity
 		_velocity = move_and_slide(_velocity, UP_DIRECTION)
-
-# Gravity of player when on a climbable wall
-func move_and_climb():
-	_velocity.y += wall_climb_gravity
-	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 # When player picks up rocketboots, increase max_jumps += 1
 func _on_Double_Jump_Pickup():
@@ -263,6 +261,8 @@ func on_climbable_wall():
 		return true
 	elif not _has_climbing_item:
 		on_the_wall()
+#	elif States.LEDGE_GRAB:
+#		_velocity = Vector2.ZERO
 	return false
 
 
@@ -279,6 +279,6 @@ func ledge_climb():
 	_velocity = Vector2.ZERO
 	position.y -= LEDGE_CLIMB_SPEED * get_process_delta_time()
 	if position.y < _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y:
+		_anim_play.play("Idle")
 		position = _ledgeRay.get_collision_point()
 		state = States.FLOOR
-		_anim_play.play("Idle")
