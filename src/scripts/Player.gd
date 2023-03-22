@@ -1,5 +1,6 @@
-#TODO: make a ledge grab ()  <--- priority due to story progression
+#TODO: make a ledge grab (X)  <--- priority due to story progression
 	#TODO: need to make anim_player to make a smooth animation for ledge climb (delay player input)
+	#TODO: fix bug with CLIMB and LEDGE_GRAB state (holding up keeps player in CLIMB state while climbing wall)
 #TODO: limit player vision as they progress ()
 
 #TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
@@ -171,11 +172,10 @@ func _physics_process(_delta: float) -> void:
 			set_direction()
 			move_and_fall(true)
 		States.LEDGE_GRAB:
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
+				_velocity.x = wall_pushback * -direction
+				_velocity.y = wall_jump_strength
 				state = States.FALLING
-				_velocity.y = jump_strength
-				_velocity.x = direction * speed
-				_jumps_made += 1
 			elif Input.is_action_just_pressed("up"):
 				ledge_climb()
 			player_mov()
