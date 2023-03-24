@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Level01" type="Node2D"]
+
+[node name="BG" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BG"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG/ParallaxBackground"]
