@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+MusicController="*res://src/autoloads/MusicController.tscn"
 
 [display]
 
