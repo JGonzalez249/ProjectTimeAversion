@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/middle.png-556e31677a146a2cc83ac2dfcbe3a1f4.stex"
+path="res://.import/glacial_mountains.png-5dfcde902bb47e0fd922d4bb6f26513b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/level01/middle.png"
-dest_files=[ "res://.import/middle.png-556e31677a146a2cc83ac2dfcbe3a1f4.stex" ]
+source_file="res://src/assets/imgs/glacial_mountains.png"
+dest_files=[ "res://.import/glacial_mountains.png-5dfcde902bb47e0fd922d4bb6f26513b.stex" ]
 
 [params]
 

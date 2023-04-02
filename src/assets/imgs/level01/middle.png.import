@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clouds_mg_1.png-f3233f2471f80747b60ee72116fbe6d0.stex"
+path="res://.import/middle.png-9845ba9e35202da508f39c1368d985e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/clouds_mg_1.png"
-dest_files=[ "res://.import/clouds_mg_1.png-f3233f2471f80747b60ee72116fbe6d0.stex" ]
+source_file="res://src/assets/imgs/level01/middle.png"
+dest_files=[ "res://.import/middle.png-9845ba9e35202da508f39c1368d985e8.stex" ]
 
 [params]
 

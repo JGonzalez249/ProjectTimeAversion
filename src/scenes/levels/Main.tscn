@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://src/assets/parallax/sky_lightened.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/imgs/sky.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/Tiles.png" type="Texture" id=2]
 [ext_resource path="res://src/assets/tilesets/tilesheet.png" type="Texture" id=3]
 [ext_resource path="res://src/scenes/pickUps/climbGloves.tscn" type="PackedScene" id=4]

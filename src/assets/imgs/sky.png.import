@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sky_lightened.png-8542e7d42a52184de9c7d26fc6afed7e.stex"
+path="res://.import/sky.png-107ef1f6185cea115a16e9b88b48fa44.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/sky_lightened.png"
-dest_files=[ "res://.import/sky_lightened.png-8542e7d42a52184de9c7d26fc6afed7e.stex" ]
+source_file="res://src/assets/imgs/sky.png"
+dest_files=[ "res://.import/sky.png-107ef1f6185cea115a16e9b88b48fa44.stex" ]
 
 [params]
 

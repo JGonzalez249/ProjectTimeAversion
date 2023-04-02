@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/support.png-ef255af2afcd1d816fbde5662614b7b1.stex"
+path="res://.import/tank-3.png-308c4092ad1e4b57cb55d4653e1e77b1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/level01/Props/support.png"
-dest_files=[ "res://.import/support.png-ef255af2afcd1d816fbde5662614b7b1.stex" ]
+source_file="res://src/assets/imgs/level01/Props/tank-3.png"
+dest_files=[ "res://.import/tank-3.png-308c4092ad1e4b57cb55d4653e1e77b1.stex" ]
 
 [params]
 

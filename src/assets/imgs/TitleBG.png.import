@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/front.png-5cafd8dddeb91200c8bba41bf2e76a7e.stex"
+path="res://.import/TitleBG.png-ba5a581aeb67c8a36505be222c21ecd1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/level01/front.png"
-dest_files=[ "res://.import/front.png-5cafd8dddeb91200c8bba41bf2e76a7e.stex" ]
+source_file="res://src/assets/imgs/TitleBG.png"
+dest_files=[ "res://.import/TitleBG.png-ba5a581aeb67c8a36505be222c21ecd1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

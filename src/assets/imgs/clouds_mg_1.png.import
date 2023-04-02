@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clouds_mg_1_lightened.png-c6c6bc77f62291c8716c50e1a53ee886.stex"
+path="res://.import/clouds_mg_1.png-d9ba0b582ccde0d0fa8978a0ea58911a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/clouds_mg_1_lightened.png"
-dest_files=[ "res://.import/clouds_mg_1_lightened.png-c6c6bc77f62291c8716c50e1a53ee886.stex" ]
+source_file="res://src/assets/imgs/clouds_mg_1.png"
+dest_files=[ "res://.import/clouds_mg_1.png-d9ba0b582ccde0d0fa8978a0ea58911a.stex" ]
 
 [params]
 

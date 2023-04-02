@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cloud_lonely.png-57e6f7c38eb32edee1974f9fd881daaf.stex"
+path="res://.import/sky_lightened.png-aa0e3932b1fe5d2a786481aac6c370f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/parallax/cloud_lonely.png"
-dest_files=[ "res://.import/cloud_lonely.png-57e6f7c38eb32edee1974f9fd881daaf.stex" ]
+source_file="res://src/assets/imgs/sky_lightened.png"
+dest_files=[ "res://.import/sky_lightened.png-aa0e3932b1fe5d2a786481aac6c370f9.stex" ]
 
 [params]
 
