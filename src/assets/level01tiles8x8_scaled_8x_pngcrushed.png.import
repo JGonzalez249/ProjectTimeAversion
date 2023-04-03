@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level01tiles8x8_scaled_1x_pngcrushed.png-615ffa132f7b49ffe565e7a9e6d38130.stex"
+path="res://.import/level01tiles8x8_scaled_8x_pngcrushed.png-9015694354b59744caa573151a016186.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/level01tiles8x8_scaled_1x_pngcrushed.png"
-dest_files=[ "res://.import/level01tiles8x8_scaled_1x_pngcrushed.png-615ffa132f7b49ffe565e7a9e6d38130.stex" ]
+source_file="res://src/assets/level01tiles8x8_scaled_8x_pngcrushed.png"
+dest_files=[ "res://.import/level01tiles8x8_scaled_8x_pngcrushed.png-9015694354b59744caa573151a016186.stex" ]
 
 [params]
 

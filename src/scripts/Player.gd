@@ -65,8 +65,9 @@ func _physics_process(_delta: float) -> void:
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
-#	var is_ledgeGrab := (_ledgeRay.is_colliding() == true and _ledgeRayHori.is_colliding() ==  false) <-- need to use anim_play
 
+	print(state)
+	
 	# Finite State Machine for player conditions
 	match state:
 		States.FALLING:
