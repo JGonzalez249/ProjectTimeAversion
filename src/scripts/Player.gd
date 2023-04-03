@@ -53,6 +53,7 @@ onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
 onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
+onready var _sfxPlayer = $Overlapping_SFXPlayer
 
 
 # Global Variables for animation frames
@@ -70,6 +71,7 @@ func _physics_process(_delta: float) -> void:
 	match state:
 		States.FALLING:
 			if is_on_floor():
+				_sfxPlayer.play_audio("res://src/assets/audio/sfx/jumpLanding.wav")
 				state = States.FLOOR
 				continue
 			elif on_the_wall():
@@ -91,6 +93,7 @@ func _physics_process(_delta: float) -> void:
 				state = States.FALLING
 				continue
 			elif is_on_floor():
+				_sfxPlayer.play_audio("res://src/assets/audio/sfx/jumpLanding.wav")
 				state = States.FLOOR
 				continue
 			elif on_the_wall():
@@ -102,6 +105,7 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_just_pressed("jump") and _jumps_made < max_jumps:
 				_jumps_made += 1
 				_anim_play.play("Jump")
+				_sfxPlayer.play_audio("res://src/assets/audio/sfx/doubleJump.wav")
 				_velocity.y = double_jump_strength
 				state = States.FALLING
 			elif is_falling:
@@ -214,6 +218,7 @@ func move_and_fall(_has_climbable_item: bool):
 
 # When player picks up rocketboots, increase max_jumps += 1
 func _on_Double_Jump_Pickup():
+	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	_has_double_jump_item = true
 	max_jumps += 1
 
@@ -223,6 +228,7 @@ func _on_loseDoubleJump():
 	max_jumps -= 1
 
 func _onGlovePickup():
+	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	_has_climbing_item = true
 
 func _on_passedSlowZone():

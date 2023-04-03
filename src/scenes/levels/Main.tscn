@@ -8,7 +8,7 @@
 [ext_resource path="res://src/scenes/progression/playerZones/loseDoubleJump.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scenes/progression/playerZones/slowZone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scenes/characters/player/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/scenes/levels/Main.gd" type="Script" id=9]
+[ext_resource path="res://src/assets/fonts/Main.gd" type="Script" id=9]
 [ext_resource path="res://src/scenes/interface/Pause.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/scripts/interface/UI.gd" type="Script" id=11]
 

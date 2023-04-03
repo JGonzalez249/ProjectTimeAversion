@@ -25,11 +25,10 @@ margin_bottom = 166.0
 tab_align = 2
 
 [node name="Video" type="Tabs" parent="SettingTabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 24.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -39,7 +38,7 @@ anchor_bottom = 1.0
 
 [node name="VideoSettings" type="GridContainer" parent="SettingTabs/Video/MarginContainer"]
 margin_right = 309.0
-margin_bottom = 235.0
+margin_bottom = 227.0
 custom_constants/vseparation = 11
 custom_constants/hseparation = 19
 columns = 2
@@ -73,6 +72,7 @@ margin_right = 306.0
 margin_bottom = 71.0
 
 [node name="Audio" type="Tabs" parent="SettingTabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -101,9 +101,9 @@ margin_bottom = 47.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 8
 size_flags_vertical = 1
-max_value = 2.0
-step = 0.1
-value = 1.0
+min_value = -30.0
+max_value = 0.0
+value = -10.0
 
 [node name="MusicVol" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
 margin_top = 64.0
@@ -118,9 +118,9 @@ margin_bottom = 111.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 8
 size_flags_vertical = 1
-max_value = 2.0
-step = 0.1
-value = 1.0
+min_value = -30.0
+max_value = 0.0
+value = -10.0
 
 [node name="SFXVol" type="Label" parent="SettingTabs/Audio/MarginContainer/AudioSettings"]
 margin_top = 128.0
@@ -135,9 +135,9 @@ margin_bottom = 175.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 8
 size_flags_vertical = 1
-max_value = 2.0
-step = 0.1
-value = 1.0
+min_value = -30.0
+max_value = 0.0
+value = -10.0
 
 [connection signal="item_selected" from="SettingTabs/Video/MarginContainer/VideoSettings/DisplayOption" to="." method="_on_DisplayOption_item_selected"]
 [connection signal="toggled" from="SettingTabs/Video/MarginContainer/VideoSettings/VSyncBtn" to="." method="_on_VSyncBtn_toggled"]

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dialogSound.wav-fdf0ef35f1bf1843ef1180d3d2d98339.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/sfx/dialogSound.wav"
+dest_files=[ "res://.import/dialogSound.wav-fdf0ef35f1bf1843ef1180d3d2d98339.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
