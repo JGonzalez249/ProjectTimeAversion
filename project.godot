@@ -28,6 +28,8 @@ config/icon="res://icon.png"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MusicController="*res://src/autoloads/MusicController.tscn"
+Save="*res://src/save/saveSettings.gd"
+GlobalSettings="*res://src/global_settings.gd"
 
 [display]
 

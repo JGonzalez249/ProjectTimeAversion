@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str"
+
+[deps]
+
+source_file="res://src/assets/audio/music/thinking-overture-115159.mp3"
+dest_files=[ "res://.import/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
