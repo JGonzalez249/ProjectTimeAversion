@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pointLight.png-32e057763421bf29b9f51933c42af01b.stex"
+path="res://.import/hallLight.png-518cf985b641703980e905c8054ac8cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/lights/pointLight.png"
-dest_files=[ "res://.import/pointLight.png-32e057763421bf29b9f51933c42af01b.stex" ]
+source_file="res://src/assets/lights/hallLight.png"
+dest_files=[ "res://.import/hallLight.png-518cf985b641703980e905c8054ac8cf.stex" ]
 
 [params]
 

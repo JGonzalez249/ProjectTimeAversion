@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/assets/lights/hallLight.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/lights/pointLight.png" type="Texture" id=2]
+
+[node name="HallLights" type="Node2D"]
+
+[node name="pointLight" type="Light2D" parent="."]
+position = Vector2( -43, -263 )
+texture = ExtResource( 2 )
+
+[node name="hallLight" type="Light2D" parent="pointLight"]
+position = Vector2( -5, 147 )
+texture = ExtResource( 1 )
+texture_scale = 1.25
+energy = 0.6
