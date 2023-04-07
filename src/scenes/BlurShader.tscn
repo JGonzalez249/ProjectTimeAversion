@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/assets/imgs/level01/back.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 pixelColor =  texture(TEXTURE, UV);
+	COLOR = pixelColor;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[node name="BlurShader" type="Node2D"]
+material = SubResource( 2 )
+
+[node name="Back" type="Sprite" parent="."]
+position = Vector2( 520, 273 )
+texture = ExtResource( 1 )
