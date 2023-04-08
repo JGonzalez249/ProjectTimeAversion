@@ -1,5 +1,6 @@
 extends Popup
 
+
 # Video Settings
 onready var _display_options = $SettingTabs/Video/MarginContainer/VideoSettings/DisplayOption
 onready var _vsync_mode =  $SettingTabs/Video/MarginContainer/VideoSettings/VSyncBtn
@@ -38,3 +39,4 @@ func _on_MusicVolSlider_value_changed(value):
 
 func _on_SFXVolSlider_value_changed(value):
 	GlobalSettings.update_sfx_vol(value)
+	

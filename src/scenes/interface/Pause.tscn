@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/scripts/interface/Pause.gd" type="Script" id=1]
 [ext_resource path="res://src/scenes/interface/Settings.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
 
 [node name="Pause" type="Control"]
 pause_mode = 2
@@ -19,43 +33,47 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Menu" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 459.0
-margin_top = 240.0
-margin_right = 565.0
-margin_bottom = 360.0
+margin_left = 419.0
+margin_top = 222.0
+margin_right = 604.0
+margin_bottom = 378.0
 custom_constants/separation = 9
 
 [node name="Label" type="Label" parent="CenterContainer/Menu"]
-margin_right = 106.0
-margin_bottom = 14.0
+margin_right = 185.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
 text = "Game Paused"
 align = 1
 valign = 1
 
 [node name="Control" type="Control" parent="CenterContainer/Menu"]
-margin_top = 23.0
-margin_right = 106.0
-margin_bottom = 33.0
+margin_top = 41.0
+margin_right = 185.0
+margin_bottom = 51.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="ResumeBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 42.0
-margin_right = 106.0
-margin_bottom = 62.0
+margin_top = 60.0
+margin_right = 185.0
+margin_bottom = 86.0
 focus_neighbour_top = NodePath("../QuitBtn")
+custom_fonts/font = SubResource( 2 )
 text = "Resume Game"
 
 [node name="SettingsBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 71.0
-margin_right = 106.0
-margin_bottom = 91.0
+margin_top = 95.0
+margin_right = 185.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 3 )
 text = "Settings"
 
 [node name="QuitBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 100.0
-margin_right = 106.0
-margin_bottom = 120.0
+margin_top = 130.0
+margin_right = 185.0
+margin_bottom = 156.0
 focus_neighbour_bottom = NodePath("../ResumeBtn")
+custom_fonts/font = SubResource( 4 )
 text = "Quit Game"
 
 [node name="Settings" parent="." instance=ExtResource( 2 )]
