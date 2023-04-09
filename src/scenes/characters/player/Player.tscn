@@ -1,10 +1,12 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://src/assets/playerAnim/Idle/Idle-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/assets/playerAnim/Run/Run-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/playerAnim/Jumlp-All/Jump-All-Sheet.png" type="Texture" id=4]
 [ext_resource path="res://src/Overlapping_SFXPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/assets/shaders/BlurShader.tres" type="Material" id=6]
+[ext_resource path="res://src/assets/shaders/DarkBlurShader.tres" type="Material" id=7]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 4 )
@@ -403,3 +405,21 @@ current = true
 shape = SubResource( 3 )
 
 [node name="Overlapping_SFXPlayer" parent="." instance=ExtResource( 5 )]
+
+[node name="BlurStates" type="CanvasLayer" parent="."]
+
+[node name="Blur01" type="ColorRect" parent="BlurStates"]
+visible = false
+material = ExtResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Blur02" type="ColorRect" parent="BlurStates"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Blur03" type="ColorRect" parent="BlurStates"]
+material = ExtResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0

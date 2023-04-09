@@ -215,11 +215,6 @@ extents = Vector2( 1100.5, 206.5 )
 [node name="Level01" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Pause" parent="UI" instance=ExtResource( 4 )]
-visible = false
-
 [node name="BG" type="CanvasLayer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="BG"]
@@ -293,5 +288,10 @@ script = SubResource( 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel02"]
 position = Vector2( 1286.5, 2159 )
 shape = SubResource( 13 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="UI" instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="body_entered" from="DoorToLevel02" to="DoorToLevel02" method="_on_DoorToLevel02_body_entered"]

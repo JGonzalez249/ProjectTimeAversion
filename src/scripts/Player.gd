@@ -38,6 +38,7 @@ var max_wall_jumps := 1
 
 var _jumps_made := 0
 var _wall_jumps_made := 0
+var _blur_strength := 0
 var _velocity := Vector2.ZERO
 
 #  Bools for conditions
@@ -233,7 +234,7 @@ func _onGlovePickup():
 	_has_climbing_item = true
 
 func _on_passedSlowZone():
-	#var current_speed = speed
+
 	if speed >= 0:
 		speed -= SLOW_SPEED # <--- Example to see if it works
 
@@ -268,8 +269,6 @@ func on_climbable_wall():
 		return true
 	elif not _has_climbing_item:
 		on_the_wall()
-#	elif States.LEDGE_GRAB:
-#		_velocity = Vector2.ZERO
 	return false
 
 
