@@ -33,20 +33,20 @@ const LEDGE_CLIMB_SPEED := 75
 
 # Maximum number of jumps that player can make, 
 # change value +1 when picking up rocket boots, -1 when losing rocket boots
-var max_jumps := 1 
-var max_wall_jumps := 1 
+#var max_jumps := 1 
+#var max_wall_jumps := 1 
 
-var _jumps_made := 0
-var _wall_jumps_made := 0
+#var _jumps_made := 0
+#var _wall_jumps_made := 0
 var _blur_state := 0
 var _velocity := Vector2.ZERO
 
 #  Bools for conditions
-var _has_double_jump_item := false
-var _has_climbing_item := false
-var _can_double_jump := false
-var _wall_slide := true
-var _can_wall_jump := false
+#var _has_double_jump_item := false
+#var _has_climbing_item := false
+#var _can_double_jump := false
+#var _wall_slide := true
+#var _can_wall_jump := false
 
 
 onready var _sprite: AnimatedSprite = $Sprite
@@ -60,11 +60,19 @@ onready var _blur2: ColorRect = $BlurStates/Blur02
 onready var _blur3: ColorRect = $BlurStates/Blur03
 
 
-# Global Variables for animation frames
-
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
-
+#	#Retrieve variables when loading new scene
+#	PlayerVariables.max_jumps
+#	PlayerVariables.max_wall_jumps
+#	PlayerVariables._can_double_jump
+#	PlayerVariables._can_wall_jump
+#	PlayerVariables._has_climbing_item
+#	PlayerVariables._has_double_jump_item
+#	PlayerVariables._wall_slide
+#	PlayerVariables.speed
+#	PlayerVariables.jump_strength
+	
 func _physics_process(_delta: float) -> void:
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
@@ -80,10 +88,10 @@ func _physics_process(_delta: float) -> void:
 			elif on_the_wall():
 				state = States.WALL
 				continue
-			elif on_climbable_wall() and _has_climbing_item:
+			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state = States.CLIMB
 				continue
-			elif is_falling and _has_double_jump_item:
+			elif is_falling and PlayerVariables._has_double_jump_item:
 				state = States.DOUBLE_JUMP
 				continue
 			if is_falling:
@@ -92,7 +100,7 @@ func _physics_process(_delta: float) -> void:
 			set_direction()
 			move_and_fall(false)
 		States.DOUBLE_JUMP:
-			if is_falling and not _has_double_jump_item:
+			if is_falling and not PlayerVariables._has_double_jump_item:
 				state = States.FALLING
 				continue
 			elif is_on_floor():
@@ -102,11 +110,11 @@ func _physics_process(_delta: float) -> void:
 			elif on_the_wall():
 				state = States.WALL
 				continue
-			elif on_climbable_wall() and _has_climbing_item:
+			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state = States.CLIMB
 				continue
-			if Input.is_action_just_pressed("jump") and _jumps_made < max_jumps:
-				_jumps_made += 1
+			if Input.is_action_just_pressed("jump") and PlayerVariables._jumps_made < PlayerVariables.max_jumps:
+				PlayerVariables._jumps_made += 1
 				_anim_play.play("Jump")
 				_sfxPlayer.play_audio("res://src/assets/audio/sfx/doubleJump.wav")
 				_velocity.y = double_jump_strength
@@ -117,7 +125,7 @@ func _physics_process(_delta: float) -> void:
 			set_direction()
 			move_and_fall(false)
 		States.FLOOR:
-			_jumps_made = 0
+			PlayerVariables._jumps_made = 0
 			if not is_on_floor():
 				state = States.FALLING
 			if Input.is_action_pressed("left"):
@@ -134,7 +142,7 @@ func _physics_process(_delta: float) -> void:
 			if is_jumping:
 				_anim_play.play("Jump")
 				_velocity.y = jump_strength
-				_jumps_made += 1
+				PlayerVariables._jumps_made += 1
 				state = States.FALLING
 			set_direction()
 			move_and_fall(false)
@@ -148,7 +156,7 @@ func _physics_process(_delta: float) -> void:
 			elif ledge_grab():
 				state = States.LEDGE_GRAB
 				continue
-			elif on_climbable_wall() and _has_climbing_item:
+			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state =  States.CLIMB
 				continue
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
@@ -221,17 +229,17 @@ func move_and_fall(_has_climbable_item: bool):
 
 func _onDoubleJumpPickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
-	_has_double_jump_item = true
-	max_jumps += 1
+	PlayerVariables._has_double_jump_item = true
+	PlayerVariables.max_jumps += 1
 
 # When player reaches this zone, decrease max_jumps -= 1
 func _on_loseDoubleJump():
-	_has_double_jump_item = false
-	max_jumps -= 1
+	PlayerVariables._has_double_jump_item = false
+	PlayerVariables.max_jumps -= 1
 
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
-	_has_climbing_item = true
+	PlayerVariables._has_climbing_item = true
 
 func _on_passedSlowZone():
 
@@ -242,18 +250,18 @@ func on_the_wall():
 	if _raycast.is_colliding():
 		# Player will wallside whether or not they _has_climbing_item
 		if _raycast.get_collider().name == "wall" or (_raycast.get_collider().name == "climbableWall") and not is_on_floor():
-			_velocity.y = wall_slide_gravity
+			_velocity.y = PlayerVariables.wall_slide_gravity
 			_velocity.y = min(_velocity.y, wall_slide_speed)
 			return true
 	else:
-		_wall_slide = false
+		PlayerVariables._wall_slide = false
 		return false
 
 # TODO: Might need to fix this but it works so far.
 func on_climbable_wall():
 	if _raycast.is_colliding():
 		if _raycast.get_collider().name == "climbableWall" and not is_on_floor():
-			if _has_climbing_item:
+			if PlayerVariables._has_climbing_item:
 				if Input.is_action_pressed("down"):
 					_velocity.y = wall_climb_speed
 				elif Input.is_action_pressed("up"):
@@ -267,7 +275,7 @@ func on_climbable_wall():
 			and Input.is_action_just_pressed("jump"):
 				_velocity.y = wall_jump_strength
 		return true
-	elif not _has_climbing_item:
+	elif not PlayerVariables._has_climbing_item:
 		on_the_wall()
 	return false
 

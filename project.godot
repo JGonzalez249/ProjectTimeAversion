@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Time Aversion"
-run/main_scene="res://src/scenes/levels/Main.tscn"
+run/main_scene="res://src/scenes/interface/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -31,6 +31,7 @@ MusicController="*res://src/autoloads/MusicController.tscn"
 Save="*res://src/save/saveSettings.gd"
 GlobalSettings="*res://src/global_settings.gd"
 LevelManager="*res://src/autoloads/LevelManager.tscn"
+PlayerVariables="*res://src/autoloads/PlayerVariables.gd"
 
 [display]
 
