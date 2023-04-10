@@ -12,7 +12,7 @@ func _ready():
 func _on_StartGameBtn_pressed():
 	# warning-ignore:return_value_discarded
 	MusicController._play_game_music()
-	get_tree().change_scene("res://src/scenes/levels/Level01.tscn")
+	get_tree().change_scene("res://src/scenes/levels/level_1.tscn")
 
 
 func _on_SettingsBtn_pressed():

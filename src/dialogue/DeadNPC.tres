@@ -1,0 +1,61 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 5
+syntax_version = 2
+raw_text = "~ DeadNPC
+
+AI: This is the person I awoke before you.
+AI: Yes, it's the captain, a man much older than you.
+AI: He only made it this far...unfortunate.
+AI: You need to keep moving, don't worry, you won't end up like him."
+errors = [  ]
+titles = {
+"DeadNPC": "2"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "DeadNPC",
+"type": "title"
+},
+"2": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "3",
+"replacements": [  ],
+"text": "This is the person I awoke before you.",
+"translation_key": "This is the person I awoke before you.",
+"type": "dialogue"
+},
+"3": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "Yes, it's the captain, a man much older than you.",
+"translation_key": "Yes, it's the captain, a man much older than you.",
+"type": "dialogue"
+},
+"4": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "He only made it this far...unfortunate.",
+"translation_key": "He only made it this far...unfortunate.",
+"type": "dialogue"
+},
+"5": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "You need to keep moving, don't worry, you won't end up like him.",
+"translation_key": "You need to keep moving, don't worry, you won't end up like him.",
+"type": "dialogue"
+}
+}

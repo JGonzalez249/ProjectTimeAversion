@@ -1,0 +1,143 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/assets/imgs/level02/level02ParallaxBgBackWindows.png" type="Texture" id=1]
+[ext_resource path="res://src/scenes/interface/Pause.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/assets/tilesets/level02tileset.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/imgs/Door.png" type="Texture" id=4]
+[ext_resource path="res://src/assets/tilesets/level02tilemap.png" type="Texture" id=6]
+[ext_resource path="res://src/scenes/levels/Level.gd" type="Script" id=7]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 32, 64, 0, 64, 0, 0, 32, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "level02tileset.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 176, 128, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "Door.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 3 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "level02tilemap.png 2"
+2/texture = ExtResource( 6 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 4 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Area2D
+
+
+func _on_DoorToLevel_body_entered(body):
+	if body.name == \"Player\":
+		LevelManager.changeLevel(LevelManager.LEVEL02)
+"
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 18, 33 )
+
+[node name="level_2" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="UI" instance=ExtResource( 2 )]
+visible = false
+
+[node name="BG" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BG"]
+
+[node name="Back" type="ParallaxLayer" parent="BG/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.01 )
+motion_mirroring = Vector2( 200, 200 )
+
+[node name="Space" type="Sprite" parent="BG/ParallaxBackground/Back"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="TileMaps" type="TileMap" parent="."]
+format = 1
+
+[node name="floor" type="TileMap" parent="TileMaps"]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 393225, 536870913, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0 )
+
+[node name="platforms" type="TileMap" parent="TileMaps"]
+format = 1
+
+[node name="wall" type="TileMap" parent="TileMaps"]
+format = 1
+
+[node name="climbableWall" type="TileMap" parent="TileMaps/wall"]
+format = 1
+
+[node name="DoorToLevel" type="Area2D" parent="."]
+script = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel"]
+position = Vector2( 334, 224 )
+shape = SubResource( 6 )

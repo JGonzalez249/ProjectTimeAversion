@@ -1,15 +1,15 @@
-#TODO: make a ledge grab (X)  <--- priority due to story progression
-	#TODO: need to make anim_player to make a smooth animation for ledge climb (delay player input)
-	#TODO: fix bug with CLIMB and LEDGE_GRAB state (holding up keeps player in CLIMB state while climbing wall)
-#TODO: limit player vision as they progress ()
+#TODO: limit player vision as they progress (in progess)
+	#Make a state machine for blur shaders
 
 #TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
 
 
 extends KinematicBody2D
  
-enum States {FALLING = 1, DOUBLE_JUMP, FLOOR, WALL, CLIMB, LEDGE_GRAB} 
+enum States {FALLING = 1, DOUBLE_JUMP, FLOOR, WALL, CLIMB, LEDGE_GRAB}
+enum BlurStates {LEVEL00, LEVEL01, LEVEL02, LEVEL03, LEVEL04} 
 var state = States.FALLING
+var blur_state = BlurStates.LEVEL00
 var direction = 1
 
 var UP_DIRECTION := Vector2.UP
@@ -38,7 +38,7 @@ var max_wall_jumps := 1
 
 var _jumps_made := 0
 var _wall_jumps_made := 0
-var _blur_strength := 0
+var _blur_state := 0
 var _velocity := Vector2.ZERO
 
 #  Bools for conditions
@@ -55,6 +55,9 @@ onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
 onready var _sfxPlayer = $Overlapping_SFXPlayer
+onready var _blur1: ColorRect = $BlurStates/Blur01
+onready var _blur2: ColorRect = $BlurStates/Blur02
+onready var _blur3: ColorRect = $BlurStates/Blur03
 
 
 # Global Variables for animation frames
@@ -66,8 +69,6 @@ func _physics_process(_delta: float) -> void:
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
-
-	print(state)
 	
 	# Finite State Machine for player conditions
 	match state:
@@ -190,7 +191,6 @@ func _physics_process(_delta: float) -> void:
 			player_mov()
 			set_direction()
 			move_and_fall(false)
-	print(state)
 
 func set_direction():
 	direction = 1 if not _sprite.flip_h else -1
@@ -218,8 +218,8 @@ func move_and_fall(_has_climbable_item: bool):
 		_velocity.y += gravity
 		_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
-# When player picks up rocketboots, increase max_jumps += 1
-func _on_Double_Jump_Pickup():
+
+func _onDoubleJumpPickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	_has_double_jump_item = true
 	max_jumps += 1
@@ -288,3 +288,6 @@ func ledge_climb():
 		_anim_play.play("Idle")
 		position = _ledgeRay.get_collision_point()
 		state = States.FLOOR
+
+
+

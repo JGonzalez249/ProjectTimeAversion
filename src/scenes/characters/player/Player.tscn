@@ -361,7 +361,7 @@ tracks/1/keys = {
 radius = 6.0
 height = 36.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource( 2 )
 
@@ -420,6 +420,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Blur03" type="ColorRect" parent="BlurStates"]
+visible = false
 material = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0

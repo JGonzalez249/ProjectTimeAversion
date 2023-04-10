@@ -1,5 +1,7 @@
 extends Control
 
+signal end_game
+
 onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
 onready var _settings_menu: Popup = $Settings
 
@@ -18,7 +20,7 @@ func _on_ResumeBtn_pressed():
 	self.is_paused = false
 
 func _on_QuitBtn_pressed():
-	get_tree().quit()
+	emit_signal("end_game")
 
 func _on_SettingsBtn_pressed():
 	_settings_menu.popup_centered()
