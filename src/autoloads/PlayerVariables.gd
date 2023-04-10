@@ -9,6 +9,9 @@ var _can_double_jump: bool = false
 var _wall_slide: bool = true
 var _can_wall_jump: bool = false
 
+var slowSpeedZone: int = 0
+var blurStrength: int = 0
+
 export var speed: int = 450
 export var gravity: int = 35
 export var jump_strength: int = -1000
