@@ -3,9 +3,9 @@ extends Node2D
 var max_jumps: int = 1 
 var max_wall_jumps: int = 1
 var _jumps_made: int = 0
-var _has_double_jump_item: bool = false
-var _has_climbing_item: bool = false
-var _can_double_jump: bool = false
+var _has_double_jump_item: bool = false #Start false
+var _has_climbing_item: bool = false #Start false
+var _can_double_jump: bool = false #Start false
 var _wall_slide: bool = true
 var _can_wall_jump: bool = false
 

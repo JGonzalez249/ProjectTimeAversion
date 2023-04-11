@@ -27,6 +27,7 @@ onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
 onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
+onready var _collider: CollisionShape2D = $CollisionShape2D
 onready var _sfxPlayer = $Overlapping_SFXPlayer
 onready var _blur1: ColorRect = $BlurStates/Blur01
 onready var _blur2: ColorRect = $BlurStates/Blur02
@@ -159,6 +160,9 @@ func _physics_process(_delta: float) -> void:
 				_velocity.y = PlayerVariables.wall_jump_strength
 				state = States.FALLING
 			elif Input.is_action_pressed("up"):
+				# TODO: fix bug that allows you to ledge climb through wall
+#				if _ledgeRay.is_colliding():
+#					if _ledgeRay.get_collider().name == "floor":
 				ledge_climb()
 			player_mov()
 			set_direction()
@@ -256,9 +260,9 @@ func ledge_climb():
 	_velocity = Vector2.ZERO
 	position.y -= LEDGE_CLIMB_SPEED * get_process_delta_time()
 	if position.y < _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y:
-		_anim_play.play("Idle")
-		position = _ledgeRay.get_collision_point()
-		state = States.FLOOR
+			_anim_play.play("Idle")
+			position = _ledgeRay.get_collision_point()
+			state = States.FLOOR
 
 func blur_state():
 	if PlayerVariables.blurStrength == 1:
