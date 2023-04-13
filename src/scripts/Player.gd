@@ -27,18 +27,16 @@ onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
 onready var _raycast: RayCast2D = $Pivot2D/WallRay/
 onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
-onready var _collider: CollisionShape2D = $CollisionShape2D
+onready var _groundRay: RayCast2D = $Pivot2D/GroundRay
 onready var _sfxPlayer = $Overlapping_SFXPlayer
 onready var _blur1: ColorRect = $BlurStates/Blur01
 onready var _blur2: ColorRect = $BlurStates/Blur02
 onready var _blur3: ColorRect = $BlurStates/Blur03
 
-
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 	
 func _physics_process(_delta: float) -> void:
-	print(PlayerVariables.blurStrength)
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
@@ -159,7 +157,7 @@ func _physics_process(_delta: float) -> void:
 				_velocity.x = PlayerVariables.wall_pushback * -direction
 				_velocity.y = PlayerVariables.wall_jump_strength
 				state = States.FALLING
-			elif Input.is_action_pressed("up"):
+			elif Input.is_action_pressed("up") and not is_on_floor():
 				ledge_climb()
 			player_mov()
 			set_direction()
@@ -246,11 +244,13 @@ func on_climbable_wall():
 
 func ledge_grab():
 	if _ledgeRay.is_colliding() and not _ledgeRayHori.is_colliding():
-		state = States.LEDGE_GRAB
-		_anim_play.play("Falling")
-		_velocity = Vector2.ZERO
-		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y # add level offset
-		return true
+		if not _ledgeRay.get_collider().name == "floor":
+			print(_ledgeRay.get_collider())
+			state = States.LEDGE_GRAB
+			_anim_play.play("Falling")
+			_velocity = Vector2.ZERO
+			position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+			return true
 	return false
 
 func ledge_climb():

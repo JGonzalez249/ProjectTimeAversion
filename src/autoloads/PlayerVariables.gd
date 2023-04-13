@@ -23,3 +23,9 @@ export var wall_jump_strength: int = -650
 export var wall_pushback: int = 1000
 var wall_climb_gravity: int = 0
 
+func _level_offset(position):
+	if LevelManager.LEVEL01:
+		position.y = 0
+	elif LevelManager.LEVEL02:
+		position.y = -10
+	
