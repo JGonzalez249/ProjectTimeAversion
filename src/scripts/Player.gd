@@ -160,9 +160,6 @@ func _physics_process(_delta: float) -> void:
 				_velocity.y = PlayerVariables.wall_jump_strength
 				state = States.FALLING
 			elif Input.is_action_pressed("up"):
-				# TODO: fix bug that allows you to ledge climb through wall
-#				if _ledgeRay.is_colliding():
-#					if _ledgeRay.get_collider().name == "floor":
 				ledge_climb()
 			player_mov()
 			set_direction()
@@ -252,7 +249,7 @@ func ledge_grab():
 		state = States.LEDGE_GRAB
 		_anim_play.play("Falling")
 		_velocity = Vector2.ZERO
-		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+		position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y # add level offset
 		return true
 	return false
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/assets/imgs/level02/level02ParallaxBgBackWindows.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/interface/Pause.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://src/scenes/characters/player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/assets/tilesets/level02tilemap.png" type="Texture" id=6]
 [ext_resource path="res://src/scenes/levels/Level.gd" type="Script" id=7]
-[ext_resource path="res://src/scenes/characters/secondary/AICompanion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/scenes/progression/playerZones/slowZone.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -251,9 +250,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel01"]
 position = Vector2( 334, 224 )
 shape = SubResource( 6 )
-
-[node name="AICompanion" parent="DoorToLevel01" instance=ExtResource( 8 )]
-visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.9375, 0.887641, 0.369873, 1 )
