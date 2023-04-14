@@ -3,13 +3,25 @@ extends Node2D
 func _on_DoorToLevel_body_entered(body) -> void:
 	if body.name == "Player" and PlayerVariables._has_climbing_item and PlayerVariables._has_double_jump_item:
 		LevelManager.changeLevel(LevelManager.LEVEL02)
+		yield(get_node("/root/LevelManager").get_child(0), "animation_finished")
 		PlayerVariables.blurStrength += 1
 	else:
 		#Dialogue
 		print("Need items to advance!")
 
+func _on_DoorToLevel03_body_entered(body, _extra_arg_0) -> void:
+	if body.name == "Player":
+		LevelManager.changeLevel(LevelManager.LEVEL03)
+		yield(get_node("/root/LevelManager").get_child(0), "animation_finished")
+		PlayerVariables.blurStrength += 1
+		
 
 func _on_DoorToLevel01_body_entered(body, _extra_arg_0) -> void:
 	if body.name == "Player":
 		# Dialogue
 		print("Can't go back, like in life!")
+
+
+func _on_slowZone_passedSlowZone(_extra_arg_0):
+	if PlayerVariables.speed >= 0:
+		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED

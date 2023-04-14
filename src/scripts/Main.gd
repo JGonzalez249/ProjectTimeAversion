@@ -1,4 +1,5 @@
 # This script ca be used to influence the game world and provides overall progression
+#Currently not in  use
 extends Node2D
 export var game_scene:String
 var game_world:Node2D

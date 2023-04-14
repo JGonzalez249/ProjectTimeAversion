@@ -37,6 +37,7 @@ func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 	
 func _physics_process(_delta: float) -> void:
+#	print(PlayerVariables.blurStrength)
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
@@ -206,7 +207,7 @@ func _onGlovePickup():
 
 func _on_passedSlowZone():
 	if PlayerVariables.speed >= 0:
-		PlayerVariables.speed -= SLOW_SPEED
+		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED
 
 func on_the_wall():
 	if _raycast.is_colliding():
@@ -245,7 +246,6 @@ func on_climbable_wall():
 func ledge_grab():
 	if _ledgeRay.is_colliding() and not _ledgeRayHori.is_colliding():
 		if not _ledgeRay.get_collider().name == "floor":
-			print(_ledgeRay.get_collider())
 			state = States.LEDGE_GRAB
 			_anim_play.play("Falling")
 			_velocity = Vector2.ZERO

@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="slowZone" type="Area2D"]
+[node name="slowZone" type="Area2D" groups=["Zones"]]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
