@@ -1,6 +1,7 @@
 extends Node2D
 
 const LOWER_SPEED: int = 75
+const LOWER_CLIMB_SPEED: int = 50
 
 var max_jumps: int = 1 
 var max_wall_jumps: int = 1

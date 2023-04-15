@@ -272,4 +272,3 @@ func blur_state():
 		_blur3.visible =  true
 	else:
 		return
-
