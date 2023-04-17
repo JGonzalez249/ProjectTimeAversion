@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex"
+path="res://.import/SpaceForeground.png-80625428974b418e3284953ae21dd983.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/tilesets/level02tilemap_scaled_2x_pngcrushed.png"
-dest_files=[ "res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex" ]
+source_file="res://src/assets/imgs/level04/SpaceForeground.png"
+dest_files=[ "res://.import/SpaceForeground.png-80625428974b418e3284953ae21dd983.stex" ]
 
 [params]
 

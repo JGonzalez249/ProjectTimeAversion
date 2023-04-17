@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex"
+path="res://.import/level04ParallaxBgBack_scaled_2x_pngcrushed.png-1d5eba4a423d1ea2c6395f4f604744a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/tilesets/level02tilemap_scaled_2x_pngcrushed.png"
-dest_files=[ "res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex" ]
+source_file="res://src/assets/imgs/level04/level04ParallaxBgBack_scaled_2x_pngcrushed.png"
+dest_files=[ "res://.import/level04ParallaxBgBack_scaled_2x_pngcrushed.png-1d5eba4a423d1ea2c6395f4f604744a4.stex" ]
 
 [params]
 

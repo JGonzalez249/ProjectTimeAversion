@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex"
+path="res://.import/cyberpunk-corridor-cropped.png-bd67f1a31946923427276814109b4495.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/tilesets/level02tilemap_scaled_2x_pngcrushed.png"
-dest_files=[ "res://.import/level02tilemap_scaled_2x_pngcrushed.png-682b1c22edbb1069592282f6daa7a300.stex" ]
+source_file="res://src/assets/imgs/level03/cyberpunk-corridor-cropped.png"
+dest_files=[ "res://.import/cyberpunk-corridor-cropped.png-bd67f1a31946923427276814109b4495.stex" ]
 
 [params]
 
