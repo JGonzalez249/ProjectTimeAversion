@@ -16,7 +16,7 @@ func _on_DoorToLevel03_body_entered(body, _extra_arg_0) -> void:
 		PlayerVariables.blurStrength += 1
 		
 		
-func _on_DoorToLevel04_body_entered(body, extra_arg_0):
+func _on_DoorToLevel04_body_entered(body, _extra_arg_0):
 	if body.name == "Player":
 		#Add condition for speaking with AI before loading level_4
 		LevelManager.changeLevel(LevelManager.LEVEL04)
