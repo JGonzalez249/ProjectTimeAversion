@@ -3,6 +3,7 @@ extends CanvasLayer
 onready var LEVEL01 = ("res://src/scenes/levels/level_1.tscn")
 onready var LEVEL02 = ("res://src/scenes/levels/level_2.tscn")
 onready var LEVEL03 = ("res://src/scenes/levels/level_3.tscn")
+onready var LEVEL04 =  ("res://src/scenes/levels/level_4.tscn")
 
 func _ready():
 	get_node("ColorRect").hide()

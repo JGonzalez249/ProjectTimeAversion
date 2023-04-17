@@ -18,7 +18,7 @@ void fragment( )
 {
 	vec2 direction = SCREEN_UV - blur_center;
 	vec3 c = vec3( 0.0, 0.0, 0.0 );
-	float f = 0.75 / float( sampling_count );
+	float f = 0.85 / float( sampling_count );
 	for( int i=0; i < sampling_count; i++ ) {
 		c += texture( SCREEN_TEXTURE, SCREEN_UV - blur_power * direction * float(i) ).rgb * f;
 	}
