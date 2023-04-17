@@ -204,6 +204,9 @@ func _on_loseDoubleJump():
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_climbing_item = true
+	
+func _on_loseGloves():
+	PlayerVariables._has_climbing_item = false
 
 func _on_passedSlowZone():
 	if PlayerVariables.speed >= 0:
@@ -272,3 +275,4 @@ func blur_state():
 		_blur3.visible =  true
 	else:
 		return
+

@@ -34,10 +34,6 @@ func _on_slowZone_passedSlowZone(_extra_arg_0):
 		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED
 
 func _on_slowZone2_passedSlowZone(_extra_arg_0):
-	 if PlayerVariables.speed >= 0:
-			PlayerVariables.speed -= PlayerVariables.LOWER_SPEED # I have no idea why it wants this intentation????
+	if PlayerVariables.speed >= 0:
+		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED
 		PlayerVariables.wall_climb_speed -= PlayerVariables.LOWER_CLIMB_SPEED
-
-
-
-

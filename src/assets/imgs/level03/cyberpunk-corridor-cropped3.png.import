@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sky_lightened.png-aa0e3932b1fe5d2a786481aac6c370f9.stex"
+path="res://.import/cyberpunk-corridor-cropped3.png-6b1dce661190332ea07356b47c2a8b9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/imgs/sky_lightened.png"
-dest_files=[ "res://.import/sky_lightened.png-aa0e3932b1fe5d2a786481aac6c370f9.stex" ]
+source_file="res://src/assets/imgs/level03/cyberpunk-corridor-cropped3.png"
+dest_files=[ "res://.import/cyberpunk-corridor-cropped3.png-6b1dce661190332ea07356b47c2a8b9c.stex" ]
 
 [params]
 

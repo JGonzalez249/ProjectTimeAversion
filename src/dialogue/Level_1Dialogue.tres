@@ -1,0 +1,103 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 7
+syntax_version = 2
+raw_text = "~ level_1
+var has_met_AI = false
+if has_met_AI == false
+	AI: Hello, I bet you're wondering why I've woke you up?
+	AI: Well, unfortunately, we're in a bit of a crisis.
+	AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.
+	AI: I was able to stop the ship in time before it reached the cryobay.
+	AI: However, we'll be stuck here unless you can get to the bridge and alter our course."
+errors = [  ]
+titles = {
+"level_1": "1"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "level_1",
+"type": "title"
+},
+"1": {
+"character": "",
+"next_id": "2",
+"replacements": [  ],
+"text": "var has_met_AI = false",
+"translation_key": "var has_met_AI = false",
+"type": "dialogue"
+},
+"2": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "has_met_AI"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "end!",
+"next_id": "3",
+"next_id_after": "end!",
+"type": "condition"
+},
+"3": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "4",
+"parent_id": "2",
+"replacements": [  ],
+"text": "Hello, I bet you're wondering why I've woke you up?",
+"translation_key": "Hello, I bet you're wondering why I've woke you up?",
+"type": "dialogue"
+},
+"4": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "5",
+"parent_id": "2",
+"replacements": [  ],
+"text": "Well, unfortunately, we're in a bit of a crisis.",
+"translation_key": "Well, unfortunately, we're in a bit of a crisis.",
+"type": "dialogue"
+},
+"5": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "6",
+"parent_id": "2",
+"replacements": [  ],
+"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
+"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
+"type": "dialogue"
+},
+"6": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "7",
+"parent_id": "2",
+"replacements": [  ],
+"text": "I was able to stop the ship in time before it reached the cryobay.",
+"translation_key": "I was able to stop the ship in time before it reached the cryobay.",
+"type": "dialogue"
+},
+"7": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "end!",
+"parent_id": "2",
+"replacements": [  ],
+"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
+"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
+"type": "dialogue"
+}
+}
