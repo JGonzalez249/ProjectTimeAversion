@@ -26,13 +26,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GameStates="*res://src/autoloads/Game_States.gd"
+PlayerVariables="*res://src/autoloads/PlayerVariables.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MusicController="*res://src/autoloads/MusicController.tscn"
 Save="*res://src/save/saveSettings.gd"
-GlobalSettings="*res://src/global_settings.gd"
+GlobalSettings="*res://src/scripts/global_settings.gd"
 LevelManager="*res://src/autoloads/LevelManager.tscn"
-PlayerVariables="*res://src/autoloads/PlayerVariables.gd"
-GameStates="*res://src/autoloads/Game_States.tscn"
 
 [display]
 

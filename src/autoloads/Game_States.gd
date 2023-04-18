@@ -6,3 +6,6 @@ var has_met_AI_doubleJump =  false
 var has_gotten_items = false
 var has_pickedUp_gloves = false
 var has_pickedUp_doubleJump = false
+
+
+# For Level_2

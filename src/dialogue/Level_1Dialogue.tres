@@ -4,100 +4,89 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 7
+resource_version = 13
 syntax_version = 2
-raw_text = "~ level_1
-var has_met_AI = false
-if has_met_AI == false
-	AI: Hello, I bet you're wondering why I've woke you up?
-	AI: Well, unfortunately, we're in a bit of a crisis.
-	AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.
-	AI: I was able to stop the ship in time before it reached the cryobay.
-	AI: However, we'll be stuck here unless you can get to the bridge and alter our course."
+raw_text = "~ level_1_AI_first
+
+AI: Hello, I bet you're wondering why I've woke you up?
+AI: Well, unfortunately, we're in a bit of a crisis.
+AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.
+AI: I was able to stop the ship in time before it reached the cryobay.
+AI: However, we'll be stuck here unless you can get to the bridge and alter our course.
+AI: Based on the damage to the ship, you'll need to get the magnetic gloves and rocket boots.
+AI: I'll be waiting here.
+"
 errors = [  ]
 titles = {
-"level_1": "1"
+"level_1_AI_first_meet": "2"
 }
 lines = {
 "0": {
-"next_id": "1",
-"text": "level_1",
+"next_id": "2",
+"text": "level_1_AI_first_meet",
 "type": "title"
 },
-"1": {
-"character": "",
-"next_id": "2",
-"replacements": [  ],
-"text": "var has_met_AI = false",
-"translation_key": "var has_met_AI = false",
-"type": "dialogue"
-},
 "2": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_met_AI"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_conditional_id": "end!",
+"character": "AI",
+"character_replacements": [  ],
 "next_id": "3",
-"next_id_after": "end!",
-"type": "condition"
+"replacements": [  ],
+"text": "Hello, I bet you're wondering why I've woke you up?",
+"translation_key": "Hello, I bet you're wondering why I've woke you up?",
+"type": "dialogue"
 },
 "3": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "4",
-"parent_id": "2",
 "replacements": [  ],
-"text": "Hello, I bet you're wondering why I've woke you up?",
-"translation_key": "Hello, I bet you're wondering why I've woke you up?",
+"text": "Well, unfortunately, we're in a bit of a crisis.",
+"translation_key": "Well, unfortunately, we're in a bit of a crisis.",
 "type": "dialogue"
 },
 "4": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "5",
-"parent_id": "2",
 "replacements": [  ],
-"text": "Well, unfortunately, we're in a bit of a crisis.",
-"translation_key": "Well, unfortunately, we're in a bit of a crisis.",
+"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
+"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
 "type": "dialogue"
 },
 "5": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "6",
-"parent_id": "2",
 "replacements": [  ],
-"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
-"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
+"text": "I was able to stop the ship in time before it reached the cryobay.",
+"translation_key": "I was able to stop the ship in time before it reached the cryobay.",
 "type": "dialogue"
 },
 "6": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "7",
-"parent_id": "2",
 "replacements": [  ],
-"text": "I was able to stop the ship in time before it reached the cryobay.",
-"translation_key": "I was able to stop the ship in time before it reached the cryobay.",
+"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
+"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
 "type": "dialogue"
 },
 "7": {
 "character": "AI",
 "character_replacements": [  ],
-"next_id": "end!",
-"parent_id": "2",
+"next_id": "8",
 "replacements": [  ],
-"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
-"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
+"text": "Based on the damage to the ship, you'll need to get the magnetic gloves and rocket boots.",
+"translation_key": "Based on the damage to the ship, you'll need to get the magnetic gloves and rocket boots.",
+"type": "dialogue"
+},
+"8": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "I'll be waiting here.",
+"translation_key": "I'll be waiting here.",
 "type": "dialogue"
 }
 }
