@@ -385,6 +385,8 @@ position = Vector2( 2334, 2322 )
 
 [node name="doubleJump" parent="." instance=ExtResource( 10 )]
 position = Vector2( 461, 1813 )
+collision_layer = 16
+collision_mask = 2
 
 [node name="DoorToLevel" type="Area2D" parent="."]
 script = SubResource( 12 )

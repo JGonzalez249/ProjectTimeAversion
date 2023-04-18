@@ -32,6 +32,7 @@ onready var _sfxPlayer = $Overlapping_SFXPlayer
 onready var _blur1: ColorRect = $BlurStates/Blur01
 onready var _blur2: ColorRect = $BlurStates/Blur02
 onready var _blur3: ColorRect = $BlurStates/Blur03
+onready var actionable_finder: Area2D = $Pivot2D/ActionableFinder
 
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
@@ -164,6 +165,7 @@ func _physics_process(_delta: float) -> void:
 			set_direction()
 			move_and_fall(false)
 	blur_state()
+	
 func set_direction():
 	direction = 1 if not _sprite.flip_h else -1
 	_raycast.rotation_degrees = 90 * -direction
@@ -195,6 +197,7 @@ func _onDoubleJumpPickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_double_jump_item = true
 	PlayerVariables.max_jumps += 1
+	GameStates.has_pickedUp_doubleJump = true
 
 # When player reaches this zone, decrease max_jumps -= 1
 func _on_loseDoubleJump():
@@ -204,6 +207,7 @@ func _on_loseDoubleJump():
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_climbing_item = true
+	GameStates.has_pickedUp_gloves = true
 	
 func _on_loseGloves():
 	PlayerVariables._has_climbing_item = false
@@ -276,3 +280,22 @@ func blur_state():
 	else:
 		return
 
+func has_gotten_items() -> void:
+	if GameStates.has_pickedUp_doubleJump == true && GameStates.has_pickedUp_gloves == true:
+		GameStates.has_gotten_items = true
+	else: 
+		GameStates.has_gotten_items = false
+
+func check_nearest_actionable()-> void:
+	var areas: Array = actionable_finder.get_overlapping_areas()
+	var shortest_distance: float = INF
+	var next_nearest_actionable: Actionable = null
+	for area in areas:
+		var distance: float = area.global_position.distance_to(global_position)
+		if distance < shortest_distance:
+			shortest_distance = distance
+			next_nearest_actionable = area
+	
+	if next_nearest_actionable != nearest_actionable or not is_instance_valid(next_nearest_actionable):
+		nearest_actionable = next_nearest_actionable
+		

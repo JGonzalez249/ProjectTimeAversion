@@ -48,7 +48,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=14]
 radius = 135.204
 
-[node name="AICompanion" type="KinematicBody2D"]
+[node name="AICompanion" type="Area2D"]
 rotation = 0.523599
 script = ExtResource( 2 )
 __meta__ = {
@@ -66,11 +66,12 @@ hframes = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="DialogueArea" type="Area2D" parent="."]
 scale = Vector2( 2, 2 )
 
-[node name="Collider" type="CollisionShape2D" parent="DialogueArea"]
+[node name="Collider" type="CollisionShape2D" parent="."]
+scale = Vector2( 2, 2 )
 shape = SubResource( 14 )
