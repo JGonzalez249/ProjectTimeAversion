@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/assets/imgs/level04/SpaceForeground.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/interface/Pause.tscn" type="PackedScene" id=2]
@@ -17,6 +17,11 @@
 [ext_resource path="res://src/assets/imgs/level03/cyberpunk-corridor-foreground_scaled_2x_pngcrushed.png" type="Texture" id=15]
 [ext_resource path="res://src/assets/imgs/level03/cyberpunk-corridor-cropped4.png" type="Texture" id=16]
 [ext_resource path="res://src/assets/imgs/level03/cyberpunk-corridor-cropped3.png" type="Texture" id=17]
+[ext_resource path="res://src/assets/imgs/level04/corpse_2.png" type="Texture" id=18]
+[ext_resource path="res://src/assets/imgs/level04/corpse_1.png" type="Texture" id=19]
+[ext_resource path="res://src/scenes/levels/ending.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/scenes/characters/secondary/AICompanion.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/assets/imgs/level01/small-terminal.png" type="Texture" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 128, 64, 0, 64, 0, 0, 128, 0 )
@@ -241,6 +246,9 @@ points = PoolVector2Array( 0, 0, 67, 0, 67, 64, 0, 64 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 59.5, 107 )
 
 [node name="level_4" type="Node2D"]
 script = ExtResource( 10 )
@@ -921,8 +929,7 @@ scale = Vector2( 0.7, 0.7 )
 
 [node name="Props" type="Node2D" parent="."]
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="Cyberpunk-corridor-cropped3" type="Sprite" parent="Props"]
@@ -937,18 +944,83 @@ texture = ExtResource( 13 )
 [node name="Cyberpunk-corridor-cropped" type="Sprite" parent="Props"]
 position = Vector2( 147, -110 )
 texture = ExtResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Cyberpunk-corridor-cropped4" type="Sprite" parent="Props"]
 position = Vector2( 2043, -5426 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 16 )
 
+[node name="Corpse1" type="Sprite" parent="Props"]
+position = Vector2( 380, -27 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 19 )
+
+[node name="Corpse4" type="Sprite" parent="Props"]
+position = Vector2( 1892, -858 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 19 )
+
+[node name="Corpse5" type="Sprite" parent="Props"]
+position = Vector2( 2023, -1371 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 19 )
+
+[node name="Corpse2" type="Sprite" parent="Props"]
+position = Vector2( 818, -27 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse3" type="Sprite" parent="Props"]
+position = Vector2( 1733, -28 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse6" type="Sprite" parent="Props"]
+position = Vector2( 2031, -2009 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse7" type="Sprite" parent="Props"]
+position = Vector2( 2114, -2714 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse8" type="Sprite" parent="Props"]
+position = Vector2( 2088, -4061 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse9" type="Sprite" parent="Props"]
+position = Vector2( 1956, -4570 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse10" type="Sprite" parent="Props"]
+position = Vector2( 1911, -4768 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse11" type="Sprite" parent="Props"]
+position = Vector2( 2011, -4764 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
+[node name="Corpse12" type="Sprite" parent="Props"]
+position = Vector2( 1954, -5147 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 18 )
+
 [node name="Cyberpunk-corridor-foregroundScaled2xPngcrushed" type="Sprite" parent="."]
 position = Vector2( 2265, -5417 )
 texture = ExtResource( 15 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Small-terminal" type="Sprite" parent="."]
+position = Vector2( 2309, -5272 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 22 )
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 1
@@ -1060,32 +1132,48 @@ __meta__ = {
 texture = ExtResource( 5 )
 centered = false
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Pause" parent="UI" instance=ExtResource( 2 )]
-visible = false
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.482353, 0.223529, 0.678431, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="slowZone2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1637, -134 )
+[node name="slowZone4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 376, -144 )
 collision_layer = 16
 collision_mask = 2
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="loseGloves" parent="." instance=ExtResource( 14 )]
 position = Vector2( 2015, -2694 )
 scale = Vector2( 5, 1 )
+collision_layer = 16
+collision_mask = 2
 __meta__ = {
 "_edit_lock_": true
 }
 
-[connection signal="passedSlowZone" from="slowZone2" to="." method="_on_slowZone2_passedSlowZone" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
+[node name="AICompanion" parent="." instance=ExtResource( 21 )]
+position = Vector2( 2362, -5360 )
+rotation = -0.523599
+scale = Vector2( -0.5, 0.5 )
+
+[node name="EndingArea" type="Area2D" parent="."]
+position = Vector2( -357, -11 )
+collision_layer = 32
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndingArea"]
+position = Vector2( 2687.5, -5315 )
+shape = SubResource( 14 )
+
+[node name="ending" parent="." instance=ExtResource( 20 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="UI" instance=ExtResource( 2 )]
+visible = false
+
+[connection signal="passedSlowZone" from="slowZone4" to="." method="_on_slowZone4_passedSlowZone" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
+[connection signal="body_entered" from="loseGloves" to="." method="_on_loseGloves_body_entered" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="loseGloves" from="loseGloves" to="Player" method="_on_loseGloves"]
+[connection signal="body_entered" from="EndingArea" to="." method="_on_EndingArea_body_entered"]
