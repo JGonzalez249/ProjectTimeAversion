@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/assets/imgs/level01/back.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/characters/player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/scenes/pickUps/climbGloves.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/scenes/pickUps/doubleJump.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/scenes/characters/secondary/AICompanion.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/scenes/interaction/Actionable.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 0, 0, 0, 0, 64, 64, 64 )
@@ -226,17 +227,11 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 1/z_index = 0
 
-[sub_resource type="GDScript" id=12]
-script/source = "extends Area2D
-
-
-func _on_DoorToLevel_body_entered(body):
-	if body.name == \"Player\":
-		LevelManager.changeLevel(LevelManager.LEVEL02)
-"
-
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 18, 31 )
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 126.921
 
 [node name="level_1" type="Node2D"]
 script = ExtResource( 7 )
@@ -375,7 +370,7 @@ tile_data = PoolIntArray( -524265, 1, 0, -458729, 1, 0, -393193, 1, 0, -327657, 
 position = Vector2( -62, -58 )
 rotation = -0.523599
 scale = Vector2( -0.5, 0.5 )
-collision_mask = 0
+collision_mask = 2
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -293, -24 )
@@ -385,11 +380,9 @@ position = Vector2( 2334, 2322 )
 
 [node name="doubleJump" parent="." instance=ExtResource( 10 )]
 position = Vector2( 461, 1813 )
-collision_layer = 16
-collision_mask = 2
 
 [node name="DoorToLevel" type="Area2D" parent="."]
-script = SubResource( 12 )
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel"]
 position = Vector2( -557, -33 )
@@ -422,6 +415,15 @@ __meta__ = {
 [node name="Pause" parent="UI" instance=ExtResource( 4 )]
 visible = false
 
+[node name="Actionable" parent="." instance=ExtResource( 12 )]
+
+[node name="CollisionShape2D" parent="Actionable" index="0"]
+position = Vector2( -61, -64 )
+shape = SubResource( 15 )
+
 [connection signal="onGlovePickup" from="climbGloves" to="Player" method="_onGlovePickup"]
 [connection signal="onDoubleJumpPickup" from="doubleJump" to="Player" method="_onDoubleJumpPickup"]
-[connection signal="body_entered" from="DoorToLevel" to="." method="_on_DoorToLevel_body_entered"]
+[connection signal="body_entered" from="DoorToLevel" to="." method="_on_DoorToLevel_body_entered" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
+[connection signal="on_ai_talks" from="Actionable" to="Player" method="_on_Actionable_on_ai_talks"]
+
+[editable path="Actionable"]

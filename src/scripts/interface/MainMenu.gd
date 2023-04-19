@@ -12,7 +12,8 @@ func _ready():
 func _on_StartGameBtn_pressed():
 	# warning-ignore:return_value_discarded
 	MusicController._play_game_music()
-	get_tree().change_scene("res://src/scenes/levels/level_1.tscn")
+	LevelManager.changeLevel(LevelManager.LEVEL01)
+	GameStates.level += 1
 
 
 func _on_SettingsBtn_pressed():

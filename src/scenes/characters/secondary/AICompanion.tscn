@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/assets/NPCs/sprites/AICompanion/ship-unit-with-thrusts.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/characters/secondary/AICompanion.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=15]
+radius = 153.212
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -45,17 +46,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=14]
-radius = 135.204
-
-[node name="AICompanion" type="Area2D"]
+[node name="AICompanion" type="Area2D" groups=["AI_NPC"]]
 rotation = 0.523599
+collision_layer = 32
+collision_mask = 34
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 15 )
 disabled = true
 
@@ -66,12 +67,5 @@ hframes = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
-frame = 2
+frame = 3
 playing = true
-
-[node name="DialogueArea" type="Area2D" parent="."]
-scale = Vector2( 2, 2 )
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-scale = Vector2( 2, 2 )
-shape = SubResource( 14 )

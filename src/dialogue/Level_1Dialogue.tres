@@ -4,358 +4,150 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 28
+resource_version = 75
 syntax_version = 2
 raw_text = "~ AI_Talk
-if LEVEL01
-	if has_met_AI == false
-		AI: Hello, I bet you're wondering why I've woke you up?
-		AI: Well, unfortunately, we're in a bit of a crisis.
-		AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.
-		AI: I was able to stop the ship in time before it reached the cryobay.
-		AI: However, we'll be stuck here unless you can get to the bridge and alter our course.
-		AI: Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.
-		AI: I'll be waiting here.
-		set has_met_AI = true
-	=> END
 
-	if has_met_AI == true 
-		if has_gotten_items == false
-			AI: I can't let you leave without getting the required items.
-			AI: Here's what you need:
-			if has_pickedUp_gloves == false
-				AI: You need the gloves, someplaces need you to use your strength to climb.
-			if has_pickedUp_doubleJump == false
-				AI: You need the rocket boots, many areas of the ship have corroded and are unreachable without them.
-			=> END
-		if has_gotten_items == true
-			AI: Good, you're ready to get going, I don't need to tell you how dangerous a time vortex is but don't worry, the effects on you will be minimal.
-			AI: I should warn you, however, some places are exposed to space, have no fear.
-			AI: Artifical gravity should still be functional.
-			=> END
-if LEVEL02
-	"
-errors = [ {
-"line": 27,
-"message": "Conditional lines need at least one indented line below them"
-} ]
+AI: Hello, I bet you're wondering why I've woke you up? [next=1]
+AI: Well, unfortunately, we're in a bit of a crisis.[next=1]
+AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=1]
+AI: I was able to stop the ship in time before it reached the cryobay.[next=1]
+AI: However, we'll be stuck here unless you can get to the bridge and alter our course.[next=1]
+AI: I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=1]
+AI: Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=1]
+AI: [[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=1]
+=> END
+
+
+~ picked_up_DoubleJump
+Picked up the Rocket Boots! [next=1]
+=> END
+~ picked_up_Gloves
+Picked up the Gloves! [next=1]
+=> END
+
+
+"
+errors = [  ]
 titles = {
-"AI_Talk": "1"
+"AI_Talk": "2",
+"picked_up_DoubleJump": "14",
+"picked_up_Gloves": "17"
 }
 lines = {
 "0": {
-"next_id": "1",
+"next_id": "2",
 "text": "AI_Talk",
 "type": "title"
 },
-"1": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "LEVEL01"
-} ]
-},
-"next_conditional_id": "27",
-"next_id": "2",
-"next_id_after": "27",
-"type": "condition"
-},
 "10": {
-"mutation": {
-"expression": [ {
-"type": "variable",
-"value": "has_met_AI"
-}, {
-"type": "assignment",
-"value": "="
-}, {
-"type": "bool",
-"value": true
-} ]
-},
-"next_id": "11",
-"parent_id": "2",
-"type": "mutation"
-},
-"11": {
 "next_id": "end",
-"parent_id": "1",
 "type": "goto"
 },
 "13": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_met_AI"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": true
-} ]
-},
-"next_conditional_id": "27",
 "next_id": "14",
-"next_id_after": "27",
-"parent_id": "1",
-"type": "condition"
+"text": "picked_up_DoubleJump",
+"type": "title"
 },
 "14": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_gotten_items"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_conditional_id": "22",
+"character": "",
 "next_id": "15",
-"next_id_after": "22",
-"parent_id": "13",
-"type": "condition"
+"replacements": [  ],
+"text": "Picked up the Rocket Boots! [next=1]",
+"translation_key": "Picked up the Rocket Boots! [next=1]",
+"type": "dialogue"
 },
 "15": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "16",
-"parent_id": "14",
-"replacements": [  ],
-"text": "I can't let you leave without getting the required items.",
-"translation_key": "I can't let you leave without getting the required items.",
-"type": "dialogue"
+"next_id": "end",
+"type": "goto"
 },
 "16": {
-"character": "AI",
-"character_replacements": [  ],
 "next_id": "17",
-"parent_id": "14",
-"replacements": [  ],
-"text": "Here's what you need:",
-"translation_key": "Here's what you need:",
-"type": "dialogue"
+"text": "picked_up_Gloves",
+"type": "title"
 },
 "17": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_pickedUp_gloves"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_conditional_id": "19",
+"character": "",
 "next_id": "18",
-"next_id_after": "19",
-"parent_id": "14",
-"type": "condition"
+"replacements": [  ],
+"text": "Picked up the Gloves! [next=1]",
+"translation_key": "Picked up the Gloves! [next=1]",
+"type": "dialogue"
 },
 "18": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "19",
-"parent_id": "17",
-"replacements": [  ],
-"text": "You need the gloves, someplaces need you to use your strength to climb.",
-"translation_key": "You need the gloves, someplaces need you to use your strength to climb.",
-"type": "dialogue"
-},
-"19": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_pickedUp_doubleJump"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_conditional_id": "21",
-"next_id": "20",
-"next_id_after": "21",
-"parent_id": "14",
-"type": "condition"
+"next_id": "end",
+"type": "goto"
 },
 "2": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_met_AI"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_conditional_id": "11",
+"character": "AI",
+"character_replacements": [  ],
 "next_id": "3",
-"next_id_after": "11",
-"parent_id": "1",
-"type": "condition"
-},
-"20": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "21",
-"parent_id": "19",
 "replacements": [  ],
-"text": "You need the rocket boots, many areas of the ship have corroded and are unreachable without them.",
-"translation_key": "You need the rocket boots, many areas of the ship have corroded and are unreachable without them.",
+"text": "Hello, I bet you're wondering why I've woke you up? [next=1]",
+"translation_key": "Hello, I bet you're wondering why I've woke you up? [next=1]",
 "type": "dialogue"
-},
-"21": {
-"next_id": "end",
-"parent_id": "14",
-"type": "goto"
-},
-"22": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "has_gotten_items"
-}, {
-"type": "comparison",
-"value": "=="
-}, {
-"type": "bool",
-"value": true
-} ]
-},
-"next_conditional_id": "27",
-"next_id": "23",
-"next_id_after": "27",
-"parent_id": "13",
-"type": "condition"
-},
-"23": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "24",
-"parent_id": "22",
-"replacements": [  ],
-"text": "Good, you're ready to get going, I don't need to tell you how dangerous a time vortex is but don't worry, the effects on you will be minimal.",
-"translation_key": "Good, you're ready to get going, I don't need to tell you how dangerous a time vortex is but don't worry, the effects on you will be minimal.",
-"type": "dialogue"
-},
-"24": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "25",
-"parent_id": "22",
-"replacements": [  ],
-"text": "I should warn you, however, some places are exposed to space, have no fear.",
-"translation_key": "I should warn you, however, some places are exposed to space, have no fear.",
-"type": "dialogue"
-},
-"25": {
-"character": "AI",
-"character_replacements": [  ],
-"next_id": "26",
-"parent_id": "22",
-"replacements": [  ],
-"text": "Artifical gravity should still be functional.",
-"translation_key": "Artifical gravity should still be functional.",
-"type": "dialogue"
-},
-"26": {
-"next_id": "end",
-"parent_id": "22",
-"type": "goto"
-},
-"27": {
-"condition": {
-"expression": [ {
-"type": "variable",
-"value": "LEVEL02"
-} ]
-},
-"next_conditional_id": "end!",
-"next_id": "",
-"next_id_after": "end!",
-"type": "condition"
 },
 "3": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "4",
-"parent_id": "2",
 "replacements": [  ],
-"text": "Hello, I bet you're wondering why I've woke you up?",
-"translation_key": "Hello, I bet you're wondering why I've woke you up?",
+"text": "Well, unfortunately, we're in a bit of a crisis.[next=1]",
+"translation_key": "Well, unfortunately, we're in a bit of a crisis.[next=1]",
 "type": "dialogue"
 },
 "4": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "5",
-"parent_id": "2",
 "replacements": [  ],
-"text": "Well, unfortunately, we're in a bit of a crisis.",
-"translation_key": "Well, unfortunately, we're in a bit of a crisis.",
+"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=1]",
+"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=1]",
 "type": "dialogue"
 },
 "5": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "6",
-"parent_id": "2",
 "replacements": [  ],
-"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
-"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.",
+"text": "I was able to stop the ship in time before it reached the cryobay.[next=1]",
+"translation_key": "I was able to stop the ship in time before it reached the cryobay.[next=1]",
 "type": "dialogue"
 },
 "6": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "7",
-"parent_id": "2",
 "replacements": [  ],
-"text": "I was able to stop the ship in time before it reached the cryobay.",
-"translation_key": "I was able to stop the ship in time before it reached the cryobay.",
+"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.[next=1]",
+"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.[next=1]",
 "type": "dialogue"
 },
 "7": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "8",
-"parent_id": "2",
 "replacements": [  ],
-"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
-"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.",
+"text": "I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=1]",
+"translation_key": "I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=1]",
 "type": "dialogue"
 },
 "8": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "9",
-"parent_id": "2",
 "replacements": [  ],
-"text": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.",
-"translation_key": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.",
+"text": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=1]",
+"translation_key": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=1]",
 "type": "dialogue"
 },
 "9": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "10",
-"parent_id": "2",
 "replacements": [  ],
-"text": "I'll be waiting here.",
-"translation_key": "I'll be waiting here.",
+"text": "[[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=1]",
+"translation_key": "[[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=1]",
 "type": "dialogue"
 }
 }

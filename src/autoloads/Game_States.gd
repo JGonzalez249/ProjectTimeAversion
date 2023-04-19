@@ -1,11 +1,8 @@
 extends Node2D
 
+
+var level: int = 0
+
 # For Level_1 Dialogue
-var has_met_AI = false
-var has_met_AI_doubleJump =  false
-var has_gotten_items = false
-var has_pickedUp_gloves = false
-var has_pickedUp_doubleJump = false
-
-
-# For Level_2
+var has_met_AI:bool = false
+var has_met_AI_doubleJump:bool =  false

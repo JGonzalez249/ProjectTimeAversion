@@ -21,6 +21,9 @@ const LEDGE_CLIMB_SPEED := 75
 
 var _velocity := Vector2.ZERO
 
+var dialogue1 = preload("res://src/dialogue/Level_1Dialogue.tres")
+var dialogue2 = preload("res://src/dialogue/Level_2Dialogue.tres")
+
 
 onready var _sprite: AnimatedSprite = $Sprite
 onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
@@ -32,11 +35,9 @@ onready var _sfxPlayer = $Overlapping_SFXPlayer
 onready var _blur1: ColorRect = $BlurStates/Blur01
 onready var _blur2: ColorRect = $BlurStates/Blur02
 onready var _blur3: ColorRect = $BlurStates/Blur03
-onready var actionable_finder: Area2D = $Pivot2D/ActionableFinder
 
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
-	
 func _physics_process(_delta: float) -> void:
 #	print(PlayerVariables.blurStrength)
 	# Variables for conditions in real time
@@ -197,7 +198,7 @@ func _onDoubleJumpPickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_double_jump_item = true
 	PlayerVariables.max_jumps += 1
-	GameStates.has_pickedUp_doubleJump = true
+	DialogueManager.show_example_dialogue_balloon("picked_up_DoubleJump", dialogue1)
 
 # When player reaches this zone, decrease max_jumps -= 1
 func _on_loseDoubleJump():
@@ -207,7 +208,7 @@ func _on_loseDoubleJump():
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_climbing_item = true
-	GameStates.has_pickedUp_gloves = true
+	DialogueManager.show_example_dialogue_balloon("picked_up_Gloves", dialogue1)
 	
 func _on_loseGloves():
 	PlayerVariables._has_climbing_item = false
@@ -280,22 +281,8 @@ func blur_state():
 	else:
 		return
 
-func has_gotten_items() -> void:
-	if GameStates.has_pickedUp_doubleJump == true && GameStates.has_pickedUp_gloves == true:
-		GameStates.has_gotten_items = true
-	else: 
-		GameStates.has_gotten_items = false
-
-func check_nearest_actionable()-> void:
-	var areas: Array = actionable_finder.get_overlapping_areas()
-	var shortest_distance: float = INF
-	var next_nearest_actionable: Actionable = null
-	for area in areas:
-		var distance: float = area.global_position.distance_to(global_position)
-		if distance < shortest_distance:
-			shortest_distance = distance
-			next_nearest_actionable = area
-	
-	if next_nearest_actionable != nearest_actionable or not is_instance_valid(next_nearest_actionable):
-		nearest_actionable = next_nearest_actionable
-		
+func _on_Actionable_on_ai_talks():
+	if GameStates.level == 1:
+		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue1)
+	if GameStates.level == 2:
+		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue2)

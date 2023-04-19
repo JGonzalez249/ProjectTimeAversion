@@ -4,107 +4,149 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 1
+resource_version = 7
 syntax_version = 2
-raw_text = "~ this_is_a_node_title
+raw_text = "~ AI_Talk
 
-Nathan: This is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => this_is_a_node_title
-- End the conversation => END
-Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+AI: Careful, while your in space, exposure to the vortex is high. [next=1]
+AI: Your suit keeps the exposure to a minimum.[next=1]
+AI: However, your equipment won't last that as long.[next=1]
+AI: Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]
+=> END
+
+~ cant_go_back
+AI: I'm sorry, I can't let you go back, it doesn't work that way.[next=1]
+AI: I needed you... [wait=1.5]to complete my mission.[next=1]
+AI: You can only move forward, somebody needs to save them.[next=1]
+=> END
+
+~ leap_of_faith
+AI: Sometimes, you need to take a leap of faith. [next=1]
+AI: If you fail, too bad, that's on you for choosing to take it. [next=1]
+AI: It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1] 
+=> END"
 errors = [  ]
 titles = {
-"this_is_a_node_title": "2"
+"AI_Talk": "2",
+"cant_go_back": "9",
+"leap_of_faith": "15"
 }
 lines = {
 "0": {
 "next_id": "2",
-"text": "this_is_a_node_title",
+"text": "AI_Talk",
 "type": "title"
 },
 "10": {
-"character": "Nathan",
+"character": "AI",
 "character_replacements": [  ],
-"next_id": "",
+"next_id": "11",
 "replacements": [  ],
-"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
-"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"text": "I needed you... [wait=1.5]to complete my mission.[next=1]",
+"translation_key": "I needed you... [wait=1.5]to complete my mission.[next=1]",
 "type": "dialogue"
 },
+"11": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "12",
+"replacements": [  ],
+"text": "You can only move forward, somebody needs to save them.[next=1]",
+"translation_key": "You can only move forward, somebody needs to save them.[next=1]",
+"type": "dialogue"
+},
+"12": {
+"next_id": "end",
+"type": "goto"
+},
+"14": {
+"next_id": "15",
+"text": "leap_of_faith",
+"type": "title"
+},
+"15": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "16",
+"replacements": [  ],
+"text": "Sometimes, you need to take a leap of faith. [next=1]",
+"translation_key": "Sometimes, you need to take a leap of faith. [next=1]",
+"type": "dialogue"
+},
+"16": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "17",
+"replacements": [  ],
+"text": "If you fail, too bad, that's on you for choosing to take it. [next=1]",
+"translation_key": "If you fail, too bad, that's on you for choosing to take it. [next=1]",
+"type": "dialogue"
+},
+"17": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "18",
+"replacements": [  ],
+"text": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1]",
+"translation_key": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1]",
+"type": "dialogue"
+},
+"18": {
+"next_id": "end",
+"type": "goto"
+},
 "2": {
-"character": "Nathan",
+"character": "AI",
 "character_replacements": [  ],
 "next_id": "3",
 "replacements": [  ],
-"text": "This is some dialogue.",
-"translation_key": "This is some dialogue.",
+"text": "Careful, while your in space, exposure to the vortex is high. [next=1]",
+"translation_key": "Careful, while your in space, exposure to the vortex is high. [next=1]",
 "type": "dialogue"
 },
 "3": {
-"character": "Nathan",
+"character": "AI",
 "character_replacements": [  ],
 "next_id": "4",
 "replacements": [  ],
-"text": "Here are some choices.",
-"translation_key": "Here are some choices.",
+"text": "Your suit keeps the exposure to a minimum.[next=1]",
+"translation_key": "Your suit keeps the exposure to a minimum.[next=1]",
 "type": "dialogue"
 },
 "4": {
+"character": "AI",
+"character_replacements": [  ],
 "next_id": "5",
-"next_id_after": "10",
 "replacements": [  ],
-"responses": PoolStringArray( "4", "6", "8", "9" ),
-"text": "First one",
-"translation_key": "First one",
-"type": "response"
+"text": "However, your equipment won't last that as long.[next=1]",
+"translation_key": "However, your equipment won't last that as long.[next=1]",
+"type": "dialogue"
 },
 "5": {
-"character": "Nathan",
+"character": "AI",
 "character_replacements": [  ],
-"next_id": "10",
-"parent_id": "4",
+"next_id": "6",
 "replacements": [  ],
-"text": "You picked the first one.",
-"translation_key": "You picked the first one.",
+"text": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]",
+"translation_key": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]",
 "type": "dialogue"
 },
 "6": {
-"next_id": "7",
-"next_id_after": "10",
-"replacements": [  ],
-"text": "Second one",
-"translation_key": "Second one",
-"type": "response"
-},
-"7": {
-"character": "Nathan",
-"character_replacements": [  ],
-"next_id": "10",
-"parent_id": "6",
-"replacements": [  ],
-"text": "You picked the second one.",
-"translation_key": "You picked the second one.",
-"type": "dialogue"
+"next_id": "end",
+"type": "goto"
 },
 "8": {
-"next_id": "2",
-"next_id_after": "10",
-"replacements": [  ],
-"text": "Start again",
-"translation_key": "Start again",
-"type": "response"
+"next_id": "9",
+"text": "cant_go_back",
+"type": "title"
 },
 "9": {
-"next_id": "end",
-"next_id_after": "10",
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "10",
 "replacements": [  ],
-"text": "End the conversation",
-"translation_key": "End the conversation",
-"type": "response"
+"text": "I'm sorry, I can't let you go back, it doesn't work that way.[next=1]",
+"translation_key": "I'm sorry, I can't let you go back, it doesn't work that way.[next=1]",
+"type": "dialogue"
 }
 }

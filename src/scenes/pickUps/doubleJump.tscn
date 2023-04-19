@@ -7,6 +7,8 @@
 extents = Vector2( 32, 32 )
 
 [node name="doubleJump" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
