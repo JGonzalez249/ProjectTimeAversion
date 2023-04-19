@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 75
+resource_version = 77
 syntax_version = 2
 raw_text = "~ AI_Talk
 
@@ -27,10 +27,19 @@ Picked up the Gloves! [next=1]
 => END
 
 
+~ on_computer
+System: WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=1] 
+System: SHIP CONDITION CRITICAL! [next=1] 
+Sysyem: SENSORS MALFUNCTIONING [next=1]  
+System: CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=1]
+System: CREW...[wait=1.5]12/500 MIA [next=1] 
+System: ........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=1] 
+=> END
 "
 errors = [  ]
 titles = {
 "AI_Talk": "2",
+"on_computer": "22",
 "picked_up_DoubleJump": "14",
 "picked_up_Gloves": "17"
 }
@@ -86,6 +95,69 @@ lines = {
 "text": "Hello, I bet you're wondering why I've woke you up? [next=1]",
 "translation_key": "Hello, I bet you're wondering why I've woke you up? [next=1]",
 "type": "dialogue"
+},
+"21": {
+"next_id": "22",
+"text": "on_computer",
+"type": "title"
+},
+"22": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "23",
+"replacements": [  ],
+"text": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=1]",
+"translation_key": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=1]",
+"type": "dialogue"
+},
+"23": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "24",
+"replacements": [  ],
+"text": "SHIP CONDITION CRITICAL! [next=1]",
+"translation_key": "SHIP CONDITION CRITICAL! [next=1]",
+"type": "dialogue"
+},
+"24": {
+"character": "Sysyem",
+"character_replacements": [  ],
+"next_id": "25",
+"replacements": [  ],
+"text": "SENSORS MALFUNCTIONING [next=1]",
+"translation_key": "SENSORS MALFUNCTIONING [next=1]",
+"type": "dialogue"
+},
+"25": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "26",
+"replacements": [  ],
+"text": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=1]",
+"translation_key": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=1]",
+"type": "dialogue"
+},
+"26": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "27",
+"replacements": [  ],
+"text": "CREW...[wait=1.5]12/500 MIA [next=1]",
+"translation_key": "CREW...[wait=1.5]12/500 MIA [next=1]",
+"type": "dialogue"
+},
+"27": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "28",
+"replacements": [  ],
+"text": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=1]",
+"translation_key": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=1]",
+"type": "dialogue"
+},
+"28": {
+"next_id": "end",
+"type": "goto"
 },
 "3": {
 "character": "AI",

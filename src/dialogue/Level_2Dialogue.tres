@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 7
+resource_version = 8
 syntax_version = 2
 raw_text = "~ AI_Talk
 
@@ -24,12 +24,20 @@ AI: You can only move forward, somebody needs to save them.[next=1]
 AI: Sometimes, you need to take a leap of faith. [next=1]
 AI: If you fail, too bad, that's on you for choosing to take it. [next=1]
 AI: It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1] 
-=> END"
+=> END
+
+~ pass_the_zone
+AI: According to my observations, your equipment is starting to degrade. [next=1]
+AI: Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]
+AI: 
+
+"
 errors = [  ]
 titles = {
 "AI_Talk": "2",
 "cant_go_back": "9",
-"leap_of_faith": "15"
+"leap_of_faith": "15",
+"pass_the_zone": "21"
 }
 lines = {
 "0": {
@@ -102,6 +110,37 @@ lines = {
 "replacements": [  ],
 "text": "Careful, while your in space, exposure to the vortex is high. [next=1]",
 "translation_key": "Careful, while your in space, exposure to the vortex is high. [next=1]",
+"type": "dialogue"
+},
+"20": {
+"next_id": "21",
+"text": "pass_the_zone",
+"type": "title"
+},
+"21": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "22",
+"replacements": [  ],
+"text": "According to my observations, your equipment is starting to degrade. [next=1]",
+"translation_key": "According to my observations, your equipment is starting to degrade. [next=1]",
+"type": "dialogue"
+},
+"22": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "23",
+"replacements": [  ],
+"text": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]",
+"translation_key": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]",
+"type": "dialogue"
+},
+"23": {
+"character": "",
+"next_id": "",
+"replacements": [  ],
+"text": "AI:",
+"translation_key": "AI:",
 "type": "dialogue"
 },
 "3": {
