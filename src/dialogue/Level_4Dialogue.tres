@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 7
+resource_version = 11
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: This is the final section of the ship before reaching the bridge. [next=2]
@@ -34,6 +34,12 @@ AI: Quick, changed the course from this terminal before you die from your cancer
 AI: Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]
 You quickly input the new heading with your trembling hands, your decrease vision making it harder. [next=2]
 AI: Thank you, I can now complete the mission, you may now expire...[next=1]
+set die = true
+#Do death animation
+set ending = true
+#Do ending animation
+do changeLevel(LEVEL00)
+=>END
 "
 errors = [  ]
 titles = {
@@ -184,11 +190,27 @@ lines = {
 "27": {
 "character": "AI",
 "character_replacements": [  ],
-"next_id": "",
+"next_id": "28",
 "replacements": [  ],
 "text": "Thank you, I can now complete the mission, you may now expire...[next=1]",
 "translation_key": "Thank you, I can now complete the mission, you may now expire...[next=1]",
 "type": "dialogue"
+},
+"28": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "die"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "30",
+"type": "mutation"
 },
 "3": {
 "character": "AI",
@@ -197,6 +219,44 @@ lines = {
 "replacements": [  ],
 "text": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
 "translation_key": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
+"type": "dialogue"
+},
+"30": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "ending"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "32",
+"type": "mutation"
+},
+"32": {
+"mutation": {
+"expression": [ {
+"function": "changeLevel",
+"type": "function",
+"value": [ [ {
+"type": "variable",
+"value": "LEVEL00"
+} ] ]
+} ]
+},
+"next_id": "33",
+"type": "mutation"
+},
+"33": {
+"character": "",
+"next_id": "",
+"replacements": [  ],
+"text": "=>END",
+"translation_key": "=>END",
 "type": "dialogue"
 },
 "4": {

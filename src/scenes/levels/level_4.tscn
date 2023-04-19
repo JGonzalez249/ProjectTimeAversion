@@ -248,7 +248,7 @@ points = PoolVector2Array( 0, 0, 67, 0, 67, 64, 0, 64 )
 0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 59.5, 107 )
+extents = Vector2( 62.5, 107 )
 
 [node name="level_4" type="Node2D"]
 script = ExtResource( 10 )
@@ -1158,12 +1158,12 @@ rotation = -0.523599
 scale = Vector2( -0.5, 0.5 )
 
 [node name="EndingArea" type="Area2D" parent="."]
-position = Vector2( -357, -11 )
+position = Vector2( 2038, -5356 )
 collision_layer = 32
 collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndingArea"]
-position = Vector2( 2687.5, -5315 )
+position = Vector2( 261, 9 )
 shape = SubResource( 14 )
 
 [node name="ending" parent="." instance=ExtResource( 20 )]

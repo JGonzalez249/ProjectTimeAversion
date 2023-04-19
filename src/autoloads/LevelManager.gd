@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+onready var LEVEL00 = ("res://src/scenes/interface/MainMenu.tscn")
 onready var LEVEL01 = ("res://src/scenes/levels/level_1.tscn")
 onready var LEVEL02 = ("res://src/scenes/levels/level_2.tscn")
 onready var LEVEL03 = ("res://src/scenes/levels/level_3.tscn")
