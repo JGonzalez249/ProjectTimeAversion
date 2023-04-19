@@ -236,14 +236,11 @@ extents = Vector2( 64, 35 )
 [sub_resource type="CircleShape2D" id=23]
 radius = 169.446
 
-[sub_resource type="GDScript" id=25]
-resource_name = "LeapOfFaith"
-script/source = "extends Area2D
-
-"
-
 [sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 96, 334.5 )
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 433.5, 84.5 )
 
 [node name="level_2" type="Node2D"]
 script = ExtResource( 7 )
@@ -441,6 +438,8 @@ visible = false
 
 [node name="DoorToLevel03" type="Area2D" parent="."]
 position = Vector2( -6686, -5470 )
+collision_layer = 32
+collision_mask = 34
 __meta__ = {
 "_edit_group_": true
 }
@@ -464,16 +463,25 @@ scale = Vector2( 0.5, 0.5 )
 [node name="LeapOfFaith" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 2
-script = SubResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeapOfFaith"]
 position = Vector2( -3109, 887 )
 shape = SubResource( 26 )
+
+[node name="ClimbUp" type="Area2D" parent="."]
+position = Vector2( -6986, 52 )
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClimbUp"]
+position = Vector2( 310.5, 35.5 )
+shape = SubResource( 27 )
 
 [connection signal="passedSlowZone" from="slowZone" to="." method="_on_slowZone_passedSlowZone" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="body_entered" from="DoorToLevel01" to="." method="_on_DoorToLevel01_body_entered" binds= [ "res://src/scenes/levels/level_1.tscn" ]]
 [connection signal="body_entered" from="DoorToLevel03" to="." method="_on_DoorToLevel03_body_entered" binds= [ "res://src/scenes/levels/level_3.tscn" ]]
 [connection signal="on_ai_talks" from="Actionable" to="Player" method="_on_Actionable_on_ai_talks"]
 [connection signal="body_entered" from="LeapOfFaith" to="." method="_on_LeapOfFaith_body_entered" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
+[connection signal="body_entered" from="ClimbUp" to="." method="_on_ClimbUp_body_entered" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 
 [editable path="Actionable"]

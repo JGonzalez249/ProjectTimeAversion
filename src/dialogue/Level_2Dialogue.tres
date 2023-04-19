@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 8
+resource_version = 13
 syntax_version = 2
 raw_text = "~ AI_Talk
-
+AI: While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]
 AI: Careful, while your in space, exposure to the vortex is high. [next=1]
 AI: Your suit keeps the exposure to a minimum.[next=1]
-AI: However, your equipment won't last that as long.[next=1]
+AI: However, your equipment won't last as long.[next=1]
 AI: Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]
 => END
 
@@ -29,21 +29,40 @@ AI: It will only get harder as you get closer to the bridge, enjoy this while yo
 ~ pass_the_zone
 AI: According to my observations, your equipment is starting to degrade. [next=1]
 AI: Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]
-AI: 
+AI: The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]
+AI: At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]
+AI: The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1] 
+=> END
 
+~ climb_wall1
+AI: Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]
+AI: I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]
+AI: It only looks blurry, don't worry about it. [next=1]
+AI: You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]
+=> END
 "
 errors = [  ]
 titles = {
-"AI_Talk": "2",
+"AI_Talk": "1",
 "cant_go_back": "9",
+"climb_wall1": "29",
 "leap_of_faith": "15",
 "pass_the_zone": "21"
 }
 lines = {
 "0": {
-"next_id": "2",
+"next_id": "1",
 "text": "AI_Talk",
 "type": "title"
+},
+"1": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "2",
+"replacements": [  ],
+"text": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]",
+"translation_key": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]",
+"type": "dialogue"
 },
 "10": {
 "character": "AI",
@@ -136,11 +155,48 @@ lines = {
 "type": "dialogue"
 },
 "23": {
-"character": "",
-"next_id": "",
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "24",
 "replacements": [  ],
-"text": "AI:",
-"translation_key": "AI:",
+"text": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]",
+"translation_key": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]",
+"type": "dialogue"
+},
+"24": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "25",
+"replacements": [  ],
+"text": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]",
+"translation_key": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]",
+"type": "dialogue"
+},
+"25": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "26",
+"replacements": [  ],
+"text": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1]",
+"translation_key": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1]",
+"type": "dialogue"
+},
+"26": {
+"next_id": "end",
+"type": "goto"
+},
+"28": {
+"next_id": "29",
+"text": "climb_wall1",
+"type": "title"
+},
+"29": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "30",
+"replacements": [  ],
+"text": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]",
+"translation_key": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]",
 "type": "dialogue"
 },
 "3": {
@@ -152,13 +208,44 @@ lines = {
 "translation_key": "Your suit keeps the exposure to a minimum.[next=1]",
 "type": "dialogue"
 },
+"30": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "31",
+"replacements": [  ],
+"text": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]",
+"translation_key": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]",
+"type": "dialogue"
+},
+"31": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "32",
+"replacements": [  ],
+"text": "It only looks blurry, don't worry about it. [next=1]",
+"translation_key": "It only looks blurry, don't worry about it. [next=1]",
+"type": "dialogue"
+},
+"32": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "33",
+"replacements": [  ],
+"text": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]",
+"translation_key": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]",
+"type": "dialogue"
+},
+"33": {
+"next_id": "end",
+"type": "goto"
+},
 "4": {
 "character": "AI",
 "character_replacements": [  ],
 "next_id": "5",
 "replacements": [  ],
-"text": "However, your equipment won't last that as long.[next=1]",
-"translation_key": "However, your equipment won't last that as long.[next=1]",
+"text": "However, your equipment won't last as long.[next=1]",
+"translation_key": "However, your equipment won't last as long.[next=1]",
 "type": "dialogue"
 },
 "5": {

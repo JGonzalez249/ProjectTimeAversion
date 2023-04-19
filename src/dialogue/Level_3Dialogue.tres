@@ -1,0 +1,154 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 5
+syntax_version = 2
+raw_text = "~ AI_Talk
+AI: Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=1]
+AI: Degradation of your equipment will accelerate, don't worry, from what my sensors are reading....[wait=2] You should still be able to reach the bridge.[next=1]
+AI: Your suit should still protect you. [next=1]
+AI: The remaining crew is counting on you. [next=1]
+=> END
+
+~ loseDoubleJump
+AI: Looks like your Rocket Boots need maintenance. [next=1]
+AI: They won't work anymore with repairs. [next=1]
+AI: Hmmm...[wait=2] It also appears that gravity has increased as you get closer to the bridge. [next=1]
+AI: It should be fine, your suit has a built-in exoskeleton so you can still reach the bridge, even with increased gravity. [next=1]
+AI: The gloves still are working as intended...[wait=2] That's [[good|great|optimal|better than last time]]. [next=1]
+=> END
+
+~ dead_npc
+You notice a dead body...[wait=3] It's the Captain! [next=1]
+He is holding a datapad. [next=1]"
+errors = [  ]
+titles = {
+"AI_Talk": "1",
+"dead_npc": "16",
+"loseDoubleJump": "8"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "AI_Talk",
+"type": "title"
+},
+"1": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "2",
+"replacements": [  ],
+"text": "Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=1]",
+"translation_key": "Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=1]",
+"type": "dialogue"
+},
+"10": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "11",
+"replacements": [  ],
+"text": "Hmmm...[wait=2] It also appears that gravity has increased as you get closer to the bridge. [next=1]",
+"translation_key": "Hmmm...[wait=2] It also appears that gravity has increased as you get closer to the bridge. [next=1]",
+"type": "dialogue"
+},
+"11": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "12",
+"replacements": [  ],
+"text": "It should be fine, your suit has a built-in exoskeleton so you can still reach the bridge, even with increased gravity. [next=1]",
+"translation_key": "It should be fine, your suit has a built-in exoskeleton so you can still reach the bridge, even with increased gravity. [next=1]",
+"type": "dialogue"
+},
+"12": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "13",
+"replacements": [  ],
+"text": "The gloves still are working as intended...[wait=2] That's [[good|great|optimal|better than last time]]. [next=1]",
+"translation_key": "The gloves still are working as intended...[wait=2] That's [[good|great|optimal|better than last time]]. [next=1]",
+"type": "dialogue"
+},
+"13": {
+"next_id": "end",
+"type": "goto"
+},
+"15": {
+"next_id": "16",
+"text": "dead_npc",
+"type": "title"
+},
+"16": {
+"character": "",
+"next_id": "17",
+"replacements": [  ],
+"text": "You notice a dead body...[wait=3] It's the Captain! [next=1]",
+"translation_key": "You notice a dead body...[wait=3] It's the Captain! [next=1]",
+"type": "dialogue"
+},
+"17": {
+"character": "",
+"next_id": "",
+"replacements": [  ],
+"text": "He is holding a datapad. [next=1]",
+"translation_key": "He is holding a datapad. [next=1]",
+"type": "dialogue"
+},
+"2": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "3",
+"replacements": [  ],
+"text": "Degradation of your equipment will accelerate, don't worry, from what my sensors are reading....[wait=2] You should still be able to reach the bridge.[next=1]",
+"translation_key": "Degradation of your equipment will accelerate, don't worry, from what my sensors are reading....[wait=2] You should still be able to reach the bridge.[next=1]",
+"type": "dialogue"
+},
+"3": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "Your suit should still protect you. [next=1]",
+"translation_key": "Your suit should still protect you. [next=1]",
+"type": "dialogue"
+},
+"4": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "The remaining crew is counting on you. [next=1]",
+"translation_key": "The remaining crew is counting on you. [next=1]",
+"type": "dialogue"
+},
+"5": {
+"next_id": "end",
+"type": "goto"
+},
+"7": {
+"next_id": "8",
+"text": "loseDoubleJump",
+"type": "title"
+},
+"8": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "9",
+"replacements": [  ],
+"text": "Looks like your Rocket Boots need maintenance. [next=1]",
+"translation_key": "Looks like your Rocket Boots need maintenance. [next=1]",
+"type": "dialogue"
+},
+"9": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "10",
+"replacements": [  ],
+"text": "They won't work anymore with repairs. [next=1]",
+"translation_key": "They won't work anymore with repairs. [next=1]",
+"type": "dialogue"
+}
+}

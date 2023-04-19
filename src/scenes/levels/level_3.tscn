@@ -578,18 +578,22 @@ __meta__ = {
 [node name="loseDoubleJump" parent="." instance=ExtResource( 15 )]
 position = Vector2( 243, -2439 )
 scale = Vector2( 30, 2 )
+collision_layer = 16
+collision_mask = 2
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="DoorToLevel04" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 32
+collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel04"]
 position = Vector2( -1141.5, -5170 )
 shape = SubResource( 14 )
 
+[connection signal="playerDetected" from="DeadNPC" to="." method="_on_DeadNPC_playerDetected" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="passedSlowZone" from="slowZone" to="." method="_on_slowZone_passedSlowZone" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="passedSlowZone" from="slowZone2" to="." method="_on_slowZone2_passedSlowZone" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="loseDoubleJumpZone" from="loseDoubleJump" to="Player" method="_on_loseDoubleJump"]

@@ -23,7 +23,7 @@ var _velocity := Vector2.ZERO
 
 var dialogue1 = preload("res://src/dialogue/Level_1Dialogue.tres")
 var dialogue2 = preload("res://src/dialogue/Level_2Dialogue.tres")
-
+var dialogue3 = preload("res://src/dialogue/Level_3Dialogue.tres")
 
 onready var _sprite: AnimatedSprite = $Sprite
 onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
@@ -286,3 +286,5 @@ func _on_Actionable_on_ai_talks():
 		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue1)
 	if GameStates.level == 2:
 		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue2)
+	if GameStates.level == 3:
+		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue3)
