@@ -204,6 +204,7 @@ func _onDoubleJumpPickup():
 func _on_loseDoubleJump():
 	PlayerVariables._has_double_jump_item = false
 	PlayerVariables.max_jumps -= 1
+	DialogueManager.show_example_dialogue_balloon("loseDoubleJump", dialogue3)
 
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
@@ -212,6 +213,7 @@ func _onGlovePickup():
 	
 func _on_loseGloves():
 	PlayerVariables._has_climbing_item = false
+	
 
 func _on_passedSlowZone():
 	if PlayerVariables.speed >= 0:
@@ -288,3 +290,6 @@ func _on_Actionable_on_ai_talks():
 		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue2)
 	if GameStates.level == 3:
 		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue3)
+
+func _you_may_die():
+	pass

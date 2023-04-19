@@ -3,6 +3,7 @@ extends Node2D
 var dialogue_resource = preload("res://src/dialogue/Level_1Dialogue.tres")
 var dialogue_resource2 = preload("res://src/dialogue/Level_2Dialogue.tres")
 var dialogue_resource3 = preload("res://src/dialogue/Level_3Dialogue.tres")
+var dialogue_resource4 = preload("res://src/dialogue/Level_4Dialogue.tres")
 
 func _on_DoorToLevel_body_entered(body, _extra_arg_0) -> void:
 	if body.name == "Player" and PlayerVariables._has_climbing_item and PlayerVariables._has_double_jump_item:
@@ -56,11 +57,37 @@ func _on_Computer_body_entered(body, _extra_arg_0):
 		$Computer.queue_free()
 
 
-func _on_ClimbUp_body_entered(body, extra_arg_0):
+func _on_ClimbUp_body_entered(body, _extra_arg_0):
 	if body.name == "Player":
 		DialogueManager.show_example_dialogue_balloon("climb_wall1", dialogue_resource2)
 		$ClimbUp.queue_free()
 
 
-func _on_DeadNPC_playerDetected(extra_arg_0):
-	pass # Replace with function body.
+
+func _on_slowZone4_passedSlowZone(_extra_arg_0):
+	if PlayerVariables.speed >= 0:
+		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED
+		PlayerVariables.wall_climb_speed -= PlayerVariables.LOWER_CLIMB_SPEED
+		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue_resource4)
+
+
+func _on_slowZone3_passedSlowZone(_extra_arg_0):
+	if PlayerVariables.speed >= 0:
+		PlayerVariables.speed -= PlayerVariables.LOWER_SPEED
+
+
+func _on_NPC_Dialogue_body_entered(_body):
+		DialogueManager.show_example_dialogue_balloon("dead_npc", dialogue_resource3)
+		$NPC_Dialogue.queue_free()
+
+
+func _on_loseGloves_body_entered(body, extra_arg_0):
+	if body.name == "Player":
+		DialogueManager.show_example_dialogue_balloon("loseGloves", dialogue_resource4)
+		$loseGloves.queue_free()
+
+
+func _on_EndingArea_body_entered(body):
+	if body.name == "Player":
+		DialogueManager.show_example_dialogue_balloon("ending", dialogue_resource4)
+		$EndingArea.queue_free()

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 5
+resource_version = 9
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=1]
@@ -23,7 +23,23 @@ AI: The gloves still are working as intended...[wait=2] That's [[good|great|opti
 
 ~ dead_npc
 You notice a dead body...[wait=3] It's the Captain! [next=1]
-He is holding a datapad. [next=1]"
+He is holding a datapad. [next=1]
+You pick it up to read its contents.[next=2]
+Captain: Who ever reads this, beware, the feeling exhaustion and slowness. It's more than just \"gravity\" as the ship's AI would put it.[next=1]
+Captain: I don't know why the ship's AI would lie to me like this, honestly, it might not even know. [next=1]
+Captain: My body feels older, my mind feels slower, that distortion...[wait=3] It's definitely my eyes getting worse. [next=1]
+Captain: I know I won't make it to the bridge.[next=1]
+Captain: As Captain, it's my responsibilty to see to the safety of the crew, however, it's impossible for me. [next=1]
+Captain: I can only hope that the AI makes the right decision for my replacement...[next=5]
+AI: Ah, that's the Captain....[wait=2] It's a shame he couldn't complete the mission. [next=1]
+AI: If you're wondering, yes, I have woken you up to replace him. [next=1]
+AI: You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=1]
+AI: You can only move forward.[next=1]
+AI: I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=1]
+set block_level4 = false
+=> END
+
+"
 errors = [  ]
 titles = {
 "AI_Talk": "1",
@@ -91,10 +107,27 @@ lines = {
 },
 "17": {
 "character": "",
-"next_id": "",
+"next_id": "18",
 "replacements": [  ],
 "text": "He is holding a datapad. [next=1]",
 "translation_key": "He is holding a datapad. [next=1]",
+"type": "dialogue"
+},
+"18": {
+"character": "",
+"next_id": "19",
+"replacements": [  ],
+"text": "You pick it up to read its contents.[next=2]",
+"translation_key": "You pick it up to read its contents.[next=2]",
+"type": "dialogue"
+},
+"19": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "20",
+"replacements": [  ],
+"text": "Who ever reads this, beware, the feeling exhaustion and slowness. It's more than just \"gravity\" as the ship's AI would put it.[next=1]",
+"translation_key": "Who ever reads this, beware, the feeling exhaustion and slowness. It's more than just \"gravity\" as the ship's AI would put it.[next=1]",
 "type": "dialogue"
 },
 "2": {
@@ -106,6 +139,96 @@ lines = {
 "translation_key": "Degradation of your equipment will accelerate, don't worry, from what my sensors are reading....[wait=2] You should still be able to reach the bridge.[next=1]",
 "type": "dialogue"
 },
+"20": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "21",
+"replacements": [  ],
+"text": "I don't know why the ship's AI would lie to me like this, honestly, it might not even know. [next=1]",
+"translation_key": "I don't know why the ship's AI would lie to me like this, honestly, it might not even know. [next=1]",
+"type": "dialogue"
+},
+"21": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "22",
+"replacements": [  ],
+"text": "My body feels older, my mind feels slower, that distortion...[wait=3] It's definitely my eyes getting worse. [next=1]",
+"translation_key": "My body feels older, my mind feels slower, that distortion...[wait=3] It's definitely my eyes getting worse. [next=1]",
+"type": "dialogue"
+},
+"22": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "23",
+"replacements": [  ],
+"text": "I know I won't make it to the bridge.[next=1]",
+"translation_key": "I know I won't make it to the bridge.[next=1]",
+"type": "dialogue"
+},
+"23": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "24",
+"replacements": [  ],
+"text": "As Captain, it's my responsibilty to see to the safety of the crew, however, it's impossible for me. [next=1]",
+"translation_key": "As Captain, it's my responsibilty to see to the safety of the crew, however, it's impossible for me. [next=1]",
+"type": "dialogue"
+},
+"24": {
+"character": "Captain",
+"character_replacements": [  ],
+"next_id": "25",
+"replacements": [  ],
+"text": "I can only hope that the AI makes the right decision for my replacement...[next=5]",
+"translation_key": "I can only hope that the AI makes the right decision for my replacement...[next=5]",
+"type": "dialogue"
+},
+"25": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "26",
+"replacements": [  ],
+"text": "Ah, that's the Captain....[wait=2] It's a shame he couldn't complete the mission. [next=1]",
+"translation_key": "Ah, that's the Captain....[wait=2] It's a shame he couldn't complete the mission. [next=1]",
+"type": "dialogue"
+},
+"26": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "27",
+"replacements": [  ],
+"text": "If you're wondering, yes, I have woken you up to replace him. [next=1]",
+"translation_key": "If you're wondering, yes, I have woken you up to replace him. [next=1]",
+"type": "dialogue"
+},
+"27": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "28",
+"replacements": [  ],
+"text": "You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=1]",
+"translation_key": "You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=1]",
+"type": "dialogue"
+},
+"28": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "29",
+"replacements": [  ],
+"text": "You can only move forward.[next=1]",
+"translation_key": "You can only move forward.[next=1]",
+"type": "dialogue"
+},
+"29": {
+"character": "AI",
+"character_replacements": [  ],
+"next_id": "30",
+"replacements": [  ],
+"text": "I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=1]",
+"translation_key": "I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=1]",
+"type": "dialogue"
+},
 "3": {
 "character": "AI",
 "character_replacements": [  ],
@@ -114,6 +237,26 @@ lines = {
 "text": "Your suit should still protect you. [next=1]",
 "translation_key": "Your suit should still protect you. [next=1]",
 "type": "dialogue"
+},
+"30": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "block_level4"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "31",
+"type": "mutation"
+},
+"31": {
+"next_id": "end",
+"type": "goto"
 },
 "4": {
 "character": "AI",
