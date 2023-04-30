@@ -1139,7 +1139,7 @@ __meta__ = {
 }
 
 [node name="slowZone4" parent="." instance=ExtResource( 11 )]
-position = Vector2( 376, -144 )
+position = Vector2( 154, -146 )
 collision_layer = 16
 collision_mask = 2
 

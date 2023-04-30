@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 11
+resource_version = 12
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: This is the final section of the ship before reaching the bridge. [next=2]
@@ -33,7 +33,7 @@ AI: The only one to make it without succumbing to your species flawed physiology
 AI: Quick, changed the course from this terminal before you die from your cancers.[next=2]
 AI: Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]
 You quickly input the new heading with your trembling hands, your decrease vision making it harder. [next=2]
-AI: Thank you, I can now complete the mission, you may now expire...[next=1]
+AI: Thank you, I can now complete the mission, you may now expire...[next=2]
 set die = true
 #Do death animation
 set ending = true
@@ -192,8 +192,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "28",
 "replacements": [  ],
-"text": "Thank you, I can now complete the mission, you may now expire...[next=1]",
-"translation_key": "Thank you, I can now complete the mission, you may now expire...[next=1]",
+"text": "Thank you, I can now complete the mission, you may now expire...[next=2]",
+"translation_key": "Thank you, I can now complete the mission, you may now expire...[next=2]",
 "type": "dialogue"
 },
 "28": {

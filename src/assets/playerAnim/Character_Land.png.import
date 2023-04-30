@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Door.png-e4770f721c77ee0c63f093bf2d65787a.stex"
+path="res://.import/Character_Land.png-82f37ab0eec43fb319e10cf4ff23c6b5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/imgs/Door.png"
-dest_files=[ "res://.import/Door.png-e4770f721c77ee0c63f093bf2d65787a.stex" ]
+source_file="res://src/assets/playerAnim/Character_Land.png"
+dest_files=[ "res://.import/Character_Land.png-82f37ab0eec43fb319e10cf4ff23c6b5.stex" ]
 
 [params]
 

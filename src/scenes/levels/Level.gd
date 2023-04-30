@@ -81,7 +81,7 @@ func _on_NPC_Dialogue_body_entered(_body):
 		$NPC_Dialogue.queue_free()
 
 
-func _on_loseGloves_body_entered(body, extra_arg_0):
+func _on_loseGloves_body_entered(body, _extra_arg_0):
 	if body.name == "Player":
 		DialogueManager.show_example_dialogue_balloon("loseGloves", dialogue_resource4)
 		$loseGloves.queue_free()
