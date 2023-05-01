@@ -456,10 +456,10 @@ collision_mask = 2
 position = Vector2( -293, -24 )
 
 [node name="climbGloves" parent="." instance=ExtResource( 9 )]
-position = Vector2( 2334, 2322 )
+position = Vector2( 2337, 2327 )
 
 [node name="doubleJump" parent="." instance=ExtResource( 10 )]
-position = Vector2( 461, 1813 )
+position = Vector2( 473, 1821 )
 
 [node name="DoorToLevel" type="Area2D" parent="."]
 collision_layer = 32

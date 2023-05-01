@@ -721,6 +721,53 @@ scale = Vector2( 0.7, 0.7 )
 position = Vector2( 395, 16 )
 scale = Vector2( 0.7, 0.7 )
 
+[node name="Double lights14" type="Node2D" parent="Lighting"]
+position = Vector2( 1947, -2565 )
+rotation = 3.19395
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HallLights" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( -51, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights2" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( 395, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights3" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( -51, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights4" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( 395, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights5" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( -51, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights6" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( 395, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights7" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( -51, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights8" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( 395, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights9" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( -51, 16 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="HallLights10" parent="Lighting/Double lights14" instance=ExtResource( 9 )]
+position = Vector2( 395, 16 )
+scale = Vector2( 0.7, 0.7 )
+
 [node name="Double lights11" type="Node2D" parent="Lighting"]
 position = Vector2( 2000, -2796 )
 rotation = -1.57079
@@ -1046,7 +1093,7 @@ cell_size = Vector2( 64, 128 )
 collision_layer = 4
 collision_mask = 2
 format = 1
-tile_data = PoolIntArray( -2686948, 1, 0, -2686944, 1, 0, -2621412, 1, 0, -2621408, 1, 0, -2555876, 1, 0, -2555872, 1, 0, -2490340, 1, 0, -2490336, 1, 0, -2424804, 1, 0, -2424798, 1, 0, -2359268, 1, 0, -2359262, 1, 0, -2293732, 1, 0, -2293726, 1, 0, -2228196, 1, 0, -2228190, 1, 0, -2162660, 1, 0, -2162654, 1, 0, -2097124, 1, 0, -2097118, 1, 0, -2031588, 1, 0, -2031582, 1, 0, -1966052, 1, 0, -1966046, 1, 0, -1900516, 1, 0, -1900510, 1, 0, -1834980, 1, 0, -1834974, 1, 0, -1769444, 1, 0, -1769438, 1, 0, -1703908, 1, 0, -1703902, 1, 0, -1638372, 1, 0, -1638366, 1, 0, -1572836, 1, 0, -1572830, 1, 0, -1507300, 1, 0, -1507294, 1, 0, -1441764, 1, 0, -1441758, 1, 0 )
+tile_data = PoolIntArray( -2686948, 1, 0, -2686944, 1, 0, -2621412, 1, 0, -2621408, 1, 0, -2555876, 1, 0, -2555872, 1, 0, -2490340, 1, 0, -2490336, 1, 0, -2424804, 1, 0, -2424798, 1, 0, -2359268, 1, 0, -2359262, 1, 0, -2293732, 1, 0, -2293726, 1, 0, -2228196, 1, 0, -2228190, 1, 0, -2162660, 1, 0, -2162654, 1, 0, -2097124, 1, 0, -2097118, 1, 0, -2031588, 1, 0, -2031582, 1, 0, -1966052, 1, 0, -1966046, 1, 0, -1900516, 1, 0, -1900510, 1, 0, -1834980, 1, 0, -1834974, 1, 0, -1769444, 1, 0, -1769438, 1, 0, -1703908, 1, 0, -1703902, 1, 0, -1638372, 1, 0, -1638366, 1, 0, -1572836, 1, 0, -1572835, 1, 0, -1572830, 1, 0, -1507300, 1, 0, -1507299, 1, 0, -1507294, 1, 0, -1441765, 1, 0, -1441757, 1, 0 )
 
 [node name="climbableWall" type="TileMap" parent="TileMap/wall"]
 tile_set = SubResource( 8 )

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 10
+resource_version = 13
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=2]
@@ -22,7 +22,7 @@ AI: The gloves still are working as intended...[wait=2] That's [[good|great|opti
 => END
 
 ~ dead_npc
-You notice a dead body...[wait=3] It's the Captain! [next=2]
+You notice a dead body...[wait=1] It's the Captain! [next=2]
 He is holding a datapad. [next=2]
 You pick it up to read its contents.[next=1]
 Captain: Who ever reads this, beware, the feeling exhaustion and slowness. It's more than just \"gravity\" as the ship's AI would put it.[next=2]
@@ -30,13 +30,12 @@ Captain: I don't know why the ship's AI would lie to me like this, honestly, it 
 Captain: My body feels older, my mind feels slower, that distortion...[wait=3] It's definitely my eyes getting worse. [next=2]
 Captain: I know I won't make it to the bridge.[next=2]
 Captain: As Captain, it's my responsibilty to see to the safety of the crew, however, it's impossible for me. [next=2]
-Captain: I can only hope that the AI makes the right decision for my replacement...[next=4]
+Captain: I can only hope that the AI makes the right decision for my replacement...[next=3]
 AI: Ah, that's the Captain....[wait=2] It's a shame he couldn't complete the mission. [next=2]
 AI: If you're wondering, yes, I have woken you up to replace him. [next=2]
 AI: You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=2]
 AI: You can only move forward.[next=2]
 AI: I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=2]
-set block_level4 = false
 => END
 
 "
@@ -101,8 +100,8 @@ lines = {
 "character": "",
 "next_id": "17",
 "replacements": [  ],
-"text": "You notice a dead body...[wait=3] It's the Captain! [next=2]",
-"translation_key": "You notice a dead body...[wait=3] It's the Captain! [next=2]",
+"text": "You notice a dead body...[wait=1] It's the Captain! [next=2]",
+"translation_key": "You notice a dead body...[wait=1] It's the Captain! [next=2]",
 "type": "dialogue"
 },
 "17": {
@@ -180,8 +179,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "25",
 "replacements": [  ],
-"text": "I can only hope that the AI makes the right decision for my replacement...[next=4]",
-"translation_key": "I can only hope that the AI makes the right decision for my replacement...[next=4]",
+"text": "I can only hope that the AI makes the right decision for my replacement...[next=3]",
+"translation_key": "I can only hope that the AI makes the right decision for my replacement...[next=3]",
 "type": "dialogue"
 },
 "25": {
@@ -239,22 +238,6 @@ lines = {
 "type": "dialogue"
 },
 "30": {
-"mutation": {
-"expression": [ {
-"type": "variable",
-"value": "block_level4"
-}, {
-"type": "assignment",
-"value": "="
-}, {
-"type": "bool",
-"value": false
-} ]
-},
-"next_id": "31",
-"type": "mutation"
-},
-"31": {
 "next_id": "end",
 "type": "goto"
 },

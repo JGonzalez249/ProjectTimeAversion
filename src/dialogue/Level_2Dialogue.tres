@@ -4,41 +4,41 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 13
+resource_version = 14
 syntax_version = 2
 raw_text = "~ AI_Talk
-AI: While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]
-AI: Careful, while your in space, exposure to the vortex is high. [next=1]
-AI: Your suit keeps the exposure to a minimum.[next=1]
-AI: However, your equipment won't last as long.[next=1]
-AI: Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]
+AI: While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=2]
+AI: Careful, while your in space, exposure to the vortex is high. [next=2]
+AI: Your suit keeps the exposure to a minimum.[next=2]
+AI: However, your equipment won't last as long.[next=2]
+AI: Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=2]
 => END
 
 ~ cant_go_back
-AI: I'm sorry, I can't let you go back, it doesn't work that way.[next=1]
-AI: I needed you... [wait=1.5]to complete my mission.[next=1]
-AI: You can only move forward, somebody needs to save them.[next=1]
+AI: I'm sorry, I can't let you go back, it doesn't work that way.[next=2]
+AI: I needed you... [wait=1.5]to complete my mission.[next=2]
+AI: You can only move forward, somebody needs to save them.[next=2]
 => END
 
 ~ leap_of_faith
-AI: Sometimes, you need to take a leap of faith. [next=1]
-AI: If you fail, too bad, that's on you for choosing to take it. [next=1]
-AI: It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1] 
+AI: Sometimes, you need to take a leap of faith. [next=2]
+AI: If you fail, too bad, that's on you for choosing to take it. [next=2]
+AI: It will only get harder as you get closer to the bridge, enjoy this while you can. [next=2] 
 => END
 
 ~ pass_the_zone
-AI: According to my observations, your equipment is starting to degrade. [next=1]
-AI: Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]
-AI: The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]
-AI: At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]
-AI: The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1] 
+AI: According to my observations, your equipment is starting to degrade. [next=2]
+AI: Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=2]
+AI: The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=2]
+AI: At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=2]
+AI: The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=2] 
 => END
 
 ~ climb_wall1
-AI: Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]
-AI: I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]
-AI: It only looks blurry, don't worry about it. [next=1]
-AI: You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]
+AI: Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=2]
+AI: I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=2]
+AI: It only looks blurry, don't worry about it. [next=2]
+AI: You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=2]
 => END
 "
 errors = [  ]
@@ -60,8 +60,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "2",
 "replacements": [  ],
-"text": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]",
-"translation_key": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=1]",
+"text": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=2]",
+"translation_key": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=2]",
 "type": "dialogue"
 },
 "10": {
@@ -69,8 +69,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "11",
 "replacements": [  ],
-"text": "I needed you... [wait=1.5]to complete my mission.[next=1]",
-"translation_key": "I needed you... [wait=1.5]to complete my mission.[next=1]",
+"text": "I needed you... [wait=1.5]to complete my mission.[next=2]",
+"translation_key": "I needed you... [wait=1.5]to complete my mission.[next=2]",
 "type": "dialogue"
 },
 "11": {
@@ -78,8 +78,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "12",
 "replacements": [  ],
-"text": "You can only move forward, somebody needs to save them.[next=1]",
-"translation_key": "You can only move forward, somebody needs to save them.[next=1]",
+"text": "You can only move forward, somebody needs to save them.[next=2]",
+"translation_key": "You can only move forward, somebody needs to save them.[next=2]",
 "type": "dialogue"
 },
 "12": {
@@ -96,8 +96,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "16",
 "replacements": [  ],
-"text": "Sometimes, you need to take a leap of faith. [next=1]",
-"translation_key": "Sometimes, you need to take a leap of faith. [next=1]",
+"text": "Sometimes, you need to take a leap of faith. [next=2]",
+"translation_key": "Sometimes, you need to take a leap of faith. [next=2]",
 "type": "dialogue"
 },
 "16": {
@@ -105,8 +105,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "17",
 "replacements": [  ],
-"text": "If you fail, too bad, that's on you for choosing to take it. [next=1]",
-"translation_key": "If you fail, too bad, that's on you for choosing to take it. [next=1]",
+"text": "If you fail, too bad, that's on you for choosing to take it. [next=2]",
+"translation_key": "If you fail, too bad, that's on you for choosing to take it. [next=2]",
 "type": "dialogue"
 },
 "17": {
@@ -114,8 +114,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "18",
 "replacements": [  ],
-"text": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1]",
-"translation_key": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=1]",
+"text": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=2]",
+"translation_key": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=2]",
 "type": "dialogue"
 },
 "18": {
@@ -127,8 +127,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "3",
 "replacements": [  ],
-"text": "Careful, while your in space, exposure to the vortex is high. [next=1]",
-"translation_key": "Careful, while your in space, exposure to the vortex is high. [next=1]",
+"text": "Careful, while your in space, exposure to the vortex is high. [next=2]",
+"translation_key": "Careful, while your in space, exposure to the vortex is high. [next=2]",
 "type": "dialogue"
 },
 "20": {
@@ -141,8 +141,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "22",
 "replacements": [  ],
-"text": "According to my observations, your equipment is starting to degrade. [next=1]",
-"translation_key": "According to my observations, your equipment is starting to degrade. [next=1]",
+"text": "According to my observations, your equipment is starting to degrade. [next=2]",
+"translation_key": "According to my observations, your equipment is starting to degrade. [next=2]",
 "type": "dialogue"
 },
 "22": {
@@ -150,8 +150,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "23",
 "replacements": [  ],
-"text": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]",
-"translation_key": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=1]",
+"text": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=2]",
+"translation_key": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=2]",
 "type": "dialogue"
 },
 "23": {
@@ -159,8 +159,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "24",
 "replacements": [  ],
-"text": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]",
-"translation_key": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=1]",
+"text": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=2]",
+"translation_key": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \"climb\" these walls.[next=2]",
 "type": "dialogue"
 },
 "24": {
@@ -168,8 +168,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "25",
 "replacements": [  ],
-"text": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]",
-"translation_key": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=1]",
+"text": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=2]",
+"translation_key": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=2]",
 "type": "dialogue"
 },
 "25": {
@@ -177,8 +177,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "26",
 "replacements": [  ],
-"text": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1]",
-"translation_key": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=1]",
+"text": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=2]",
+"translation_key": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=2]",
 "type": "dialogue"
 },
 "26": {
@@ -195,8 +195,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "30",
 "replacements": [  ],
-"text": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]",
-"translation_key": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=1]",
+"text": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=2]",
+"translation_key": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=2]",
 "type": "dialogue"
 },
 "3": {
@@ -204,8 +204,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "4",
 "replacements": [  ],
-"text": "Your suit keeps the exposure to a minimum.[next=1]",
-"translation_key": "Your suit keeps the exposure to a minimum.[next=1]",
+"text": "Your suit keeps the exposure to a minimum.[next=2]",
+"translation_key": "Your suit keeps the exposure to a minimum.[next=2]",
 "type": "dialogue"
 },
 "30": {
@@ -213,8 +213,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "31",
 "replacements": [  ],
-"text": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]",
-"translation_key": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=1]",
+"text": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=2]",
+"translation_key": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=2]",
 "type": "dialogue"
 },
 "31": {
@@ -222,8 +222,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "32",
 "replacements": [  ],
-"text": "It only looks blurry, don't worry about it. [next=1]",
-"translation_key": "It only looks blurry, don't worry about it. [next=1]",
+"text": "It only looks blurry, don't worry about it. [next=2]",
+"translation_key": "It only looks blurry, don't worry about it. [next=2]",
 "type": "dialogue"
 },
 "32": {
@@ -231,8 +231,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "33",
 "replacements": [  ],
-"text": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]",
-"translation_key": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=1]",
+"text": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=2]",
+"translation_key": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=2]",
 "type": "dialogue"
 },
 "33": {
@@ -244,8 +244,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "5",
 "replacements": [  ],
-"text": "However, your equipment won't last as long.[next=1]",
-"translation_key": "However, your equipment won't last as long.[next=1]",
+"text": "However, your equipment won't last as long.[next=2]",
+"translation_key": "However, your equipment won't last as long.[next=2]",
 "type": "dialogue"
 },
 "5": {
@@ -253,8 +253,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "6",
 "replacements": [  ],
-"text": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]",
-"translation_key": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=1]",
+"text": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=2]",
+"translation_key": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=2]",
 "type": "dialogue"
 },
 "6": {
@@ -271,8 +271,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "10",
 "replacements": [  ],
-"text": "I'm sorry, I can't let you go back, it doesn't work that way.[next=1]",
-"translation_key": "I'm sorry, I can't let you go back, it doesn't work that way.[next=1]",
+"text": "I'm sorry, I can't let you go back, it doesn't work that way.[next=2]",
+"translation_key": "I'm sorry, I can't let you go back, it doesn't work that way.[next=2]",
 "type": "dialogue"
 }
 }

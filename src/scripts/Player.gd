@@ -15,8 +15,8 @@ var UP_DIRECTION := Vector2.UP
 var screen_size
 
 
-const SLOW_SPEED := 75
-const LEDGE_CLIMB_SPEED := 150
+#const SLOW_SPEED := 75
+const LEDGE_CLIMB_SPEED := 75
 
 
 var _velocity := Vector2.ZERO
@@ -38,7 +38,6 @@ onready var _blur3: ColorRect = $BlurStates/Blur03
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 func _physics_process(_delta: float) -> void:
-#	print(PlayerVariables.blurStrength)
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
@@ -94,15 +93,24 @@ func _physics_process(_delta: float) -> void:
 			if not is_on_floor():
 				state = States.FALLING
 			if Input.is_action_pressed("left"):
-				_anim_play.play("run")
+				if PlayerVariables.blurStrength == 3:
+					_anim_play.play("crouchWalk")
+				else:
+					_anim_play.play("run")
 				_velocity.x = lerp(_velocity.x, -PlayerVariables.speed, 0.1) 
 				_sprite.flip_h = true
 			elif Input.is_action_pressed("right"):
-				_anim_play.play("run")
+				if PlayerVariables.blurStrength == 3:
+					_anim_play.play("crouchWalk")
+				else:
+					_anim_play.play("run")
 				_velocity.x = lerp(_velocity.x, PlayerVariables.speed, 0.1)
 				_sprite.flip_h = false
 			else:
-				_anim_play.play("idle")
+				if PlayerVariables.blurStrength == 3:
+					_anim_play.play("crouchIdle")
+				else:
+					_anim_play.play("idle")
 				_velocity.x = lerp(_velocity.x, 0, 0.9)
 			if is_jumping:
 				_anim_play.play("jump")
@@ -129,6 +137,10 @@ func _physics_process(_delta: float) -> void:
 				_velocity.x = PlayerVariables.wall_pushback * -direction
 				_velocity.y = PlayerVariables.wall_jump_strength
 				state = States.FALLING
+			elif Input.is_action_just_pressed("jump"):
+				_anim_play.play("jump")
+				_velocity.x = PlayerVariables.wall_pushback
+				state = States.FALLING
 			player_mov()
 			set_direction()
 			move_and_fall(false)
@@ -150,6 +162,10 @@ func _physics_process(_delta: float) -> void:
 				_velocity.x = PlayerVariables.wall_pushback * -direction
 				_velocity.y = PlayerVariables.wall_jump_strength
 				state = States.FALLING
+			elif (Input.is_action_just_pressed("jump")) or (Input.is_action_just_pressed("jump") and Input.is_action_pressed("up")):
+				_anim_play.play("jump")
+				_velocity.x = PlayerVariables.wall_pushback
+				state = States.FALLING
 			player_mov()
 			set_direction()
 			move_and_fall(true)
@@ -164,6 +180,7 @@ func _physics_process(_delta: float) -> void:
 				state = States.FALLING
 			elif Input.is_action_pressed("up") and not is_on_floor():
 				ledge_climb()
+				state = States.FLOOR
 			player_mov()
 			set_direction()
 			move_and_fall(false)
@@ -224,7 +241,7 @@ func _on_passedSlowZone():
 func on_the_wall():
 	if _raycast.is_colliding():
 		# Player will wallside whether or not they _has_climbing_item
-		if _raycast.get_collider().name == "wall" or (_raycast.get_collider().name == "climbableWall") and not is_on_floor():
+		if (_raycast.get_collider().name == "wall" or (_raycast.get_collider().name == "climbableWall")) and not is_on_floor():
 			_anim_play.play("wallSlide")
 			_velocity.y = PlayerVariables.wall_slide_gravity
 			_velocity.y = min(_velocity.y, PlayerVariables.wall_slide_speed)
@@ -240,13 +257,15 @@ func on_climbable_wall():
 			if PlayerVariables._has_climbing_item:
 				if Input.is_action_pressed("down"):
 					_velocity.y = PlayerVariables.wall_climb_speed
+					_anim_play.play_backwards("wallClimb")
 				elif Input.is_action_pressed("up"):
 					_velocity.y = -(PlayerVariables.wall_climb_speed)
-				elif States.CLIMB\
-				and Input.is_action_just_pressed("jump"):
+					_anim_play.play("wallClimb")
+				elif Input.is_action_just_pressed("jump"):
 					_velocity.y = PlayerVariables.wall_jump_strength
 				else:
 					_velocity.y = PlayerVariables.wall_climb_gravity
+					_anim_play.play("wallLand")
 			elif States.CLIMB\
 			and Input.is_action_just_pressed("jump"):
 				_velocity.y = PlayerVariables.wall_jump_strength
@@ -259,10 +278,10 @@ func on_climbable_wall():
 func ledge_grab():
 	if _ledgeRay.is_colliding() and not _ledgeRayHori.is_colliding():
 		if not _ledgeRay.get_collider().name == "floor":
-			state = States.LEDGE_GRAB
 			_anim_play.play("ledgeGrab")
 			_velocity = Vector2.ZERO
 			position.y = _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y
+			state = States.LEDGE_GRAB
 			return true
 	return false
 
@@ -274,6 +293,7 @@ func ledge_climb():
 		position = _ledgeRay.get_collision_point()
 		yield(get_node("Sprite/AnimationPlayer"), "animation_finished")
 		state = States.FLOOR
+
 
 func blur_state():
 	if PlayerVariables.blurStrength == 1:
@@ -295,3 +315,8 @@ func _on_Actionable_on_ai_talks():
 	if GameStates.level == 3:
 		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue3)
 
+func play_death_anim():
+	if GameStates.die:
+		_anim_play.play("death")
+		yield(get_node("Sprite/AnimationPlayer"), "animation_finished")
+		

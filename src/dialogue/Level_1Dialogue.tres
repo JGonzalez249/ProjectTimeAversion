@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 78
+resource_version = 80
 syntax_version = 2
 raw_text = "~ AI_Talk
 
@@ -13,7 +13,7 @@ AI: Well, unfortunately, we're in a bit of a crisis.[next=2]
 AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=2]
 AI: I was able to stop the ship in time before it reached the cryobay.[next=2]
 AI: However, we'll be stuck here unless you can get to the bridge and alter our course.[next=2]
-AI: I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=2]
+AI: I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]
 AI: Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=2]
 AI: [[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=2]
 => END
@@ -21,11 +21,18 @@ AI: [[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=2]
 
 ~ picked_up_DoubleJump
 Picked up the Rocket Boots! [next=1]
+if _has_double_jump_item and _has_climbing_item
+	=> picked_up_both_items
 => END
 ~ picked_up_Gloves
 Picked up the Gloves! [next=1]
+if _has_double_jump_item and _has_climbing_item
+	=> picked_up_both_items
 => END
 
+~ picked_up_both_items
+Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]
+=> END
 
 ~ on_computer
 System: WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2] 
@@ -39,9 +46,10 @@ System: ........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [
 errors = [  ]
 titles = {
 "AI_Talk": "2",
-"on_computer": "22",
+"on_computer": "29",
 "picked_up_DoubleJump": "14",
-"picked_up_Gloves": "17"
+"picked_up_Gloves": "19",
+"picked_up_both_items": "25"
 }
 lines = {
 "0": {
@@ -67,25 +75,44 @@ lines = {
 "type": "dialogue"
 },
 "15": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "_has_double_jump_item"
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"type": "variable",
+"value": "_has_climbing_item"
+} ]
+},
+"next_conditional_id": "17",
+"next_id": "16",
+"next_id_after": "17",
+"type": "condition"
+},
+"16": {
+"next_id": "25",
+"parent_id": "15",
+"type": "goto"
+},
+"17": {
 "next_id": "end",
 "type": "goto"
 },
-"16": {
-"next_id": "17",
+"18": {
+"next_id": "19",
 "text": "picked_up_Gloves",
 "type": "title"
 },
-"17": {
+"19": {
 "character": "",
-"next_id": "18",
+"next_id": "20",
 "replacements": [  ],
 "text": "Picked up the Gloves! [next=1]",
 "translation_key": "Picked up the Gloves! [next=1]",
 "type": "dialogue"
-},
-"18": {
-"next_id": "end",
-"type": "goto"
 },
 "2": {
 "character": "AI",
@@ -96,68 +123,63 @@ lines = {
 "translation_key": "Hello, I bet you're wondering why I've woke you up? [next=2]",
 "type": "dialogue"
 },
+"20": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "_has_double_jump_item"
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"type": "variable",
+"value": "_has_climbing_item"
+} ]
+},
+"next_conditional_id": "22",
+"next_id": "21",
+"next_id_after": "22",
+"type": "condition"
+},
 "21": {
-"next_id": "22",
+"next_id": "25",
+"parent_id": "20",
+"type": "goto"
+},
+"22": {
+"next_id": "end",
+"type": "goto"
+},
+"24": {
+"next_id": "25",
+"text": "picked_up_both_items",
+"type": "title"
+},
+"25": {
+"character": "",
+"next_id": "26",
+"replacements": [  ],
+"text": "Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]",
+"translation_key": "Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]",
+"type": "dialogue"
+},
+"26": {
+"next_id": "end",
+"type": "goto"
+},
+"28": {
+"next_id": "29",
 "text": "on_computer",
 "type": "title"
 },
-"22": {
+"29": {
 "character": "System",
 "character_replacements": [  ],
-"next_id": "23",
+"next_id": "30",
 "replacements": [  ],
 "text": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2]",
 "translation_key": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2]",
 "type": "dialogue"
-},
-"23": {
-"character": "System",
-"character_replacements": [  ],
-"next_id": "24",
-"replacements": [  ],
-"text": "SHIP CONDITION CRITICAL! [next=2]",
-"translation_key": "SHIP CONDITION CRITICAL! [next=2]",
-"type": "dialogue"
-},
-"24": {
-"character": "Sysyem",
-"character_replacements": [  ],
-"next_id": "25",
-"replacements": [  ],
-"text": "SENSORS MALFUNCTIONING [next=2]",
-"translation_key": "SENSORS MALFUNCTIONING [next=2]",
-"type": "dialogue"
-},
-"25": {
-"character": "System",
-"character_replacements": [  ],
-"next_id": "26",
-"replacements": [  ],
-"text": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
-"translation_key": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
-"type": "dialogue"
-},
-"26": {
-"character": "System",
-"character_replacements": [  ],
-"next_id": "27",
-"replacements": [  ],
-"text": "CREW...[wait=1.5]12/500 MIA [next=2]",
-"translation_key": "CREW...[wait=1.5]12/500 MIA [next=2]",
-"type": "dialogue"
-},
-"27": {
-"character": "System",
-"character_replacements": [  ],
-"next_id": "28",
-"replacements": [  ],
-"text": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
-"translation_key": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
-"type": "dialogue"
-},
-"28": {
-"next_id": "end",
-"type": "goto"
 },
 "3": {
 "character": "AI",
@@ -167,6 +189,55 @@ lines = {
 "text": "Well, unfortunately, we're in a bit of a crisis.[next=2]",
 "translation_key": "Well, unfortunately, we're in a bit of a crisis.[next=2]",
 "type": "dialogue"
+},
+"30": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "31",
+"replacements": [  ],
+"text": "SHIP CONDITION CRITICAL! [next=2]",
+"translation_key": "SHIP CONDITION CRITICAL! [next=2]",
+"type": "dialogue"
+},
+"31": {
+"character": "Sysyem",
+"character_replacements": [  ],
+"next_id": "32",
+"replacements": [  ],
+"text": "SENSORS MALFUNCTIONING [next=2]",
+"translation_key": "SENSORS MALFUNCTIONING [next=2]",
+"type": "dialogue"
+},
+"32": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "33",
+"replacements": [  ],
+"text": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
+"translation_key": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
+"type": "dialogue"
+},
+"33": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "34",
+"replacements": [  ],
+"text": "CREW...[wait=1.5]12/500 MIA [next=2]",
+"translation_key": "CREW...[wait=1.5]12/500 MIA [next=2]",
+"type": "dialogue"
+},
+"34": {
+"character": "System",
+"character_replacements": [  ],
+"next_id": "35",
+"replacements": [  ],
+"text": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
+"translation_key": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
+"type": "dialogue"
+},
+"35": {
+"next_id": "end",
+"type": "goto"
 },
 "4": {
 "character": "AI",
@@ -200,8 +271,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "8",
 "replacements": [  ],
-"text": "I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=2]",
-"translation_key": "I don't have any authorization from the Captain to move the ship, so it needs a human to do it. [next=2]",
+"text": "I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]",
+"translation_key": "I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]",
 "type": "dialogue"
 },
 "8": {
