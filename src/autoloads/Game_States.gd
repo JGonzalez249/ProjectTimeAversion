@@ -11,3 +11,5 @@ var block_level4:bool=true
 
 var die:bool=false
 var ending:bool = false
+
+

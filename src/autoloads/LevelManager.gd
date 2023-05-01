@@ -9,7 +9,7 @@ onready var LEVEL04 =  ("res://src/scenes/levels/level_4.tscn")
 func _ready():
 	get_node("ColorRect").hide()
 	get_node("Label").hide()
-
+	get_node("CenterContainer").hide()
 
 func changeLevel(level_path):
 	get_node("ColorRect").show()
@@ -24,3 +24,10 @@ func changeLevel(level_path):
 	yield(get_node("Anim"), "animation_finished")
 	get_node("ColorRect").hide()
 	
+	
+func play_ending():
+	get_node("ColorRect").show()
+	get_node("CenterContainer").show()
+	get_node("Anim").play("levelsFadeInEnd")
+	yield(get_node("Anim"), "animation_finished")
+	changeLevel(LEVEL00)

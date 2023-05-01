@@ -4,6 +4,7 @@ var dialogue_resource = preload("res://src/dialogue/Level_1Dialogue.tres")
 var dialogue_resource2 = preload("res://src/dialogue/Level_2Dialogue.tres")
 var dialogue_resource3 = preload("res://src/dialogue/Level_3Dialogue.tres")
 var dialogue_resource4 = preload("res://src/dialogue/Level_4Dialogue.tres")
+var ending_anim = preload("res://src/scenes/levels/ending.tscn")
 
 func _on_DoorToLevel_body_entered(body, _extra_arg_0) -> void:
 	if body.name == "Player" and PlayerVariables._has_climbing_item and PlayerVariables._has_double_jump_item:
@@ -91,3 +92,4 @@ func _on_EndingArea_body_entered(body):
 	if body.name == "Player":
 		DialogueManager.show_example_dialogue_balloon("ending", dialogue_resource4)
 		$EndingArea.queue_free()
+

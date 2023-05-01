@@ -5,10 +5,12 @@ onready var _settings_menu: Popup = $Settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	PlayerVariables.blurStrength = 0
-	PlayerVariables.speed = 450
 	MusicController._play_menu_music()
 	_focusButton.grab_focus()
+	PlayerVariables.blurStrength = 0
+	PlayerVariables.speed = 450
+	PlayerVariables.wall_climb_speed=150
+	GameStates.level=0
 
 
 func _on_StartGameBtn_pressed():

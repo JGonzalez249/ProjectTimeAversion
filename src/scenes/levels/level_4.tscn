@@ -1215,6 +1215,10 @@ shape = SubResource( 14 )
 
 [node name="ending" parent="." instance=ExtResource( 20 )]
 
+[node name="Line_3" parent="ending/CenterContainer" index="2"]
+margin_top = 255.0
+margin_bottom = 344.0
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Pause" parent="UI" instance=ExtResource( 2 )]
@@ -1224,3 +1228,5 @@ visible = false
 [connection signal="body_entered" from="loseGloves" to="." method="_on_loseGloves_body_entered" binds= [ "res://src/scenes/characters/player/Player.tscn" ]]
 [connection signal="loseGloves" from="loseGloves" to="Player" method="_on_loseGloves"]
 [connection signal="body_entered" from="EndingArea" to="." method="_on_EndingArea_body_entered"]
+
+[editable path="ending"]

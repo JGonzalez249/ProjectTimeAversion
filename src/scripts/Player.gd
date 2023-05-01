@@ -319,4 +319,4 @@ func play_death_anim():
 	if GameStates.die:
 		_anim_play.play("death")
 		yield(get_node("Sprite/AnimationPlayer"), "animation_finished")
-		
+
