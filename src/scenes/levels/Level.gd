@@ -6,6 +6,9 @@ var dialogue_resource3 = preload("res://src/dialogue/Level_3Dialogue.tres")
 var dialogue_resource4 = preload("res://src/dialogue/Level_4Dialogue.tres")
 var ending_anim = preload("res://src/scenes/levels/ending.tscn")
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 func _on_DoorToLevel_body_entered(body, _extra_arg_0) -> void:
 	if body.name == "Player" and PlayerVariables._has_climbing_item and PlayerVariables._has_double_jump_item:
 		LevelManager.changeLevel(LevelManager.LEVEL02)

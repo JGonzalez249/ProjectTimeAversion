@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 23
+resource_version = 16
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: This is the final section of the ship before reaching the bridge. [next=2]
@@ -31,12 +31,14 @@ AI: I will be waiting at the bridge.[next=2]
 AI: You made it...[next=2]
 AI: The only one to make it without succumbing to your species flawed physiology. [next=2]
 AI: Be quick, change the course from this terminal before you die from your cancers.[next=2]
-AI: Here is the new heading, this would have been simpler if the Captain did not expire before ordering me to change it myself.[next=2]
+AI: Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]
 You quickly input the new heading with your trembling hands, your decreased vision making it harder. [next=2]
-AI: Thank you, I can now complete the mission, you may now expire...[next=3]
+AI: Thank you, I can now complete the mission, you may now expire...[next=2]
 set die = true
-do play_ending()
-#do changeLevel(LEVEL00)
+
+set ending = true
+#Do ending animation
+do changeLevel(LEVEL00)
 "
 errors = [  ]
 titles = {
@@ -172,8 +174,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "26",
 "replacements": [  ],
-"text": "Here is the new heading, this would have been simpler if the Captain did not expire before ordering me to change it myself.[next=2]",
-"translation_key": "Here is the new heading, this would have been simpler if the Captain did not expire before ordering me to change it myself.[next=2]",
+"text": "Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]",
+"translation_key": "Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]",
 "type": "dialogue"
 },
 "26": {
@@ -189,8 +191,8 @@ lines = {
 "character_replacements": [  ],
 "next_id": "28",
 "replacements": [  ],
-"text": "Thank you, I can now complete the mission, you may now expire...[next=3]",
-"translation_key": "Thank you, I can now complete the mission, you may now expire...[next=3]",
+"text": "Thank you, I can now complete the mission, you may now expire...[next=2]",
+"translation_key": "Thank you, I can now complete the mission, you may now expire...[next=2]",
 "type": "dialogue"
 },
 "28": {
@@ -206,18 +208,7 @@ lines = {
 "value": true
 } ]
 },
-"next_id": "29",
-"type": "mutation"
-},
-"29": {
-"mutation": {
-"expression": [ {
-"function": "play_ending",
-"type": "function",
-"value": [  ]
-} ]
-},
-"next_id": "",
+"next_id": "30",
 "type": "mutation"
 },
 "3": {
@@ -228,6 +219,36 @@ lines = {
 "text": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
 "translation_key": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
 "type": "dialogue"
+},
+"30": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "ending"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "32",
+"type": "mutation"
+},
+"32": {
+"mutation": {
+"expression": [ {
+"function": "changeLevel",
+"type": "function",
+"value": [ [ {
+"type": "variable",
+"value": "LEVEL00"
+} ] ]
+} ]
+},
+"next_id": "",
+"type": "mutation"
 },
 "4": {
 "character": "AI",

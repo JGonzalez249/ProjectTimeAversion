@@ -5,15 +5,21 @@ onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
 onready var _settings_menu: Popup = $Settings
 
 var is_paused = false setget set_is_paused
+
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):
 		self.is_paused = not is_paused
-		
+
 func set_is_paused(new_pause_state):
-		is_paused = new_pause_state
-		get_tree().paused = is_paused
-		visible = is_paused
-		_focusButton.grab_focus()
+	is_paused = new_pause_state
+	get_tree().paused = is_paused
+	visible = is_paused
+	_focusButton.grab_focus()
+	if is_paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 
 func _on_ResumeBtn_pressed():
 	self.is_paused = false

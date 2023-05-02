@@ -38,6 +38,7 @@ onready var _blur3: ColorRect = $BlurStates/Blur03
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 func _physics_process(_delta: float) -> void:
+	print(state)
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
@@ -92,6 +93,7 @@ func _physics_process(_delta: float) -> void:
 			PlayerVariables._jumps_made = 0
 			if not is_on_floor():
 				state = States.FALLING
+				continue
 			if Input.is_action_pressed("left"):
 				if PlayerVariables.blurStrength == 3:
 					_anim_play.play("crouchWalk")
