@@ -76,8 +76,18 @@ focus_neighbour_bottom = NodePath("../ResumeBtn")
 custom_fonts/font = SubResource( 4 )
 text = "Quit Game"
 
+[node name="ReturnBtn" type="Button" parent="CenterContainer/Menu"]
+visible = false
+margin_top = 130.0
+margin_right = 192.0
+margin_bottom = 156.0
+focus_neighbour_bottom = NodePath("../ResumeBtn")
+custom_fonts/font = SubResource( 4 )
+text = "Return to Main Menu"
+
 [node name="Settings" parent="." instance=ExtResource( 2 )]
 
 [connection signal="pressed" from="CenterContainer/Menu/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
 [connection signal="pressed" from="CenterContainer/Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
 [connection signal="pressed" from="CenterContainer/Menu/QuitBtn" to="." method="_on_QuitBtn_pressed"]
+[connection signal="pressed" from="CenterContainer/Menu/ReturnBtn" to="." method="_on_ReturnBtn_pressed"]

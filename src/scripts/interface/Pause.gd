@@ -29,3 +29,8 @@ func _on_QuitBtn_pressed():
 
 func _on_SettingsBtn_pressed():
 	_settings_menu.popup_centered()
+
+
+func _on_ReturnBtn_pressed():
+	self.is_paused = not is_paused
+	LevelManager.changeLevel(LevelManager.LEVEL00)
