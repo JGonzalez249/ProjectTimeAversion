@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 16
+resource_version = 18
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: This is the final section of the ship before reaching the bridge. [next=2]
@@ -36,9 +36,7 @@ You quickly input the new heading with your trembling hands, your decreased visi
 AI: Thank you, I can now complete the mission, you may now expire...[next=2]
 set die = true
 
-set ending = true
-#Do ending animation
-do changeLevel(LEVEL00)
+do play_ending()
 "
 errors = [  ]
 titles = {
@@ -223,28 +221,9 @@ lines = {
 "30": {
 "mutation": {
 "expression": [ {
-"type": "variable",
-"value": "ending"
-}, {
-"type": "assignment",
-"value": "="
-}, {
-"type": "bool",
-"value": true
-} ]
-},
-"next_id": "32",
-"type": "mutation"
-},
-"32": {
-"mutation": {
-"expression": [ {
-"function": "changeLevel",
+"function": "play_ending",
 "type": "function",
-"value": [ [ {
-"type": "variable",
-"value": "LEVEL00"
-} ] ]
+"value": [  ]
 } ]
 },
 "next_id": "",
