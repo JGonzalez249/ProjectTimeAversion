@@ -90,7 +90,7 @@ func _edit(object) -> void:
 
 func _apply_changes() -> void:
 	if is_instance_valid(main_view):
-		main_view._apply_changes()
+		main_view.apply_changes()
 
 
 func _build() -> bool:
@@ -231,7 +231,7 @@ func _get_dialogue_files_in_filesystem(path: String = "res://") -> PackedStringA
 	
 	if DirAccess.dir_exists_absolute(path):
 		var dir = DirAccess.open(path)
-		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			var file_path: String = (path + "/" + file_name).simplify_path()

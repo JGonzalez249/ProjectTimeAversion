@@ -25,6 +25,10 @@ Save="*res://src/save/saveSettings.gd"
 GlobalSettings="*res://src/scripts/global_settings.gd"
 LevelManager="*res://src/autoloads/LevelManager.tscn"
 
+[dialogue_manager]
+
+general/states=["GameStates", "LevelManager"]
+
 [display]
 
 window/stretch/mode="2d"
@@ -41,6 +45,28 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 1,
+"mipmaps/generate": false,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
+}
 
 [input]
 
@@ -128,7 +154,7 @@ talk={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://src/dialogue/Level01.dialogue", "res://src/dialogue/Level02.dialogue", "res://src/dialogue/Level03.dialogue", "res://src/dialogue/Level04.dialogue")
+locale/translations_pot_files=PackedStringArray("res://src/dialogue/Level01.dialogue", "res://src/dialogue/Level02.dialogue", "res://src/dialogue/Level03.dialogue", "res://src/dialogue/Level04.dialogue", "res://src/dialogue/example.dialogue")
 
 [layer_names]
 
@@ -152,4 +178,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/defaults/default_environment="res://default_env.tres"
+textures/canvas_textures/default_texture_filter=0
 2d/snapping/use_gpu_pixel_snap=true

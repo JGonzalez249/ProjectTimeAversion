@@ -3,7 +3,7 @@ extends Button
 
 const DialogueConstants = preload("res://addons/dialogue_manager/constants.gd")
 
-const REMOTE_RELEASES_URL = "https://api.github.com/repos/nathanhoad/godot_dialogue_manager/releases"
+const REMOTE_RELEASES_URL = "https://github.com/nathanhoad/godot_dialogue_manager/releases/latest"
 const LOCAL_CONFIG_PATH = "res://addons/dialogue_manager/plugin.cfg"
 
 
@@ -64,13 +64,17 @@ func apply_theme() -> void:
 func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS: return
 	
-	var current_version: String = get_version()
+	# Parse the version number from the remote config file
+	var response = body.get_string_from_utf8()
+	var regex = RegEx.create_from_string("/nathanhoad/godot_dialogue_manager/releases/tag/v(?<version>\\d+\\.\\d+\\.\\d+)")
+	var found = regex.search(response)
 	
-	# Work out the next version from the releases information on GitHub
-	var response: Array = JSON.parse_string(body.get_string_from_utf8())
-	var next_version: String = response[0].tag_name.substr(1)
+	if not found: return
+	
+	var current_version: String = get_version()
+	var next_version = found.strings[found.names.get("version")]
 	if version_to_number(next_version) > version_to_number(current_version):
-		download_update_panel.next_version_release = response[0]
+		download_update_panel.next_version = next_version
 		text = DialogueConstants.translate("update.available").format({ version = next_version })
 		show()
 

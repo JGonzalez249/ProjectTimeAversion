@@ -163,7 +163,6 @@ theme_override_fonts/font = SubResource("4")
 text = "Quit Game"
 
 [node name="Settings" parent="." instance=ExtResource("4")]
-visible = false
 
 [connection signal="pressed" from="ButtonContainer/Menu/StartGameBtn" to="." method="_on_StartGameBtn_pressed"]
 [connection signal="pressed" from="ButtonContainer/Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]

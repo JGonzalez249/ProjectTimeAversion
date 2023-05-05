@@ -1,2 +1,7 @@
 res://default_env.tres
+res://src/scenes/characters/player/Player.tscn
+res://src/scenes/levels/level_1.tscn
+res://src/scenes/interface/MainMenu.tscn
 res://src/scenes/interface/Settings.tscn
+res://src/scenes/interface/Pause.tscn
+res://src/scenes/interface/Settings.gd

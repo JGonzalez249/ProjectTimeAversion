@@ -59,7 +59,7 @@ func prepare() -> void:
 	
 	var project = ConfigFile.new()
 	var err = project.load("res://project.godot")
-	assert(err == OK) #,"Could not find the project file")
+	assert(err == OK, "Could not find the project file")
 	
 	all_globals.clear()
 	if project.has_section("autoload"):

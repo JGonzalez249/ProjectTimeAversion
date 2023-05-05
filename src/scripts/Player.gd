@@ -21,13 +21,13 @@ const LEDGE_CLIMB_SPEED := 75
 
 var _velocity := Vector2.ZERO
 
-var dialogue1 = preload("res://src/dialogue/Level_1Dialogue.tres")
-var dialogue2 = preload("res://src/dialogue/Level_2Dialogue.tres")
-var dialogue3 = preload("res://src/dialogue/Level_3Dialogue.tres")
+var dialogue1 = preload("res://src/dialogue/Level01.dialogue")
+var dialogue2 = preload("res://src/dialogue/Level02.dialogue")
+var dialogue3 = preload("res://src/dialogue/Level03.dialogue")
 
 @onready var _sprite: AnimatedSprite2D = $Sprite2D
 @onready var _anim_play: AnimationPlayer = $Sprite2D/AnimationPlayer
-@onready var _raycast: RayCast2D = $Pivot2D/WallRay/
+@onready var _raycast: RayCast2D = $Pivot2D/WallRay
 @onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
 @onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
 @onready var _sfxPlayer = $Overlapping_SFXPlayer
@@ -49,16 +49,16 @@ func _physics_process(_delta: float) -> void:
 			if is_on_floor():
 				_sfxPlayer.play_audio("res://src/assets/audio/sfx/jumpLanding.wav")
 				state = States.FLOOR
-				continue
+				
 			elif on_the_wall():
 				state = States.WALL
-				continue
+				
 			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state = States.CLIMB
-				continue
+				
 			elif is_falling and PlayerVariables._has_double_jump_item:
 				state = States.DOUBLE_JUMP
-				continue
+				
 			if is_falling:
 				_anim_play.play("falling")
 			player_mov()
@@ -67,17 +67,17 @@ func _physics_process(_delta: float) -> void:
 		States.DOUBLE_JUMP:
 			if is_falling and not PlayerVariables._has_double_jump_item:
 				state = States.FALLING
-				continue
+				
 			elif is_on_floor():
 				_sfxPlayer.play_audio("res://src/assets/audio/sfx/jumpLanding.wav")
 				state = States.FLOOR
-				continue
+				
 			elif on_the_wall():
 				state = States.WALL
-				continue
+				
 			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state = States.CLIMB
-				continue
+				
 			if Input.is_action_just_pressed("jump") and PlayerVariables._jumps_made < PlayerVariables.max_jumps:
 				PlayerVariables._jumps_made += 1
 				_anim_play.play("jump")
@@ -93,7 +93,7 @@ func _physics_process(_delta: float) -> void:
 			PlayerVariables._jumps_made = 0
 			if not is_on_floor():
 				state = States.FALLING
-				continue
+				
 			if Input.is_action_pressed("left"):
 				if PlayerVariables.blurStrength == 3:
 					_anim_play.play("crouchWalk")
@@ -124,16 +124,16 @@ func _physics_process(_delta: float) -> void:
 		States.WALL:
 			if is_on_floor():
 				state = States.FLOOR
-				continue
+				
 			elif is_falling and not on_the_wall():
 				state = States.FALLING
-				continue
+				
 			elif ledge_grab():
 				state = States.LEDGE_GRAB
-				continue
+				
 			elif on_climbable_wall() and PlayerVariables._has_climbing_item:
 				state =  States.CLIMB
-				continue
+				
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
 				_anim_play.play("jump")
 				_velocity.x = PlayerVariables.wall_pushback * -direction
@@ -149,16 +149,16 @@ func _physics_process(_delta: float) -> void:
 		States.CLIMB:
 			if not on_climbable_wall() and on_the_wall():
 				state =  States.WALL
-				continue
+				
 			elif is_falling and not on_climbable_wall():
 				state = States.FALLING
-				continue
+				
 			elif is_on_floor():
 				state = States.FLOOR
-				continue
+				
 			elif ledge_grab():
 				state = States.LEDGE_GRAB
-				continue
+				
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
 				_anim_play.play("jump")
 				_velocity.x = PlayerVariables.wall_pushback * -direction
@@ -174,7 +174,7 @@ func _physics_process(_delta: float) -> void:
 		States.LEDGE_GRAB:
 			if is_falling:
 				state = States.FALLING
-				continue
+				
 			if Input.is_action_just_pressed("jump") and ((Input.is_action_pressed("left") and direction == -1) or (Input.is_action_pressed("right") and direction == 1)):
 				_anim_play.play("jump")
 				_velocity.x = PlayerVariables.wall_pushback * -direction
@@ -225,18 +225,18 @@ func _onDoubleJumpPickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_double_jump_item = true
 	PlayerVariables.max_jumps += 1
-	DialogueManager.show_example_dialogue_balloon("picked_up_DoubleJump", dialogue1)
+	DialogueManager.show_example_dialogue_balloon(dialogue1, "picked_up_DoubleJump")
 
 # When player reaches this zone, decrease max_jumps -= 1
 func _on_loseDoubleJump():
 	PlayerVariables._has_double_jump_item = false
 	PlayerVariables.max_jumps -= 1
-	DialogueManager.show_example_dialogue_balloon("loseDoubleJump", dialogue3)
+	DialogueManager.show_example_dialogue_balloon(dialogue3, "loseDoubleJump")
 
 func _onGlovePickup():
 	_sfxPlayer.play_audio("res://src/assets/audio/sfx/pickUpFX.wav")
 	PlayerVariables._has_climbing_item = true
-	DialogueManager.show_example_dialogue_balloon("picked_up_Gloves", dialogue1)
+	DialogueManager.show_example_dialogue_balloon(dialogue1, "picked_up_Gloves")
 	
 func _on_loseGloves():
 	PlayerVariables._has_climbing_item = false
@@ -317,11 +317,11 @@ func blur_state():
 
 func _on_Actionable_on_ai_talks():
 	if GameStates.level == 1:
-		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue1)
+		DialogueManager.show_example_dialogue_balloon(dialogue1, "AI_Talk")
 	if GameStates.level == 2:
-		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue2)
+		DialogueManager.show_example_dialogue_balloon(dialogue2, "AI_Talk")
 	if GameStates.level == 3:
-		DialogueManager.show_example_dialogue_balloon("AI_Talk", dialogue3)
+		DialogueManager.show_example_dialogue_balloon(dialogue3, "AI_Talk")
 
 func play_death_anim():
 	if GameStates.die:
