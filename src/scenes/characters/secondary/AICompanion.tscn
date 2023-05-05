@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/assets/NPCs/sprites/AICompanion/ship-unit-with-thrusts.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/NPCs/sprites/AICompanion/ship-unit-with-thrusts.png" type="Texture2D" id=1]
 [ext_resource path="res://src/scenes/characters/secondary/AICompanion.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=15]
@@ -60,12 +60,12 @@ visible = false
 shape = SubResource( 15 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 1 )
 hframes = 8
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 13 )
 frame = 3
 playing = true

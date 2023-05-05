@@ -2,12 +2,12 @@ extends Node
 
 
 func toggle_fullscreen(value):
-	OS.window_fullscreen = value
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
 	Save.game_data.fullscreen_on = value
 	Save.save_data()
 	
 func toggle_vsync(value):
-	OS.vsync_enabled = value
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if (value) else DisplayServer.VSYNC_DISABLED)
 	Save.game_data.vsync_on = value
 	Save.save_data()
 

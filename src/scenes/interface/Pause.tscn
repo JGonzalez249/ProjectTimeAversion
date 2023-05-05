@@ -2,23 +2,23 @@
 
 [ext_resource path="res://src/scripts/interface/Pause.gd" type="Script" id=1]
 [ext_resource path="res://src/scenes/interface/Settings.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" type="FontFile" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 26
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 font_data = ExtResource( 3 )
 
 [node name="Pause" type="Control"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -33,56 +33,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Menu" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 419.0
-margin_top = 222.0
-margin_right = 604.0
-margin_bottom = 378.0
-custom_constants/separation = 9
+offset_left = 419.0
+offset_top = 222.0
+offset_right = 604.0
+offset_bottom = 378.0
+theme_override_constants/separation = 9
 
 [node name="Label" type="Label" parent="CenterContainer/Menu"]
-margin_right = 185.0
-margin_bottom = 32.0
-custom_fonts/font = SubResource( 1 )
+offset_right = 185.0
+offset_bottom = 32.0
+theme_override_fonts/font = SubResource( 1 )
 text = "Game Paused"
 align = 1
 valign = 1
 
 [node name="Control" type="Control" parent="CenterContainer/Menu"]
-margin_top = 41.0
-margin_right = 185.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 0, 10 )
+offset_top = 41.0
+offset_right = 185.0
+offset_bottom = 51.0
+custom_minimum_size = Vector2( 0, 10 )
 
 [node name="ResumeBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 60.0
-margin_right = 185.0
-margin_bottom = 86.0
-focus_neighbour_top = NodePath("../QuitBtn")
-custom_fonts/font = SubResource( 2 )
+offset_top = 60.0
+offset_right = 185.0
+offset_bottom = 86.0
+focus_neighbor_top = NodePath("../QuitBtn")
+theme_override_fonts/font = SubResource( 2 )
 text = "Resume Game"
 
 [node name="SettingsBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 95.0
-margin_right = 185.0
-margin_bottom = 121.0
-custom_fonts/font = SubResource( 3 )
+offset_top = 95.0
+offset_right = 185.0
+offset_bottom = 121.0
+theme_override_fonts/font = SubResource( 3 )
 text = "Settings"
 
 [node name="QuitBtn" type="Button" parent="CenterContainer/Menu"]
-margin_top = 130.0
-margin_right = 185.0
-margin_bottom = 156.0
-focus_neighbour_bottom = NodePath("../ResumeBtn")
-custom_fonts/font = SubResource( 4 )
+offset_top = 130.0
+offset_right = 185.0
+offset_bottom = 156.0
+focus_neighbor_bottom = NodePath("../ResumeBtn")
+theme_override_fonts/font = SubResource( 4 )
 text = "Quit Game"
 
 [node name="ReturnBtn" type="Button" parent="CenterContainer/Menu"]
 visible = false
-margin_top = 130.0
-margin_right = 192.0
-margin_bottom = 156.0
-focus_neighbour_bottom = NodePath("../ResumeBtn")
-custom_fonts/font = SubResource( 4 )
+offset_top = 130.0
+offset_right = 192.0
+offset_bottom = 156.0
+focus_neighbor_bottom = NodePath("../ResumeBtn")
+theme_override_fonts/font = SubResource( 4 )
 text = "Return to Main Menu"
 
 [node name="Settings" parent="." instance=ExtResource( 2 )]

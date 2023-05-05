@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str"
+uid="uid://b2jb8bo8rmln6"
+path="res://.godot/imported/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str"
 
 [deps]
 
 source_file="res://src/assets/audio/music/thinking-overture-115159.mp3"
-dest_files=[ "res://.import/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str" ]
+dest_files=["res://.godot/imported/thinking-overture-115159.mp3-9b8e14f75c1999a52c97d62019d136a4.mp3str"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
