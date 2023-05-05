@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/menuSelectionClick.wav-172642b47c03663ef704968f2ddd9eca.sample"
+type="AudioStreamWAV"
+uid="uid://1gmbh68l47e5"
+path="res://.godot/imported/menuSelectionClick.wav-172642b47c03663ef704968f2ddd9eca.sample"
 
 [deps]
 
 source_file="res://src/assets/audio/sfx/menuSelectionClick.wav"
-dest_files=[ "res://.import/menuSelectionClick.wav-172642b47c03663ef704968f2ddd9eca.sample" ]
+dest_files=["res://.godot/imported/menuSelectionClick.wav-172642b47c03663ef704968f2ddd9eca.sample"]
 
 [params]
 

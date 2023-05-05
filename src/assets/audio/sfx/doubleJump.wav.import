@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/doubleJump.wav-f69d0a5fcb59e97e7ca921f9277d27ba.sample"
+type="AudioStreamWAV"
+uid="uid://338o2ytk0dq3"
+path="res://.godot/imported/doubleJump.wav-f69d0a5fcb59e97e7ca921f9277d27ba.sample"
 
 [deps]
 
 source_file="res://src/assets/audio/sfx/doubleJump.wav"
-dest_files=[ "res://.import/doubleJump.wav-f69d0a5fcb59e97e7ca921f9277d27ba.sample" ]
+dest_files=["res://.godot/imported/doubleJump.wav-f69d0a5fcb59e97e7ca921f9277d27ba.sample"]
 
 [params]
 

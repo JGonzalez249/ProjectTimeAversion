@@ -1,10 +1,10 @@
 extends Control
 
 
-onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
-onready var _settings_menu: Popup = $Settings
+@onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
+@onready var _settings_menu: Popup = $Settings
 
-var is_paused = false setget set_is_paused
+var is_paused = false: set = set_is_paused
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("pause"):

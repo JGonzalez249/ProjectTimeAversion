@@ -1,89 +1,169 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cih17ww3j6i5u"]
 
-[ext_resource path="res://src/scripts/interface/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://src/assets/imgs/TitleBG.png" type="Texture" id=2]
-[ext_resource path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://src/scenes/interface/Settings.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://src/scripts/interface/MainMenu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c4vevy5fefnsq" path="res://src/assets/imgs/TitleBG.png" id="2"]
+[ext_resource type="FontFile" uid="uid://bhr0kwqgn17xb" path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" id="3"]
+[ext_resource type="PackedScene" path="res://src/scenes/interface/Settings.tscn" id="4"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 63
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -960.0
-margin_top = -540.0
-margin_right = 960.0
-margin_bottom = 540.0
-texture = ExtResource( 2 )
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("2")
+metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="TitleContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -38.5
-margin_bottom = 38.5
+offset_top = -59.0
+offset_bottom = 18.0
 
-[node name="Title" type="Label" parent="CenterContainer"]
-margin_left = 274.0
-margin_right = 750.0
-margin_bottom = 77.0
-custom_fonts/font = SubResource( 1 )
+[node name="Title" type="Label" parent="TitleContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 48
 text = "Time Aversion"
-align = 1
-valign = 1
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -54.5
-margin_top = -225.0
-margin_right = 54.5
-margin_bottom = -139.0
+offset_left = -52.5
+offset_top = -198.0
+offset_right = 52.5
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="StartGameBtn" type="Button" parent="Menu"]
-margin_right = 109.0
-margin_bottom = 26.0
-focus_neighbour_top = NodePath("../QuitGameBtn")
-custom_fonts/font = SubResource( 2 )
+[node name="Menu" type="VBoxContainer" parent="ButtonContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="StartGameBtn" type="Button" parent="ButtonContainer/Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitGameBtn")
+theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 32
 text = "Start Game"
 
-[node name="SettingsBtn" type="Button" parent="Menu"]
-margin_top = 30.0
-margin_right = 109.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 3 )
+[node name="SettingsBtn" type="Button" parent="ButtonContainer/Menu"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
 text = "Settings"
 
-[node name="QuitGameBtn" type="Button" parent="Menu"]
-margin_top = 60.0
-margin_right = 109.0
-margin_bottom = 86.0
-focus_neighbour_bottom = NodePath("../StartGameBtn")
-custom_fonts/font = SubResource( 4 )
+[node name="QuitGameBtn" type="Button" parent="ButtonContainer/Menu"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartGameBtn")
+theme_override_fonts/font = SubResource("4")
 text = "Quit Game"
 
-[node name="Settings" parent="." instance=ExtResource( 4 )]
+[node name="Settings" parent="." instance=ExtResource("4")]
 
-[connection signal="pressed" from="Menu/StartGameBtn" to="." method="_on_StartGameBtn_pressed"]
-[connection signal="pressed" from="Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
-[connection signal="pressed" from="Menu/QuitGameBtn" to="." method="_on_QuitGameBtn_pressed"]
+[connection signal="pressed" from="ButtonContainer/Menu/StartGameBtn" to="." method="_on_StartGameBtn_pressed"]
+[connection signal="pressed" from="ButtonContainer/Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
+[connection signal="pressed" from="ButtonContainer/Menu/QuitGameBtn" to="." method="_on_QuitGameBtn_pressed"]

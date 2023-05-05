@@ -1,7 +1,7 @@
 extends Node
 
-onready var _sfx_players = get_children()
-onready var index = 0
+@onready var _sfx_players = get_children()
+@onready var index = 0
 
 func play_audio(resource_path):
 	var node = _sfx_players[index]

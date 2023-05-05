@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/jumpLanding.wav-0e58367a9b1b900589d20a2b33cf1b41.sample"
+type="AudioStreamWAV"
+uid="uid://crw7xsfra4sek"
+path="res://.godot/imported/jumpLanding.wav-0e58367a9b1b900589d20a2b33cf1b41.sample"
 
 [deps]
 
 source_file="res://src/assets/audio/sfx/jumpLanding.wav"
-dest_files=[ "res://.import/jumpLanding.wav-0e58367a9b1b900589d20a2b33cf1b41.sample" ]
+dest_files=["res://.godot/imported/jumpLanding.wav-0e58367a9b1b900589d20a2b33cf1b41.sample"]
 
 [params]
 

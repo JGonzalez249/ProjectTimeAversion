@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/pickUpFX.wav-34b2fa00a57913fe589a9f18bfa1bc7d.sample"
+type="AudioStreamWAV"
+uid="uid://dco1m3xmioghd"
+path="res://.godot/imported/pickUpFX.wav-34b2fa00a57913fe589a9f18bfa1bc7d.sample"
 
 [deps]
 
 source_file="res://src/assets/audio/sfx/pickUpFX.wav"
-dest_files=[ "res://.import/pickUpFX.wav-34b2fa00a57913fe589a9f18bfa1bc7d.sample" ]
+dest_files=["res://.godot/imported/pickUpFX.wav-34b2fa00a57913fe589a9f18bfa1bc7d.sample"]
 
 [params]
 

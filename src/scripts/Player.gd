@@ -4,7 +4,7 @@
 #TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
 
 
-extends KinematicBody2D
+extends CharacterBody2D
  
 enum States {FALLING = 1, DOUBLE_JUMP, FLOOR, WALL, CLIMB, LEDGE_GRAB}
 var state = States.FALLING
@@ -25,15 +25,15 @@ var dialogue1 = preload("res://src/dialogue/Level_1Dialogue.tres")
 var dialogue2 = preload("res://src/dialogue/Level_2Dialogue.tres")
 var dialogue3 = preload("res://src/dialogue/Level_3Dialogue.tres")
 
-onready var _sprite: AnimatedSprite = $Sprite
-onready var _anim_play: AnimationPlayer = $Sprite/AnimationPlayer
-onready var _raycast: RayCast2D = $Pivot2D/WallRay/
-onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
-onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
-onready var _sfxPlayer = $Overlapping_SFXPlayer
-onready var _blur1: ColorRect = $BlurStates/Blur01
-onready var _blur2: ColorRect = $BlurStates/Blur02
-onready var _blur3: ColorRect = $BlurStates/Blur03
+@onready var _sprite: AnimatedSprite2D = $Sprite2D
+@onready var _anim_play: AnimationPlayer = $Sprite2D/AnimationPlayer
+@onready var _raycast: RayCast2D = $Pivot2D/WallRay/
+@onready var _ledgeRay: RayCast2D = $Pivot2D/LedgeRay
+@onready var _ledgeRayHori: RayCast2D = $Pivot2D/LedgeRayHori
+@onready var _sfxPlayer = $Overlapping_SFXPlayer
+@onready var _blur1: ColorRect = $BlurStates/Blur01
+@onready var _blur2: ColorRect = $BlurStates/Blur02
+@onready var _blur3: ColorRect = $BlurStates/Blur03
 
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
@@ -209,10 +209,16 @@ func player_mov():
 func move_and_fall(_has_climbable_item: bool):
 	if on_climbable_wall():
 		_velocity.y += PlayerVariables.wall_climb_gravity
-		_velocity =  move_and_slide(_velocity, UP_DIRECTION)
+		set_velocity(_velocity)
+		set_up_direction(UP_DIRECTION)
+		move_and_slide()
+		_velocity =  velocity
 	else:
 		_velocity.y += PlayerVariables.gravity
-		_velocity = move_and_slide(_velocity, UP_DIRECTION)
+		set_velocity(_velocity)
+		set_up_direction(UP_DIRECTION)
+		move_and_slide()
+		_velocity = velocity
 
 
 func _onDoubleJumpPickup():
@@ -293,7 +299,7 @@ func ledge_climb():
 	if position.y < _ledgeRay.get_collision_point().y - _ledgeRayHori.position.y:
 		_anim_play.play("ledgeClimb")
 		position = _ledgeRay.get_collision_point()
-		yield(get_node("Sprite/AnimationPlayer"), "animation_finished")
+		await get_node("Sprite2D/AnimationPlayer").animation_finished
 		state = States.FLOOR
 
 
@@ -320,5 +326,5 @@ func _on_Actionable_on_ai_talks():
 func play_death_anim():
 	if GameStates.die:
 		_anim_play.play("death")
-		yield(get_node("Sprite/AnimationPlayer"), "animation_finished")
+		await get_node("Sprite2D/AnimationPlayer").animation_finished
 

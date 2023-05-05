@@ -1,6 +1,6 @@
 extends Node
 
-onready var _musicPlayer = $Music
+@onready var _musicPlayer = $Music
 
 var menu_music = load("res://src/assets/audio/music/8bit-Smooth_Presentation.mp3")
 var game_music = load("res://src/assets/audio/music/thinking-overture-115159.mp3")
