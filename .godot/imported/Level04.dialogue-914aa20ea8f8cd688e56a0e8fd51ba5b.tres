@@ -1,0 +1,257 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_4sidi"]
+
+[resource]
+script = ExtResource("1_4sidi")
+titles = {
+"AI_Talk": "2",
+"ending": "23",
+"loseGloves": "16"
+}
+character_names = PackedStringArray("AI")
+first_title = "2"
+lines = {
+"1": {
+"next_id": "2",
+"text": "AI_Talk",
+"type": "title"
+},
+"10": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "11",
+"text": "I can't imagine how it feels to lose the ability to do simple tasks, however, you humans always somehow find another way to complete the mission. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I can't imagine how it feels to lose the ability to do simple tasks, however, you humans always somehow find another way to complete the mission. [next=2]",
+"type": "dialogue"
+},
+"11": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "12",
+"text": "Even if it takes generations to do it.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Even if it takes generations to do it.[next=2]",
+"type": "dialogue"
+},
+"12": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "13",
+"text": "Don't worry, your crew will remember you, I'll make sure of it. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Don't worry, your crew will remember you, I'll make sure of it. [next=2]",
+"type": "dialogue"
+},
+"13": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"15": {
+"next_id": "16",
+"text": "loseGloves",
+"type": "title"
+},
+"16": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "17",
+"text": "The only sensor I have on your suit indicates that your gloves have failed.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "The only sensor I have on your suit indicates that your gloves have failed.[next=2]",
+"type": "dialogue"
+},
+"17": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "18",
+"text": "That's sooner than expected, while your gloves have failed, your exoskeleton is still functional. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "That's sooner than expected, while your gloves have failed, your exoskeleton is still functional. [next=2]",
+"type": "dialogue"
+},
+"18": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "19",
+"text": "It may be difficult but you can use the walls to jump to the next platform or wall. [next=4]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "It may be difficult but you can use the walls to jump to the next platform or wall. [next=4]",
+"type": "dialogue"
+},
+"19": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "20",
+"text": "I will be waiting at the bridge.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I will be waiting at the bridge.[next=2]",
+"type": "dialogue"
+},
+"2": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "3",
+"text": "This is the final section of the ship before reaching the bridge. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "This is the final section of the ship before reaching the bridge. [next=2]",
+"type": "dialogue"
+},
+"20": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"22": {
+"next_id": "23",
+"text": "ending",
+"type": "title"
+},
+"23": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "24",
+"text": "You made it...[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "You made it...[next=2]",
+"type": "dialogue"
+},
+"24": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "25",
+"text": "The only one to make it without succumbing to your species flawed physiology. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "The only one to make it without succumbing to your species flawed physiology. [next=2]",
+"type": "dialogue"
+},
+"25": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "26",
+"text": "Be quick, change the course from this terminal before you die from your cancers.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Be quick, change the course from this terminal before you die from your cancers.[next=2]",
+"type": "dialogue"
+},
+"26": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "27",
+"text": "Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Here is the new heading, this would have been simplier if the Captain did not expire before ordering me to change it myself.[next=2]",
+"type": "dialogue"
+},
+"27": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "28",
+"text": "You quickly input the new heading with your trembling hands, your decreased vision making it harder. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "You quickly input the new heading with your trembling hands, your decreased vision making it harder. [next=2]",
+"type": "dialogue"
+},
+"28": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "29",
+"text": "Thank you, I can now complete the mission, you may now expire...[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Thank you, I can now complete the mission, you may now expire...[next=2]",
+"type": "dialogue"
+},
+"29": {
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "die"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+}])
+},
+"next_id": "31",
+"type": "mutation"
+},
+"3": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "4",
+"text": "I've locked the door behind you.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I've locked the door behind you.[next=2]",
+"type": "dialogue"
+},
+"31": {
+"mutation": {
+"expression": Array[Dictionary]([{
+"function": "play_ending",
+"type": "function",
+"value": Array[Array]([])
+}])
+},
+"next_id": "",
+"type": "mutation"
+},
+"4": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "5",
+"text": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I apologize, the Captain and yourself weren't the only ones to traverse to the bridge.[next=2]",
+"type": "dialogue"
+},
+"5": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "6",
+"text": "I needed to experiment, to find someone suitable, you're it.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I needed to experiment, to find someone suitable, you're it.[next=2]",
+"type": "dialogue"
+},
+"6": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "7",
+"text": "There is a cane for you to help you walk, the exoskeleton in your suit will fail. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "There is a cane for you to help you walk, the exoskeleton in your suit will fail. [next=2]",
+"type": "dialogue"
+},
+"7": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "8",
+"text": "So many came so close, yet they failed, the common factor being their seniority. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "So many came so close, yet they failed, the common factor being their seniority. [next=2]",
+"type": "dialogue"
+},
+"8": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "9",
+"text": "I needed someone young enough to survive the effects of the time field. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I needed someone young enough to survive the effects of the time field. [next=2]",
+"type": "dialogue"
+},
+"9": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "10",
+"text": "However, young humans tend to fear their demise. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "However, young humans tend to fear their demise. [next=2]",
+"type": "dialogue"
+}
+}
+metadata/dialogue_manager_version = "2.15.5"

@@ -1251,12 +1251,12 @@ text = "New dialogue files will start with template text"
 
 [node name="MissingTranslationsButton" type="CheckBox" parent="."]
 layout_mode = 2
-text = "Treat missing translation keys as errors"
+text = "Treat missing position keys as errors"
 
 [node name="MissingTranslationsHint" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
-text = "If you are using static translation keys then having this enabled will help you find any lines that you haven't added a key to yet."
+text = "If you are using static position keys then having this enabled will help you find any lines that you haven't added a key to yet."
 autowrap_mode = 3
 
 [node name="WrapLinesButton" type="CheckBox" parent="."]

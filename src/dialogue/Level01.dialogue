@@ -1,0 +1,36 @@
+~ AI_Talk
+
+AI: Hello, I bet you're wondering why I've woke you up? [next=2]
+AI: Well, unfortunately, we're in a bit of a crisis.[next=2]
+AI: We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=2]
+AI: I was able to stop the ship in time before it reached the cryobay.[next=2]
+AI: However, we'll be stuck here unless you can get to the bridge and alter our course.[next=2]
+AI: I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]
+AI: Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=2]
+AI: [[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=2]
+=> END
+
+
+~ picked_up_DoubleJump
+Picked up the Rocket Boots! [next=1]
+if _has_double_jump_item and _has_climbing_item
+	=> picked_up_both_items
+=> END
+~ picked_up_Gloves
+Picked up the Gloves! [next=1]
+if _has_double_jump_item and _has_climbing_item
+	=> picked_up_both_items
+=> END
+
+~ picked_up_both_items
+Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]
+=> END
+
+~ on_computer
+System: WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2] 
+System: SHIP CONDITION CRITICAL! [next=2] 
+Sysyem: SENSORS MALFUNCTIONING [next=2]  
+System: CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]
+System: CREW...[wait=1.5]12/500 MIA [next=2] 
+System: ........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2] 
+=> END

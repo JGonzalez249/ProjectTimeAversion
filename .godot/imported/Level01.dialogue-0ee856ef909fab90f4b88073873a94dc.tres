@@ -1,0 +1,269 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_vvv6m"]
+
+[resource]
+script = ExtResource("1_vvv6m")
+titles = {
+"AI_Talk": "3",
+"on_computer": "30",
+"picked_up_DoubleJump": "15",
+"picked_up_Gloves": "20",
+"picked_up_both_items": "26"
+}
+character_names = PackedStringArray("AI", "System", "Sysyem")
+first_title = "3"
+lines = {
+"1": {
+"next_id": "3",
+"text": "AI_Talk",
+"type": "title"
+},
+"10": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "11",
+"text": "[[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[I'll be waiting here.|Get going.|Don't keep me waiting.]][next=2]",
+"type": "dialogue"
+},
+"11": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"14": {
+"next_id": "15",
+"text": "picked_up_DoubleJump",
+"type": "title"
+},
+"15": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "16",
+"text": "Picked up the Rocket Boots! [next=1]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Picked up the Rocket Boots! [next=1]",
+"type": "dialogue"
+},
+"16": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "_has_double_jump_item"
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"type": "variable",
+"value": "_has_climbing_item"
+}])
+},
+"next_conditional_id": "18",
+"next_id": "17",
+"next_id_after": "18",
+"type": "condition"
+},
+"17": {
+"is_snippet": false,
+"next_id": "26",
+"parent_id": "16",
+"type": "goto"
+},
+"18": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"19": {
+"next_id": "20",
+"text": "picked_up_Gloves",
+"type": "title"
+},
+"20": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "21",
+"text": "Picked up the Gloves! [next=1]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Picked up the Gloves! [next=1]",
+"type": "dialogue"
+},
+"21": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "_has_double_jump_item"
+}, {
+"type": "and_or",
+"value": "and"
+}, {
+"type": "variable",
+"value": "_has_climbing_item"
+}])
+},
+"next_conditional_id": "23",
+"next_id": "22",
+"next_id_after": "23",
+"type": "condition"
+},
+"22": {
+"is_snippet": false,
+"next_id": "26",
+"parent_id": "21",
+"type": "goto"
+},
+"23": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"25": {
+"next_id": "26",
+"text": "picked_up_both_items",
+"type": "title"
+},
+"26": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "27",
+"text": "Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Perfect, you can now leave this section of the ship, come back up here & you can use the door. [next=3]",
+"type": "dialogue"
+},
+"27": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"29": {
+"next_id": "30",
+"text": "on_computer",
+"type": "title"
+},
+"3": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "4",
+"text": "Hello, I bet you're wondering why I've woke you up? [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hello, I bet you're wondering why I've woke you up? [next=2]",
+"type": "dialogue"
+},
+"30": {
+"character": "System",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "31",
+"text": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "WARNING... [wait=1.5]WARNING... [wait=1.5]WARNING... [next=2]",
+"type": "dialogue"
+},
+"31": {
+"character": "System",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "32",
+"text": "SHIP CONDITION CRITICAL! [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "SHIP CONDITION CRITICAL! [next=2]",
+"type": "dialogue"
+},
+"32": {
+"character": "Sysyem",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "33",
+"text": "SENSORS MALFUNCTIONING [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "SENSORS MALFUNCTIONING [next=2]",
+"type": "dialogue"
+},
+"33": {
+"character": "System",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "34",
+"text": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "CREW STATUS...[wait=1.5] CAPTAIN:[wait=0.5]MIA [next=2]",
+"type": "dialogue"
+},
+"34": {
+"character": "System",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "35",
+"text": "CREW...[wait=1.5]12/500 MIA [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "CREW...[wait=1.5]12/500 MIA [next=2]",
+"type": "dialogue"
+},
+"35": {
+"character": "System",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "36",
+"text": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "........[wait=2]SYSTEM OVERRIDE APPROVED...[wait=2] ALL SYSTEMS YELLOW [next=2]",
+"type": "dialogue"
+},
+"36": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"4": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "5",
+"text": "Well, unfortunately, we're in a bit of a crisis.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Well, unfortunately, we're in a bit of a crisis.[next=2]",
+"type": "dialogue"
+},
+"5": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "6",
+"text": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "We've entered a region of space where time is sped up. Don't worry, we're currently out of range of its effects.[next=2]",
+"type": "dialogue"
+},
+"6": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "7",
+"text": "I was able to stop the ship in time before it reached the cryobay.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I was able to stop the ship in time before it reached the cryobay.[next=2]",
+"type": "dialogue"
+},
+"7": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "8",
+"text": "However, we'll be stuck here unless you can get to the bridge and alter our course.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "However, we'll be stuck here unless you can get to the bridge and alter our course.[next=2]",
+"type": "dialogue"
+},
+"8": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "9",
+"text": "I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I don't have any authorization from the Captain to move the ship, so it needs another human to do it. [next=2]",
+"type": "dialogue"
+},
+"9": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "10",
+"text": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Based on the damage to the ship, you'll need to get the climbing gloves and rocket boots.[next=2]",
+"type": "dialogue"
+}
+}
+metadata/dialogue_manager_version = "2.15.5"

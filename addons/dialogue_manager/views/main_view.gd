@@ -170,7 +170,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				_on_test_button_pressed()
 
 
-func apply_changes() -> void:
+func _apply_changes() -> void:
 	save_files()
 
 
@@ -587,7 +587,7 @@ func export_translations_to_csv(path: String) -> void:
 	editor_plugin.get_editor_interface().get_file_system_dock().call_deferred("navigate_to_path", path)
 	
 	# Add it to the project l10n settings if it's not already there
-	var translation_path: String = path.replace(".csv", ".en.translation")
+	var translation_path: String = path.replace(".csv", ".en.position")
 	call_deferred("add_path_to_project_translations", translation_path)
 
 
@@ -649,7 +649,7 @@ func export_character_names_to_csv(path: String) -> void:
 	editor_plugin.get_editor_interface().get_file_system_dock().call_deferred("navigate_to_path", path)
 	
 	# Add it to the project l10n settings if it's not already there
-	var translation_path: String = path.replace(".csv", ".en.translation")
+	var translation_path: String = path.replace(".csv", ".en.position")
 	call_deferred("add_path_to_project_translations", translation_path)
 
 
@@ -894,7 +894,7 @@ func _on_settings_view_script_button_pressed(path: String) -> void:
 
 
 func _on_test_button_pressed() -> void:
-	apply_changes()
+	_apply_changes()
 	
 	if errors_panel.errors.size() > 0:
 		errors_dialog.popup_centered()

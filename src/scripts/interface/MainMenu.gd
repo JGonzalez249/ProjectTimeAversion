@@ -1,6 +1,6 @@
 extends Control
 
-@onready var _focusButton: Button = $Menu/StartGameBtn
+@onready var _focusButton: Button = $ButtonContainer/Menu/StartGameBtn
 @onready var _settings_menu: Popup = $Settings
 
 # Called when the node enters the scene tree for the first time.

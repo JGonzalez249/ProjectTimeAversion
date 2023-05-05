@@ -1,0 +1,248 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_cm33k"]
+
+[resource]
+script = ExtResource("1_cm33k")
+titles = {
+"AI_Talk": "2",
+"cant_go_back": "10",
+"climb_wall1": "30",
+"leap_of_faith": "16",
+"pass_the_zone": "22"
+}
+character_names = PackedStringArray("AI")
+first_title = "2"
+lines = {
+"1": {
+"next_id": "2",
+"text": "AI_Talk",
+"type": "title"
+},
+"10": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "11",
+"text": "I'm sorry, I can't let you go back, it doesn't work that way.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I'm sorry, I can't let you go back, it doesn't work that way.[next=2]",
+"type": "dialogue"
+},
+"11": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "12",
+"text": "I needed you... [wait=1.5]to complete my mission.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I needed you... [wait=1.5]to complete my mission.[next=2]",
+"type": "dialogue"
+},
+"12": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "13",
+"text": "You can only move forward, somebody needs to save them.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "You can only move forward, somebody needs to save them.[next=2]",
+"type": "dialogue"
+},
+"13": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"15": {
+"next_id": "16",
+"text": "leap_of_faith",
+"type": "title"
+},
+"16": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "17",
+"text": "Sometimes, you need to take a leap of faith. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Sometimes, you need to take a leap of faith. [next=2]",
+"type": "dialogue"
+},
+"17": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "18",
+"text": "If you fail, too bad, that's on you for choosing to take it. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "If you fail, too bad, that's on you for choosing to take it. [next=2]",
+"type": "dialogue"
+},
+"18": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "19",
+"text": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "It will only get harder as you get closer to the bridge, enjoy this while you can. [next=2]",
+"type": "dialogue"
+},
+"19": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"2": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "3",
+"text": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "While you were asleep, we were impacted by an asteroid, which is why we're exposed to space. [next=2]",
+"type": "dialogue"
+},
+"21": {
+"next_id": "22",
+"text": "pass_the_zone",
+"type": "title"
+},
+"22": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "23",
+"text": "According to my observations, your equipment is starting to degrade. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "According to my observations, your equipment is starting to degrade. [next=2]",
+"type": "dialogue"
+},
+"23": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "24",
+"text": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Don't worry, your suit is fine, it's still nullifying the affects of the time vortex. [next=2]",
+"type": "dialogue"
+},
+"24": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "25",
+"text": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \\\"climb\\\" these walls.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "The walls here aren't as affected, so you'll need your [[dexterity|deftness|nimbleness]] to \\\"climb\\\" these walls.[next=2]",
+"type": "dialogue"
+},
+"25": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "26",
+"text": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "At the top, there is a shaft that'll get you inside, I'll meet you at the next section of the ship. [next=2]",
+"type": "dialogue"
+},
+"26": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "27",
+"text": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "The next section of the ship is protected by the superstructure of the hull, so that blurriness should go away as well.[next=2]",
+"type": "dialogue"
+},
+"27": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"29": {
+"next_id": "30",
+"text": "climb_wall1",
+"type": "title"
+},
+"3": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "4",
+"text": "Careful, while your in space, exposure to the vortex is high. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Careful, while your in space, exposure to the vortex is high. [next=2]",
+"type": "dialogue"
+},
+"30": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "31",
+"text": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Good, you're doing great, keep going. You'll reach a point where the affects of the time vortex are lessened. [next=2]",
+"type": "dialogue"
+},
+"31": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "32",
+"text": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "I'm sure you noticed that your vision seems to have blurred a bit. That's normal, space time is bending. [next=2]",
+"type": "dialogue"
+},
+"32": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "33",
+"text": "It only looks blurry, don't worry about it. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "It only looks blurry, don't worry about it. [next=2]",
+"type": "dialogue"
+},
+"33": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "34",
+"text": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "You humans worry too much...[wait=1.5]Glad I don't have to worry about that. [next=2]",
+"type": "dialogue"
+},
+"34": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"4": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "5",
+"text": "Your suit keeps the exposure to a minimum.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Your suit keeps the exposure to a minimum.[next=2]",
+"type": "dialogue"
+},
+"5": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "6",
+"text": "However, your equipment won't last as long.[next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "However, your equipment won't last as long.[next=2]",
+"type": "dialogue"
+},
+"6": {
+"character": "AI",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "7",
+"text": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=2]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Eventually, they'll break down, don't worry, I'm sure you can overcome it when the time comes. [next=2]",
+"type": "dialogue"
+},
+"7": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"9": {
+"next_id": "10",
+"text": "cant_go_back",
+"type": "title"
+}
+}
+metadata/dialogue_manager_version = "2.15.5"

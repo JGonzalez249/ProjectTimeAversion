@@ -6,6 +6,7 @@
 */
 shader_type canvas_item;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 // 発射中央部
 uniform vec2 blur_center = vec2( 0.5, 0.5 );
 // ブラー強度

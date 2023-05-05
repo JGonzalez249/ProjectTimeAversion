@@ -126,6 +126,10 @@ talk={
 ]
 }
 
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://src/dialogue/Level01.dialogue", "res://src/dialogue/Level02.dialogue", "res://src/dialogue/Level03.dialogue", "res://src/dialogue/Level04.dialogue")
+
 [layer_names]
 
 2d_render/layer_1="world"

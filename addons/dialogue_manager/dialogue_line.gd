@@ -49,7 +49,7 @@ func get_pause(at_index: int) -> float:
 
 
 # Get the speed for the current typing position
-func get_speed(at_index: int) -> float:
+func get_velocity(at_index: int) -> float:
 	var speed: float = 1
 	for index in speeds:
 		if index > at_index:

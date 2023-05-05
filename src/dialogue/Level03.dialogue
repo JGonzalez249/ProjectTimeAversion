@@ -1,0 +1,31 @@
+~ AI_Talk
+AI: Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=2]
+AI: Degradation of your equipment will accelerate, don't worry, from what my sensors are reading....[wait=2] You should still be able to reach the bridge.[next=2]
+AI: Your suit should still protect you. [next=2]
+AI: The remaining crew is counting on you. [next=2]
+=> END
+
+~ loseDoubleJump
+AI: Looks like your Rocket Boots need maintenance. [next=2]
+AI: They won't work anymore with repairs. [next=2]
+AI: Hmmm...[wait=2] It also appears that gravity has increased as you get closer to the bridge. [next=2]
+AI: It should be fine, your suit has a built-in exoskeleton so you can still reach the bridge, even with increased gravity. [next=2]
+AI: The gloves still are working as intended...[wait=2] That's [[good|great|optimal|better than last time]]. [next=2]
+=> END
+
+~ dead_npc
+You notice a dead body...[wait=1] It's the Captain! [next=2]
+He is holding a datapad. [next=2]
+You pick it up to read its contents.[next=1]
+Captain: Who ever reads this, beware, the feeling exhaustion and slowness. It's more than just \"gravity\" as the ship's AI would put it.[next=2]
+Captain: I don't know why the ship's AI would lie to me like this, honestly, it might not even know. [next=2]
+Captain: My body feels older, my mind feels slower, that distortion...[wait=3] It's definitely my eyes getting worse. [next=2]
+Captain: I know I won't make it to the bridge.[next=2]
+Captain: As Captain, it's my responsibilty to see to the safety of the crew, however, it's impossible for me. [next=2]
+Captain: I can only hope that the AI makes the right decision for my replacement...[next=3]
+AI: Ah, that's the Captain....[wait=2] It's a shame he couldn't complete the mission. [next=2]
+AI: If you're wondering, yes, I have woken you up to replace him. [next=2]
+AI: You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=2]
+AI: You can only move forward.[next=2]
+AI: I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=2]
+=> END

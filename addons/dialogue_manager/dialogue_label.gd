@@ -103,10 +103,10 @@ func type_next(delta: float, seconds_needed: float) -> void:
 		paused_typing.emit(dialogue_line.get_pause(visible_characters))
 	else:
 		visible_characters += 1
-		seconds_needed += seconds_per_step * (1.0 / dialogue_line.get_speed(visible_characters))
+		seconds_needed += seconds_per_step * (1.0 / dialogue_line.get_velocity(visible_characters))
 		if seconds_needed > delta:
 			waiting_seconds += seconds_needed
 			if visible_characters < get_total_character_count():
-				spoke.emit(text[visible_characters - 1], visible_characters - 1, dialogue_line.get_speed(visible_characters))
+				spoke.emit(text[visible_characters - 1], visible_characters - 1, dialogue_line.get_velocity(visible_characters))
 		else:
 			type_next(delta, seconds_needed)

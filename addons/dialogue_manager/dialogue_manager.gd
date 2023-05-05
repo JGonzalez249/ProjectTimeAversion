@@ -66,8 +66,8 @@ func _ready() -> void:
 ## Step through lines and run any mutations until we either hit some dialogue or the end of the conversation
 func get_next_dialogue_line(resource: DialogueResource, key: String = "0", extra_game_states: Array = [], mutation_behaviour: MutationBehaviour = MutationBehaviour.Wait) -> DialogueLine:
 	# You have to provide a valid dialogue resource
-	assert(resource != null, "No dialogue resource provided")
-	assert(resource.lines.size() > 0, "Dialogue file has no content.")
+	assert(resource != null) #,"No dialogue resource provided")
+	assert(resource.lines.size() > 0) #,"Dialogue file has no content.")
 
 	var dialogue: DialogueLine = await get_line(resource, key, extra_game_states)
 
@@ -126,7 +126,7 @@ func create_resource_from_text(text: String) -> Resource:
 		printerr("You have {count} errors in your dialogue text.".format({ count = errors.size() }))
 		for error in errors:
 			printerr("Line %d: %s" % [error.line_number + 1, DialogueConstants.get_error_message(error.error)])
-		assert(false, "You have {count} errors in your dialogue text. See Output for details.".format({ count = errors.size() }))
+		assert(false) #,"You have {count} errors in your dialogue text. See Output for details.".format({ count = errors.size() }))
 
 	var resource: DialogueResource = DialogueResource.new()
 	resource.titles = results.titles
@@ -144,7 +144,7 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon: Node = (SmallExampleBalloonScene if is_small_window else ExampleBalloonScene).instantiate()
 	get_tree().current_scene.add_child(balloon)
-	balloon.start(resource, title, extra_game_states)
+	balloon.start(Callable(resource, title).bind(extra_game_states))
 
 
 ### Dotnet bridge
@@ -373,7 +373,7 @@ func mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation: 
 						return
 
 				# The signal hasn't been found anywhere
-				assert(false, "\"{signal_name}\" is not a signal on any game states ({states})".format({ signal_name = args[0], states = str(get_game_states(extra_game_states)) }))
+				assert(false) #,"\"{signal_name}\" is not a signal on any game states ({states})".format({ signal_name = args[0], states = str(get_game_states(extra_game_states)) }))
 
 			"debug":
 				prints("Debug:", args)
@@ -421,7 +421,7 @@ func get_responses(ids: Array, resource: DialogueResource, id_trail: String, ext
 func get_state_value(property: String, extra_game_states: Array):
 	var expression = Expression.new()
 	if expression.parse(property) != OK:
-		assert(false, "\"{expression}\" is not a valid expression: {error}".format({ expression = property, error = expression.get_error_text() }))
+		assert(false) #,"\"{expression}\" is not a valid expression: {error}".format({ expression = property, error = expression.get_error_text() }))
 
 	for state in get_game_states(extra_game_states):
 		if typeof(state) == TYPE_DICTIONARY:
@@ -435,7 +435,7 @@ func get_state_value(property: String, extra_game_states: Array):
 	if include_singletons and Engine.has_singleton(property):
 		return Engine.get_singleton(property)
 
-	assert(false, "\"{property}\" is not a property on any game states ({states}).".format({ property = property, states = str(get_game_states(extra_game_states)) }))
+	assert(false) #,"\"{property}\" is not a property on any game states ({states}).".format({ property = property, states = str(get_game_states(extra_game_states)) }))
 
 
 # Set a value on the current scene or game state
@@ -449,7 +449,7 @@ func set_state_value(property: String, value, extra_game_states: Array) -> void:
 			state.set(property, value)
 			return
 
-	assert(false, "\"{property}\" is not a property on any game states ({states}).".format({ property = property, states = str(get_game_states(extra_game_states)) }))
+	assert(false) #,"\"{property}\" is not a property on any game states ({states}).".format({ property = property, states = str(get_game_states(extra_game_states)) }))
 
 
 # Collapse any expressions
@@ -517,7 +517,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 					tokens.remove_at(i-1)
 					i -= 2
 				else:
-					assert(false, "\"{method}\" is not a callable method on \"{object}\"".format({ method = function_name, object = str(caller) }))
+					assert(false) #,"\"{method}\" is not a callable method on \"{object}\"".format({ method = function_name, object = str(caller) }))
 			else:
 				var found: bool = false
 				for state in get_game_states(extra_game_states):
@@ -582,7 +582,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 						token["type"] = "value"
 						token["value"] = value[index]
 					else:
-						assert(false, "Key \"{key}\" not found in dictionary \"{dictionary}\"".format({ key = str(index), dictionary = token.variable }))
+						assert(false) #,"Key \"{key}\" not found in dictionary \"{dictionary}\"".format({ key = str(index), dictionary = token.variable }))
 			elif typeof(value) == TYPE_ARRAY:
 				if tokens.size() > i + 1 and tokens[i + 1].type == DialogueConstants.TOKEN_ASSIGNMENT:
 					# If the next token is an assignment then we need to leave this as a reference
@@ -595,7 +595,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 						token["type"] = "value"
 						token["value"] = value[index]
 					else:
-						assert(false, "Index {index} out of bounds of array \"{array}\"".format({ index = index, array = token.variable }))
+						assert(false) #,"Index {index} out of bounds of array \"{array}\"".format({ index = index, array = token.variable }))
 
 		elif token.type == DialogueConstants.TOKEN_DICTIONARY_NESTED_REFERENCE:
 			var dictionary: Dictionary = tokens[i - 1]
@@ -616,7 +616,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 						tokens.remove_at(i)
 						i -= 1
 					else:
-						assert(false, "Key \"{key}\" not found in dictionary \"{dictionary}\"".format({ key = str(index), dictionary = value }))
+						assert(false) #,"Key \"{key}\" not found in dictionary \"{dictionary}\"".format({ key = str(index), dictionary = value }))
 			elif typeof(value) == TYPE_ARRAY:
 				if tokens.size() > i + 1 and tokens[i + 1].type == DialogueConstants.TOKEN_ASSIGNMENT:
 					# If the next token is an assignment then we need to leave this as a reference
@@ -632,7 +632,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 						tokens.remove_at(i)
 						i -= 1
 					else:
-						assert(false, "Index {index} out of bounds of array \"{array}\"".format({ index = index, array = value }))
+						assert(false) #,"Index {index} out of bounds of array \"{array}\"".format({ index = index, array = value }))
 
 		elif token.type == DialogueConstants.TOKEN_ARRAY:
 			token["type"] = "value"
@@ -692,7 +692,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	# Then addition and subtraction
 	i = 0
@@ -709,7 +709,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	# Then negations
 	i = 0
@@ -725,7 +725,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	# Then comparisons
 	i = 0
@@ -742,7 +742,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	# Then and/or
 	i = 0
@@ -759,7 +759,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	# Lastly, resolve any assignments
 	i = 0
@@ -785,11 +785,11 @@ func resolve(tokens: Array, extra_game_states: Array):
 					value = apply_operation(token.value, lhs.value.get(lhs.key, null), tokens[i+1].value)
 					lhs.value[lhs.key] = value
 				"array":
-					assert(lhs.key < lhs.value.size(), "Array index is out of bounds.")
+					assert(lhs.key < lhs.value.size()) #,"Array index is out of bounds.")
 					value = apply_operation(token.value, lhs.value[lhs.key], tokens[i+1].value)
 					lhs.value[lhs.key] = value
 				_:
-					assert(false, "Left hand side of expression cannot be assigned to.")
+					assert(false) #,"Left hand side of expression cannot be assigned to.")
 
 			token["type"] = "value"
 			token["value"] = value
@@ -799,7 +799,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 		i += 1
 
 	if limit >= 1000:
-		assert(false, "Something went wrong")
+		assert(false) #,"Something went wrong")
 
 	return tokens[0].value
 
@@ -878,7 +878,7 @@ func apply_operation(operator: String, first_value, second_value):
 		"or":
 			return first_value or second_value
 
-	assert(false, "Unknown operator")
+	assert(false) #,"Unknown operator")
 
 
 # Check if a dialogue line contains meaningful information
