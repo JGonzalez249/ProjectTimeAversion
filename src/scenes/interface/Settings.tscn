@@ -169,7 +169,10 @@ text = "Display Mode"
 layout_mode = 2
 size_flags_horizontal = 9
 theme_override_fonts/font = SubResource("3")
+item_count = 1
 fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/id = 0
 
 [node name="VSync" type="Label" parent="SettingTabs/Video/MarginContainer/VideoSettings"]
 layout_mode = 2

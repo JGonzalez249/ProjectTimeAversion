@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
-@onready var _settings_menu: Popup = $Settings
+#@onready var _settings_menu: Popup = $Settings
 
 var is_paused = false: set = set_is_paused
 
@@ -27,9 +27,8 @@ func _on_ResumeBtn_pressed():
 func _on_QuitBtn_pressed():
 	get_tree().quit()
 
-func _on_SettingsBtn_pressed():
-	_settings_menu.popup_centered()
-
+#func _on_SettingsBtn_pressed():
+#	_settings_menu.popup_centered()
 
 func _on_ReturnBtn_pressed():
 	self.is_paused = not is_paused

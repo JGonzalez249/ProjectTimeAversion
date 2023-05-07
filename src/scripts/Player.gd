@@ -38,7 +38,6 @@ var dialogue3 = preload("res://src/dialogue/Level03.dialogue")
 func _ready():
 	screen_size = get_viewport_rect().size # Gets screen size and scales assets
 func _physics_process(_delta: float) -> void:
-	print(state)
 	# Variables for conditions in real time
 	var is_jumping :=  Input.is_action_just_pressed("jump") and is_on_floor()
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
@@ -99,21 +98,21 @@ func _physics_process(_delta: float) -> void:
 					_anim_play.play("crouchWalk")
 				else:
 					_anim_play.play("run")
-				_velocity.x = lerp(_velocity.x, -PlayerVariables.speed, 0.1) 
+				_velocity.x = lerpf(_velocity.x, -PlayerVariables.speed, 0.1) 
 				_sprite.flip_h = true
 			elif Input.is_action_pressed("right"):
 				if PlayerVariables.blurStrength == 3:
 					_anim_play.play("crouchWalk")
 				else:
 					_anim_play.play("run")
-				_velocity.x = lerp(_velocity.x, PlayerVariables.speed, 0.1)
+				_velocity.x = lerpf(_velocity.x, PlayerVariables.speed, 0.1)
 				_sprite.flip_h = false
 			else:
 				if PlayerVariables.blurStrength == 3:
 					_anim_play.play("crouchIdle")
 				else:
 					_anim_play.play("idle")
-				_velocity.x = lerp(_velocity.x, 0, 0.9)
+				_velocity.x = lerpf(_velocity.x, 0, 0.9)
 			if is_jumping:
 				_anim_play.play("jump")
 				_velocity.y = PlayerVariables.jump_strength
@@ -197,13 +196,13 @@ func set_direction():
 # Controls player movement and sprite direction on x-axis
 func player_mov():
 	if Input.is_action_pressed("left"):
-		_velocity.x = lerp(_velocity.x, -PlayerVariables.speed, 0.1) 
+		_velocity.x = lerpf(_velocity.x, -PlayerVariables.speed, 0.1) 
 		_sprite.flip_h = true
 	elif Input.is_action_pressed("right"):
-		_velocity.x = lerp(_velocity.x, PlayerVariables.speed, 0.1)
+		_velocity.x = lerpf(_velocity.x, PlayerVariables.speed, 0.1)
 		_sprite.flip_h = false
 	else:
-		_velocity.x = lerp(_velocity.x, 0, 0.5)
+		_velocity.x = lerpf(_velocity.x, 0, 0.5)
 
 # Gravity of the player over time
 func move_and_fall(_has_climbable_item: bool):

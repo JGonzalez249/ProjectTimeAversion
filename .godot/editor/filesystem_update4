@@ -1,7 +1,11 @@
 res://default_env.tres
+res://src/scenes/interface/Settings.tscn
+res://src/scenes/interface/MainMenu.tscn
+res://src/scenes/interface/Pause.tscn
 res://src/scenes/characters/player/Player.tscn
 res://src/scenes/levels/level_1.tscn
-res://src/scenes/interface/MainMenu.tscn
-res://src/scenes/interface/Settings.tscn
-res://src/scenes/interface/Pause.tscn
-res://src/scenes/interface/Settings.gd
+res://src/scripts/Player.gd
+res://src/scripts/interface/Pause.gd
+res://src/autoloads/LevelManager.tscn
+res://src/scripts/interface/MainMenu.gd
+res://src/scenes/characters/secondary/AICompanion.tscn

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://40wok064sb5i"]
+[gd_scene load_steps=7 format=3 uid="uid://40wok064sb5i"]
 
 [ext_resource type="Script" path="res://src/scripts/interface/Pause.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://c5wvk6pc5nbsf" path="res://src/scenes/interface/Settings.tscn" id="2"]
 [ext_resource type="FontFile" uid="uid://bhr0kwqgn17xb" path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" id="3"]
 
 [sub_resource type="FontFile" id="1"]
@@ -54,6 +53,7 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Pause" type="Control"]
 process_mode = 2
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,6 +93,7 @@ theme_override_fonts/font = SubResource("2")
 text = "Resume Game"
 
 [node name="SettingsBtn" type="Button" parent="CenterContainer/Menu"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = SubResource("3")
 text = "Settings"
@@ -104,13 +105,10 @@ theme_override_fonts/font = SubResource("4")
 text = "Quit Game"
 
 [node name="ReturnBtn" type="Button" parent="CenterContainer/Menu"]
-visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ResumeBtn")
 theme_override_fonts/font = SubResource("4")
 text = "Return to Main Menu"
-
-[node name="Settings" parent="." instance=ExtResource("2")]
 
 [connection signal="pressed" from="CenterContainer/Menu/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
 [connection signal="pressed" from="CenterContainer/Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]

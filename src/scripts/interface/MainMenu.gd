@@ -1,7 +1,7 @@
 extends Control
 
 @onready var _focusButton: Button = $ButtonContainer/Menu/StartGameBtn
-@onready var _settings_menu: Popup = $Settings
+#@onready var _settings_menu: Popup = $Settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +20,8 @@ func _on_StartGameBtn_pressed():
 	GameStates.level += 1
 
 
-func _on_SettingsBtn_pressed():
-	_settings_menu.popup_centered()
+#func _on_SettingsBtn_pressed():
+#	_settings_menu.popup_centered()
 
 
 func _on_QuitGameBtn_pressed():

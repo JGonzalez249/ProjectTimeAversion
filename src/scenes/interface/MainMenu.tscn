@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cih17ww3j6i5u"]
+[gd_scene load_steps=8 format=3 uid="uid://cih17ww3j6i5u"]
 
 [ext_resource type="Script" path="res://src/scripts/interface/MainMenu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c4vevy5fefnsq" path="res://src/assets/imgs/TitleBG.png" id="2"]
 [ext_resource type="FontFile" uid="uid://bhr0kwqgn17xb" path="res://src/assets/fonts/PixeloidSans-JR6qo.ttf" id="3"]
-[ext_resource type="PackedScene" uid="uid://c5wvk6pc5nbsf" path="res://src/scenes/interface/Settings.tscn" id="4"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -152,6 +151,7 @@ theme_override_font_sizes/font_size = 32
 text = "Start Game"
 
 [node name="SettingsBtn" type="Button" parent="ButtonContainer/Menu"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = SubResource("3")
 text = "Settings"
@@ -161,8 +161,6 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartGameBtn")
 theme_override_fonts/font = SubResource("4")
 text = "Quit Game"
-
-[node name="Settings" parent="." instance=ExtResource("4")]
 
 [connection signal="pressed" from="ButtonContainer/Menu/StartGameBtn" to="." method="_on_StartGameBtn_pressed"]
 [connection signal="pressed" from="ButtonContainer/Menu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
