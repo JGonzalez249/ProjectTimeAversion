@@ -82,10 +82,10 @@ shape = SubResource("15")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("1")
 hframes = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("13")
 frame_progress = 0.00899012

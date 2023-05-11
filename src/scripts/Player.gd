@@ -1,7 +1,4 @@
-#TODO: limit player vision as they progress (in progess)
-	#Make a state machine for blur shaders
-
-#TODO: HUGE REFACTOR TOWARDS PLAYER STATES (in progress)
+# TODO: Make code work for Godot 4
 
 
 extends CharacterBody2D
