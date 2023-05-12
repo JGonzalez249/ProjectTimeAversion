@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var _focusButton: Button = $CenterContainer/Menu/ResumeBtn
+@onready var _focusButton: Button = find_child("ResumeBtn")
 #@onready var _settings_menu: Popup = $Settings
 
 var is_paused = false: set = set_is_paused

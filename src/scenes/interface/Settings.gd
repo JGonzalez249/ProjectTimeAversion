@@ -2,8 +2,8 @@ extends Popup
 
 
 # Video Settings
-@onready var _display_options = $SettingTabs/Video/MarginContainer/VideoSettings/DisplayOption
-@onready var _vsync_mode =  $SettingTabs/Video/MarginContainer/VideoSettings/VSyncBtn
+@onready var _display_options: OptionButton = find_child("DisplayOption")
+@onready var _vsync_mode: CheckButton = find_child("VSyncBtn")
 
 # Audio Settings
 @onready var _master_slider =  $SettingTabs/Audio/MarginContainer/AudioSettings/MasterVolSlider
