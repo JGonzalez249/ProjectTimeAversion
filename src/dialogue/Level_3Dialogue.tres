@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 13
+resource_version = 14
 syntax_version = 2
 raw_text = "~ AI_Talk
 AI: Hello again, I apologize. It looks like I was incorrect with my assessment of this section of the ship. [next=2]
@@ -36,6 +36,7 @@ AI: If you're wondering, yes, I have woken you up to replace him. [next=2]
 AI: You humans are fragile unfortunately, still you have a job to do, forget looking back.[next=2]
 AI: You can only move forward.[next=2]
 AI: I'll have to warn you, the next section of the ship is near the center of the vortex, expect gravity to increase and your gloves to fail soon. [next=2]
+set block_level4 = false
 => END
 
 "
@@ -238,6 +239,22 @@ lines = {
 "type": "dialogue"
 },
 "30": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "block_level4"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "31",
+"type": "mutation"
+},
+"31": {
 "next_id": "end",
 "type": "goto"
 },

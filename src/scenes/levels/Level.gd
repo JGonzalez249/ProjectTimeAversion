@@ -6,6 +6,8 @@ var dialogue_resource3 = preload("res://src/dialogue/Level_3Dialogue.tres")
 var dialogue_resource4 = preload("res://src/dialogue/Level_4Dialogue.tres")
 var ending_anim = preload("res://src/scenes/levels/ending.tscn")
 
+onready var _level_4_door: Area2D = $DoorToLevel04
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
@@ -25,12 +27,15 @@ func _on_DoorToLevel03_body_entered(body, _extra_arg_0) -> void:
 		
 		
 func _on_DoorToLevel04_body_entered(body, _extra_arg_0):
-	if body.name == "Player":
-		#Add condition for speaking with AI before loading level_4
-		LevelManager.changeLevel(LevelManager.LEVEL04)
-		yield(get_node("/root/LevelManager").get_child(0), "animation_finished")
-		PlayerVariables.blurStrength += 1
-		GameStates.level += 1
+		if GameStates.block_level4 == false:
+			_level_4_door.visible = true
+			if body.name == "Player":
+				LevelManager.changeLevel(LevelManager.LEVEL04)
+				yield(get_node("/root/LevelManager").get_child(0), "animation_finished")
+				PlayerVariables.blurStrength += 1
+				GameStates.level += 1
+		else:
+			_level_4_door.visible = false
 
 func _on_DoorToLevel01_body_entered(body, _extra_arg_0) -> void:
 	if body.name == "Player":
